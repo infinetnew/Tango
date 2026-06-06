@@ -132,15 +132,19 @@
 
                 <h3>🔍 Cerca un ticker</h3>
 
-                <input
-                    type="text"
-                    id="tickerInput"
-                    placeholder="Es. AAPL"
-                >
+                <div class="searchRow">
 
-                <button id="addTickerBtn">
-                    Aggiungi alla Watchlist
-                </button>
+                    <input
+                        type="text"
+                        id="tickerInput"
+                        placeholder="Ticker (es. AAPL)"
+                    >
+
+                    <button id="addTickerBtn">
+                        +
+                    </button>
+
+                </div>
 
                 <div id="statusMessage"></div>
 
@@ -149,6 +153,15 @@
             <div class="card">
 
                 <h3>⭐ La mia Watchlist</h3>
+
+                <div class="watchlistHeader">
+
+                    <span>Ticker</span>
+                    <span>Prezzo</span>
+                    <span>Var %</span>
+                    <span></span>
+
+                </div>
 
                 <ul id="watchlist"></ul>
 
