@@ -104,38 +104,74 @@ async function loadUser(){
 
 async function addTicker(){
 
-    const symbol =
-    document
-    .getElementById("tickerInput")
-    .value
-    .trim()
-    .toUpperCase();
+    try {
 
-    if(!symbol){
-        return;
+        const symbol =
+        document
+        .getElementById("tickerInput")
+        .value
+        .trim()
+        .toUpperCase();
+
+        if(!symbol){
+            alert("Inserisci un ticker");
+            return;
+        }
+
+        const {
+            data:{ user },
+            error:userError
+        } =
+        await supabaseClient.auth.getUser();
+
+        if(userError){
+            alert("Errore utente: " + userError.message);
+            return;
+        }
+
+        if(!user){
+            alert("Utente non trovato");
+            return;
+        }
+
+        alert("Sto salvando " + symbol);
+
+        const { data, error } =
+        await supabaseClient
+        .from("watchlist")
+        .insert([
+            {
+                user_id: user.id,
+                symbol: symbol
+            }
+        ])
+        .select();
+
+        if(error){
+            console.error(error);
+            alert("Errore Supabase: " + error.message);
+            return;
+        }
+
+        console.log(data);
+
+        alert("Ticker aggiunto correttamente");
+
+        document.getElementById("tickerInput").value = "";
+
+        await loadWatchlist();
+
+    } catch(err){
+
+        console.error(err);
+
+        alert(
+            "Errore Javascript: " +
+            err.message
+        );
+
     }
 
-    const {
-        data:{ user }
-    } =
-    await supabaseClient.auth.getUser();
-
-    const { error } =
-    await supabaseClient
-    .from("watchlist")
-    .insert({
-        user_id: user.id,
-        symbol: symbol
-    });
-
-    if(error){
-        alert(error.message);
-        return;
-    }
-
-    document.getElementById("tickerInput").value = "";
-
-    loadWatchlist();
 }
 
 async function loadWatchlist(){
