@@ -181,29 +181,42 @@
 
                 <h3>💼 Il mio Portafoglio</h3>
 
-                <input
-                    type="text"
-                    id="portfolioTicker"
-                    placeholder="Ticker (es. AAPL)"
-                >
+                <div class="portfolioInputRow">
 
-                <input
-                    type="number"
-                    id="investedAmount"
-                    placeholder="Importo investito"
-                    step="0.01"
-                >
+                    <input
+                        type="text"
+                        id="portfolioTicker"
+                        placeholder="Ticker"
+                    >
 
-                <input
-                    type="number"
-                    id="purchasePrice"
-                    placeholder="Prezzo acquisto"
-                    step="0.0001"
-                >
+                    <input
+                        type="number"
+                        id="investedAmount"
+                        placeholder="Importo"
+                        step="0.01"
+                    >
 
-                <button id="addPositionBtn">
-                    Aggiungi Posizione
-                </button>
+                    <input
+                        type="number"
+                        id="purchasePrice"
+                        placeholder="Prezzo"
+                        step="0.0001"
+                    >
+
+                    <button id="addPositionBtn">
+                        +
+                    </button>
+
+                </div>
+
+                <div class="portfolioHeader">
+
+                    <span>Ticker</span>
+                    <span>Investito</span>
+                    <span>Posizioni</span>
+                    <span></span>
+
+                </div>
 
                 <ul id="portfolioList"></ul>
 
