@@ -446,21 +446,18 @@ const li =
 document.createElement("li");
 
 li.innerHTML = `
-<div class="tickerCard">
+<div class="watchlistRow">
 
-    <div class="tickerInfo">
-<div class="tickerSymbol">
-    ${item.symbol}
-</div>
+    <div class="tickerCol">
+        ${item.symbol}
+    </div>
 
-<div class="tickerSubtitle">
-    ${item.tickers?.name || ""}
-</div>
+    <div class="priceCol">
+        -
+    </div>
 
-<div class="tickerSubtitle">
-    ${item.tickers?.exchange || ""}
-</div>
-
+    <div class="changeCol">
+        -
     </div>
 
     <button
