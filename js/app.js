@@ -269,18 +269,17 @@ if(existingTicker){
             }
         ]);
 
-        if(error){
+if(error){
 
-            console.error(error);
+    console.error(error);
 
-            showStatus(
-                error.message,
-                "#ff6b6b"
-            );
+    showStatus(
+        "Errore durante il salvataggio del ticker",
+        "#ff6b6b"
+    );
 
-            return;
-        }
-
+    return;
+}
         document
         .getElementById("tickerInput")
         .value = "";
@@ -351,7 +350,22 @@ console.log("SYMBOL", symbol);
 console.log("INVESTED", investedAmount);
 console.log("PRICE", purchasePrice);
 console.log("QUANTITY", quantity);
+const { data: tickerExists } =
+await supabaseClient
+.from("tickers")
+.select("symbol")
+.eq("symbol", symbol)
+.maybeSingle();
 
+if(!tickerExists){
+
+    showStatus(
+        "Ticker non trovato",
+        "#ff6b6b"
+    );
+
+    return;
+}
 const {
     data,
     error
@@ -373,21 +387,21 @@ await supabaseClient
 console.log("DATA", data);
 console.log("ERROR", error);
 
-    if(error){
+if(error){
 
-        console.error(error);
-
-        showStatus(
-            error.message,
-            "#ff6b6b"
-        );
-
-        return;
-    }
+    console.error(error);
 
     showStatus(
-        "Posizione aggiunta"
+        "Errore durante il salvataggio della posizione",
+        "#ff6b6b"
     );
+
+    return;
+}
+
+showStatus(
+    "✅ Posizione aggiunta"
+);
 
 }
 
