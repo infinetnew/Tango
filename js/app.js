@@ -93,33 +93,34 @@ async function register(){
 
     if(user){
 
+
 const { error: profileError } =
 await supabaseClient
 .from("profiles")
-.insert({
-
-    id: user.id,
-    nickname: nickname,
-    email: email
-
-});
+.insert([
+    {
+        id: user.id,
+        nickname: nickname,
+        email: email
+    }
+]);
 
 if(profileError){
 
     console.error(profileError);
 
     showMessage(
+        "Errore profilo: " +
         profileError.message
     );
 
     return;
 }
+}
 
-    }
-
-    showMessage(
-        "Registrazione completata"
-    );
+showMessage(
+    "Registrazione completata"
+);
 
 }
 
@@ -173,10 +174,19 @@ await supabaseClient
 .from("profiles")
 .select("nickname")
 .eq("id", user.id)
-.single();
+.maybeSingle();
 
-welcomeText.innerText =
-`Benvenuto ${profile.nickname}`;
+if(profile){
+
+    welcomeText.innerText =
+    `Benvenuto ${profile.nickname}`;
+
+}else{
+
+    welcomeText.innerText =
+    `Benvenuto ${user.email}`;
+
+}
 
     authContainer.style.display = "none";
     appContainer.style.display = "flex";
@@ -352,9 +362,7 @@ document
 .getElementById("registerBtn")
 .addEventListener("click", register);
 
-document
-.getElementById("registerBtn")
-.addEventListener("click", register);
+
 
 document
 .getElementById("loginBtn")
