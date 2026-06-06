@@ -188,10 +188,11 @@ if(profile){
 
 }
 
-    authContainer.style.display = "none";
-    appContainer.style.display = "flex";
+authContainer.style.display = "none";
+appContainer.style.display = "flex";
 
-    loadWatchlist();
+await loadWatchlist();
+await loadPortfolio();
 }
 
 async function addTicker(){
@@ -402,6 +403,7 @@ if(error){
 showStatus(
     "Posizione aggiunta al tuo Portfolio"
 );
+await loadPortfolio();
 
 }
 
@@ -473,6 +475,86 @@ list.appendChild(li);
 
     });
 }
+async function loadPortfolio(){
+
+    const {
+        data:{ user }
+    } =
+    await supabaseClient.auth.getUser();
+
+    const { data, error } =
+    await supabaseClient
+    .from("portfolio")
+    .select(`
+        *,
+        tickers (
+            symbol,
+            name,
+            exchange
+        )
+    `)
+    .eq("user_id", user.id)
+    .order("created_at");
+
+    if(error){
+
+        console.error(error);
+
+        return;
+    }
+
+    const list =
+    document.getElementById("portfolioList");
+
+    list.innerHTML = "";
+
+    data.forEach(item => {
+
+        const li =
+        document.createElement("li");
+
+        li.innerHTML = `
+        <div class="tickerCard">
+
+            <div class="tickerInfo">
+
+                <div class="tickerSymbol">
+                    ${item.symbol}
+                </div>
+
+                <div class="tickerSubtitle">
+                    ${item.tickers?.name || ""}
+                </div>
+
+                <div class="tickerSubtitle">
+                    Investito: $${item.invested_amount}
+                </div>
+
+                <div class="tickerSubtitle">
+                    Prezzo acquisto: $${item.purchase_price}
+                </div>
+
+                <div class="tickerSubtitle">
+                    Quantità: ${Number(item.quantity).toFixed(4)}
+                </div>
+
+            </div>
+
+            <button
+                class="deleteBtn"
+                onclick="deletePosition(${item.id})"
+            >
+                ✕
+            </button>
+
+        </div>
+        `;
+
+        list.appendChild(li);
+
+    });
+
+}
 async function deleteTicker(id){
 
 
@@ -496,6 +578,31 @@ async function deleteTicker(id){
     showStatus("Ticker rimosso dalla watchlist");
 
     loadWatchlist();
+
+}
+async function deletePosition(id){
+
+    const { error } =
+    await supabaseClient
+    .from("portfolio")
+    .delete()
+    .eq("id", id);
+
+    if(error){
+
+        showStatus(
+            "Errore eliminazione posizione",
+            "#ff6b6b"
+        );
+
+        return;
+    }
+
+    showStatus(
+        "Posizione rimossa"
+    );
+
+    await loadPortfolio();
 
 }
 
