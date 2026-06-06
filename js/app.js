@@ -34,7 +34,7 @@ async function register(){
     const password =
     document.getElementById("password").value.trim();
 
-    const { data, error } =
+    const { error } =
     await supabaseClient.auth.signUp({
         email,
         password
@@ -98,6 +98,81 @@ async function loadUser(){
 
     authContainer.style.display = "none";
     appContainer.style.display = "flex";
+
+    loadWatchlist();
+}
+
+async function addTicker(){
+
+    const symbol =
+    document
+    .getElementById("tickerInput")
+    .value
+    .trim()
+    .toUpperCase();
+
+    if(!symbol){
+        return;
+    }
+
+    const {
+        data:{ user }
+    } =
+    await supabaseClient.auth.getUser();
+
+    const { error } =
+    await supabaseClient
+    .from("watchlist")
+    .insert({
+        user_id: user.id,
+        symbol: symbol
+    });
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    document.getElementById("tickerInput").value = "";
+
+    loadWatchlist();
+}
+
+async function loadWatchlist(){
+
+    const {
+        data:{ user }
+    } =
+    await supabaseClient.auth.getUser();
+
+    const { data, error } =
+    await supabaseClient
+    .from("watchlist")
+    .select("*")
+    .eq("user_id", user.id)
+    .order("created_at");
+
+    if(error){
+        console.error(error);
+        return;
+    }
+
+    const list =
+    document.getElementById("watchlist");
+
+    list.innerHTML = "";
+
+    data.forEach(item => {
+
+        const li =
+        document.createElement("li");
+
+        li.textContent =
+        item.symbol;
+
+        list.appendChild(li);
+
+    });
 }
 
 document
@@ -111,5 +186,9 @@ document
 document
 .getElementById("logoutBtn")
 .addEventListener("click", logout);
+
+document
+.getElementById("addTickerBtn")
+.addEventListener("click", addTicker);
 
 loadUser();
