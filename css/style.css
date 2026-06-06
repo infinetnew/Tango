@@ -205,3 +205,62 @@ button:hover{
 .deleteBtn:hover{
     background:#dc2626;
 }
+.searchRow{
+    display:flex;
+    gap:12px;
+}
+
+.searchRow input{
+    flex:1;
+    margin-bottom:0;
+}
+
+.searchRow button{
+    width:70px;
+}
+
+.watchlistHeader{
+    display:grid;
+    grid-template-columns:
+        2fr
+        1fr
+        1fr
+        60px;
+
+    padding:10px 15px;
+    color:#94a3b8;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.watchlistRow{
+    display:grid;
+    grid-template-columns:
+        2fr
+        1fr
+        1fr
+        60px;
+
+    align-items:center;
+
+    background:#334155;
+
+    padding:15px;
+
+    border-radius:12px;
+}
+
+.tickerCol{
+    font-weight:bold;
+    font-size:18px;
+}
+
+.priceCol,
+.changeCol{
+    text-align:center;
+}
+
+#watchlist li{
+    list-style:none;
+    margin-bottom:10px;
+}
