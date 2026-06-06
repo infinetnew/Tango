@@ -26,6 +26,7 @@ const statusMessage =
 document.getElementById("statusMessage");
 let expandedTicker = null;
 let selectedTicker = null;
+let selectedPositionId = null;
 const portfolioStatusMessage =
 document.getElementById(
     "portfolioStatusMessage"
@@ -843,24 +844,25 @@ async function deleteTicker(id){
     loadWatchlist();
 
 }
-async function deletePosition(id){
-if(
-    !confirm(
-        "Vuoi davvero chiudere questa posizione?"
-    )
-){
-    return;
+function deletePosition(id){
+
+    selectedPositionId = id;
+
+    document
+    .getElementById("confirmCloseModal")
+    .style.display = "flex";
 }
+async function confirmClosePosition(){
 
     const { error } =
     await supabaseClient
     .from("portfolio")
     .delete()
-    .eq("id", id);
+    .eq("id", selectedPositionId);
 
     if(error){
 
-        showStatus(
+        showPortfolioStatus(
             "Errore eliminazione posizione",
             "#ff6b6b"
         );
@@ -868,12 +870,25 @@ if(
         return;
     }
 
-showPortfolioStatus(
-    "Posizione chiusa con successo"
-);
+    document
+    .getElementById("confirmCloseModal")
+    .style.display = "none";
+
+    selectedPositionId = null;
+
+    showPortfolioStatus(
+        "Posizione chiusa con successo"
+    );
 
     await loadPortfolio();
+}
+function closeConfirmModal(){
 
+    document
+    .getElementById("confirmCloseModal")
+    .style.display = "none";
+
+    selectedPositionId = null;
 }
 function showPage(pageId){
 
@@ -943,4 +958,17 @@ document
 .addEventListener(
     "click",
     confirmManagePosition
+);
+document
+.getElementById("confirmCloseBtn")
+.addEventListener(
+    "click",
+    confirmClosePosition
+);
+
+document
+.getElementById("cancelCloseBtn")
+.addEventListener(
+    "click",
+    closeConfirmModal
 );
