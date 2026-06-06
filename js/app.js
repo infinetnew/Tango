@@ -25,6 +25,7 @@ document.getElementById("welcomeText");
 const statusMessage =
 document.getElementById("statusMessage");
 let expandedTicker = null;
+let selectedTicker = null;
 const portfolioStatusMessage =
 document.getElementById(
     "portfolioStatusMessage"
@@ -511,6 +512,36 @@ function togglePortfolioTicker(symbol){
 
     loadPortfolio();
 }
+function openManagePosition(symbol){
+
+    selectedTicker = symbol;
+
+    document
+    .getElementById("manageTickerTitle")
+    .innerText =
+    `Gestisci ${symbol}`;
+
+    document
+    .getElementById("managePositionModal")
+    .style.display = "flex";
+}
+function closeManagePosition(){
+
+    document
+    .getElementById("managePositionModal")
+    .style.display = "none";
+
+    document
+    .getElementById("closeAmountInput")
+    .value = "";
+
+    document
+    .getElementById("closePercentInput")
+    .value = "";
+
+    selectedTicker = null;
+}
+
 async function loadPortfolio(){
 
     const {
@@ -648,7 +679,15 @@ li.innerHTML = `
     ${stock.positions.length}
 </div>
 
-<div></div>
+<button
+    class="manageBtn"
+    onclick="
+        event.stopPropagation();
+        openManagePosition('${stock.symbol}');
+    "
+>
+    ⚙
+</button>
 
 </div>
 
@@ -765,3 +804,11 @@ document
 loadUser();
 window.togglePortfolioTicker =
 togglePortfolioTicker;
+window.openManagePosition =
+openManagePosition;
+document
+.getElementById("closeModalBtn")
+.addEventListener(
+    "click",
+    closeManagePosition
+);
