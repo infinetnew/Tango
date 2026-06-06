@@ -225,6 +225,22 @@ async function addTicker(){
             );
             return;
         }
+const { data: tickerExists } =
+await supabaseClient
+.from("tickers")
+.select("symbol")
+.eq("symbol", symbol)
+.maybeSingle();
+
+if(!tickerExists){
+
+    showStatus(
+        "Ticker non trovato",
+        "#ff6b6b"
+    );
+
+    return;
+}
 const { data: existingTicker } =
 await supabaseClient
 .from("watchlist")
