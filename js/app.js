@@ -736,29 +736,40 @@ if(expandedTicker === stock.symbol){
 
         <div class="portfolioDetailRow">
 
-            <strong>Investito</strong>
-            <strong>Prezzo</strong>
+            <strong>Importo Investito</strong>
+            <strong>Prezzo Acquisto</strong>
             <strong>Quantità</strong>
+<strong>Azione</strong>
 
         </div>
 
-        ${stock.positions.map(position => `
-            <div class="portfolioDetailRow">
+  ${stock.positions.map(position => `
+    <div class="portfolioDetailRow">
 
-                <span>
-                    $${Number(position.invested_amount).toFixed(2)}
-                </span>
+        <span>
+            $${Number(position.invested_amount).toFixed(2)}
+        </span>
 
-                <span>
-                    $${Number(position.purchase_price).toFixed(2)}
-                </span>
+        <span>
+            $${Number(position.purchase_price).toFixed(2)}
+        </span>
 
-                <span>
-                    ${Number(position.quantity).toFixed(4)}
-                </span>
+        <span>
+            ${Number(position.quantity).toFixed(4)}
+        </span>
 
-            </div>
-        `).join("")}
+        <button
+            class="closePositionBtn"
+            onclick="
+                event.stopPropagation();
+                deletePosition(${position.id});
+            "
+        >
+            Chiudi
+        </button>
+
+    </div>
+`).join("")}
 
     </div>
     `;
@@ -833,6 +844,13 @@ async function deleteTicker(id){
 
 }
 async function deletePosition(id){
+if(
+    !confirm(
+        "Vuoi davvero chiudere questa posizione?"
+    )
+){
+    return;
+}
 
     const { error } =
     await supabaseClient
@@ -850,9 +868,9 @@ async function deletePosition(id){
         return;
     }
 
-    showStatus(
-        "Posizione rimossa dal tuo portfolio"
-    );
+showPortfolioStatus(
+    "Posizione chiusa con successo"
+);
 
     await loadPortfolio();
 
