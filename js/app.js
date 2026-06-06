@@ -25,6 +25,10 @@ document.getElementById("welcomeText");
 const statusMessage =
 document.getElementById("statusMessage");
 let expandedTicker = null;
+const portfolioStatusMessage =
+document.getElementById(
+    "portfolioStatusMessage"
+);
 
 function showMessage(text){
     message.innerText = text;
@@ -40,6 +44,21 @@ function showStatus(text, color = "#4ade80"){
     setTimeout(() => {
         statusMessage.innerText = "";
     }, 3000);
+}
+function showPortfolioStatus(
+    text,
+    color = "#4ade80"
+){
+
+    if(!portfolioStatusMessage) return;
+
+    portfolioStatusMessage.innerText = text;
+    portfolioStatusMessage.style.color = color;
+
+    setTimeout(() => {
+        portfolioStatusMessage.innerText = "";
+    }, 3000);
+
 }
 
 async function register(){
@@ -333,7 +352,7 @@ async function addPosition(){
         !purchasePrice
     ){
 
-        showStatus(
+        showPortfolioStatus(
             "Compila tutti i campi",
             "#ff6b6b"
         );
@@ -363,7 +382,7 @@ await supabaseClient
 
 if(!tickerExists){
 
-    showStatus(
+    showPortfolioStatus(
         "Ticker non trovato",
         "#ff6b6b"
     );
@@ -395,7 +414,7 @@ if(error){
 
     console.error(error);
 
-    showStatus(
+    showPortfolioStatus(
         "Errore durante il salvataggio della posizione",
         "#ff6b6b"
     );
@@ -403,9 +422,12 @@ if(error){
     return;
 }
 
-showStatus(
+showPortfolioStatus(
     "Posizione aggiunta al tuo Portfolio"
 );
+document.getElementById("portfolioTicker").value = "";
+document.getElementById("investedAmount").value = "";
+document.getElementById("purchasePrice").value = "";
 await loadPortfolio();
 
 }
