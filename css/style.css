@@ -194,10 +194,8 @@ button:hover{
         60px;
 
     padding:10px 15px;
-
     color:#94a3b8;
     font-size:14px;
-
     margin-bottom:10px;
 }
 
@@ -218,13 +216,9 @@ button:hover{
         60px;
 
     align-items:center;
-
     background:#334155;
-
     padding:12px 15px;
-
     border-radius:12px;
-
     transition:.2s;
 }
 
@@ -241,6 +235,8 @@ button:hover{
 .changeCol{
     text-align:center;
 }
+
+/* DELETE BUTTON */
 
 .deleteBtn{
     width:42px;
@@ -265,5 +261,94 @@ button:hover{
 }
 
 #portfolioList li{
-    margin-bottom:12px;
+    margin-bottom:10px;
+}
+
+.portfolioInputRow{
+    display:grid;
+    grid-template-columns:
+        1fr
+        1fr
+        1fr
+        70px;
+
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.portfolioInputRow input{
+    margin-bottom:0;
+}
+
+.portfolioHeader{
+    display:grid;
+    grid-template-columns:
+        2fr
+        1fr
+        1fr
+        60px;
+
+    padding:10px 15px;
+    color:#94a3b8;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.portfolioHeader span{
+    text-align:center;
+}
+
+.portfolioHeader span:first-child{
+    text-align:left;
+}
+
+.portfolioRow{
+    display:grid;
+    grid-template-columns:
+        2fr
+        1fr
+        1fr
+        60px;
+
+    align-items:center;
+    background:#334155;
+    padding:12px 15px;
+    border-radius:12px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.portfolioRow:hover{
+    background:#42506a;
+}
+
+.positionCount{
+    text-align:center;
+}
+
+.investedCol{
+    text-align:center;
+}
+
+.portfolioDetails{
+    background:#26354d;
+    margin-top:8px;
+    padding:15px;
+    border-radius:12px;
+}
+
+.portfolioDetailRow{
+    display:grid;
+    grid-template-columns:
+        1fr
+        1fr
+        1fr;
+
+    padding:8px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.portfolioDetailRow:last-child{
+    border-bottom:none;
 }
