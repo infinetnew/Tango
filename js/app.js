@@ -225,6 +225,23 @@ async function addTicker(){
             );
             return;
         }
+const { data: existingTicker } =
+await supabaseClient
+.from("watchlist")
+.select("id")
+.eq("user_id", user.id)
+.eq("symbol", symbol)
+.maybeSingle();
+
+if(existingTicker){
+
+    showStatus(
+        "Ticker già presente nella tua watchlist",
+        "#ff6b6b"
+    );
+
+    return;
+}
 
         const { error } =
         await supabaseClient
@@ -329,12 +346,7 @@ list.appendChild(li);
 }
 async function deleteTicker(id){
 
-    const confirmed =
-    confirm("Vuoi eliminare questo ticker?");
 
-    if(!confirmed){
-        return;
-    }
 
     const { error } =
     await supabaseClient
@@ -352,7 +364,7 @@ async function deleteTicker(id){
         return;
     }
 
-    showStatus("Ticker eliminato");
+    showStatus("Ticker rimosso dalla watchlist");
 
     loadWatchlist();
 
