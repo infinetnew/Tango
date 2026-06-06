@@ -43,24 +43,72 @@ function showStatus(text, color = "#4ade80"){
 
 async function register(){
 
+    const nickname =
+    document
+    .getElementById("nickname")
+    .value
+    .trim();
+
     const email =
-    document.getElementById("email").value.trim();
+    document
+    .getElementById("email")
+    .value
+    .trim();
 
     const password =
-    document.getElementById("password").value.trim();
+    document
+    .getElementById("password")
+    .value
+    .trim();
 
-    const { error } =
-    await supabaseClient.auth.signUp({
-        email,
-        password
-    });
+    if(!nickname){
 
-    if(error){
-        showMessage(error.message);
+        showMessage(
+            "Inserisci un nickname"
+        );
+
         return;
     }
 
-    showMessage("Registrazione completata");
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.auth.signUp({
+
+        email,
+        password
+
+    });
+
+    if(error){
+
+        showMessage(error.message);
+
+        return;
+    }
+
+    const user =
+    data.user;
+
+    if(user){
+
+        await supabaseClient
+        .from("profiles")
+        .insert({
+
+            id: user.id,
+            nickname: nickname,
+            email: email
+
+        });
+
+    }
+
+    showMessage(
+        "Registrazione completata"
+    );
+
 }
 
 async function login(){
@@ -108,8 +156,15 @@ async function loadUser(){
         return;
     }
 
-    welcomeText.innerText =
-    `Benvenuto ${user.email}`;
+const { data: profile } =
+await supabaseClient
+.from("profiles")
+.select("nickname")
+.eq("id", user.id)
+.single();
+
+welcomeText.innerText =
+`Benvenuto ${profile.nickname}`;
 
     authContainer.style.display = "none";
     appContainer.style.display = "flex";
