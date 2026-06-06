@@ -252,7 +252,7 @@ await supabaseClient
 if(existingTicker){
 
     showStatus(
-        "Ticker già presente nella tua watchlist",
+        "Ticker già presente nella tua Watchlist",
         "#ff6b6b"
     );
 
@@ -284,7 +284,7 @@ if(error){
         .getElementById("tickerInput")
         .value = "";
 
-        showStatus("✅ Ticker aggiunto");
+        showStatus("Ticker aggiunto alla tua Watchlist");
 
         await loadWatchlist();
 
@@ -400,7 +400,7 @@ if(error){
 }
 
 showStatus(
-    "✅ Posizione aggiunta"
+    "Posizione aggiunta al tuo Portfolio"
 );
 
 }
