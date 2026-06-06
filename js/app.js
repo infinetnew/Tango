@@ -301,6 +301,83 @@ if(existingTicker){
     }
 
 }
+async function addPosition(){
+
+    const symbol =
+    document
+    .getElementById("portfolioTicker")
+    .value
+    .trim()
+    .toUpperCase();
+
+    const investedAmount =
+    parseFloat(
+        document
+        .getElementById("investedAmount")
+        .value
+    );
+
+    const purchasePrice =
+    parseFloat(
+        document
+        .getElementById("purchasePrice")
+        .value
+    );
+
+    if(
+        !symbol ||
+        !investedAmount ||
+        !purchasePrice
+    ){
+
+        showStatus(
+            "Compila tutti i campi",
+            "#ff6b6b"
+        );
+
+        return;
+    }
+
+    const {
+        data:{ user }
+    } =
+    await supabaseClient.auth.getUser();
+
+    const quantity =
+    investedAmount /
+    purchasePrice;
+
+    const { error } =
+    await supabaseClient
+    .from("portfolio")
+    .insert([
+        {
+            user_id: user.id,
+            symbol: symbol,
+            invested_amount: investedAmount,
+            purchase_price: purchasePrice,
+            quantity: quantity,
+            currency: "USD"
+        }
+    ]);
+
+    if(error){
+
+        console.error(error);
+
+        showStatus(
+            error.message,
+            "#ff6b6b"
+        );
+
+        return;
+    }
+
+    showStatus(
+        "Posizione aggiunta"
+    );
+
+}
 
 async function loadWatchlist(){
 
@@ -413,5 +490,8 @@ document
 document
 .getElementById("addTickerBtn")
 .addEventListener("click", addTicker);
+document
+.getElementById("addPositionBtn")
+.addEventListener("click", addPosition);
 
 loadUser();
