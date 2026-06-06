@@ -346,20 +346,32 @@ async function addPosition(){
     const quantity =
     investedAmount /
     purchasePrice;
+console.log("USER", user);
+console.log("SYMBOL", symbol);
+console.log("INVESTED", investedAmount);
+console.log("PRICE", purchasePrice);
+console.log("QUANTITY", quantity);
 
-    const { error } =
-    await supabaseClient
-    .from("portfolio")
-    .insert([
-        {
-            user_id: user.id,
-            symbol: symbol,
-            invested_amount: investedAmount,
-            purchase_price: purchasePrice,
-            quantity: quantity,
-            currency: "USD"
-        }
-    ]);
+const {
+    data,
+    error
+} =
+await supabaseClient
+.from("portfolio")
+.insert([
+    {
+        user_id: user.id,
+        symbol: symbol,
+        invested_amount: investedAmount,
+        purchase_price: purchasePrice,
+        quantity: quantity,
+        currency: "USD"
+    }
+])
+.select();
+
+console.log("DATA", data);
+console.log("ERROR", error);
 
     if(error){
 
