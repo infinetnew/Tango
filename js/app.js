@@ -599,7 +599,7 @@ async function deletePosition(id){
     }
 
     showStatus(
-        "Posizione rimossa"
+        "Posizione rimossa dal tuo portfolio"
     );
 
     await loadPortfolio();
