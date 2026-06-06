@@ -24,6 +24,7 @@ document.getElementById("welcomeText");
 
 const statusMessage =
 document.getElementById("statusMessage");
+let expandedTicker = null;
 
 function showMessage(text){
     message.innerText = text;
@@ -474,6 +475,20 @@ list.appendChild(li);
 
     });
 }
+function togglePortfolioTicker(symbol){
+
+    if(expandedTicker === symbol){
+
+        expandedTicker = null;
+
+    }else{
+
+        expandedTicker = symbol;
+
+    }
+
+    loadPortfolio();
+}
 async function loadPortfolio(){
 
     const {
@@ -532,30 +547,68 @@ async function loadPortfolio(){
         const li =
         document.createElement("li");
 
-        li.innerHTML = `
-        <div class="portfolioRow">
+let detailsHtml = "";
 
-            <div class="tickerCol">
-                ${stock.symbol}
-            </div>
+if(expandedTicker === stock.symbol){
 
-            <div class="investedCol">
-                $${stock.invested.toFixed(2)}
-            </div>
+    detailsHtml = `
+    <div class="portfolioDetails">
 
-            <div class="positionCount">
-                ${stock.positions.length}
-            </div>
+        <div class="portfolioDetailRow">
 
-            <button
-                class="deleteBtn"
-                onclick="event.stopPropagation()"
-            >
-                ▼
-            </button>
+            <strong>Investito</strong>
+            <strong>Prezzo</strong>
+            <strong>Quantità</strong>
 
         </div>
-        `;
+
+        ${stock.positions.map(position => `
+            <div class="portfolioDetailRow">
+
+                <span>
+                    $${Number(position.invested_amount).toFixed(2)}
+                </span>
+
+                <span>
+                    $${Number(position.purchase_price).toFixed(2)}
+                </span>
+
+                <span>
+                    ${Number(position.quantity).toFixed(4)}
+                </span>
+
+            </div>
+        `).join("")}
+
+    </div>
+    `;
+}
+
+li.innerHTML = `
+<div
+    class="portfolioRow"
+    onclick="togglePortfolioTicker('${stock.symbol}')"
+>
+
+    <div class="tickerCol">
+        ${expandedTicker === stock.symbol ? "▼" : "▶"}
+        ${stock.symbol}
+    </div>
+
+    <div class="investedCol">
+        $${stock.invested.toFixed(2)}
+    </div>
+
+    <div class="positionCount">
+        ${stock.positions.length}
+    </div>
+
+    <div></div>
+
+</div>
+
+${detailsHtml}
+`;
 
         list.appendChild(li);
 
@@ -665,3 +718,5 @@ document
 .addEventListener("click", addPosition);
 
 loadUser();
+window.togglePortfolioTicker =
+togglePortfolioTicker;
