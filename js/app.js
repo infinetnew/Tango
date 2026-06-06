@@ -309,12 +309,19 @@ async function loadWatchlist(){
     } =
     await supabaseClient.auth.getUser();
 
-    const { data, error } =
-    await supabaseClient
-    .from("watchlist")
-    .select("*")
-    .eq("user_id", user.id)
-    .order("created_at");
+const { data, error } =
+await supabaseClient
+.from("watchlist")
+.select(`
+    *,
+    tickers (
+        symbol,
+        name,
+        exchange
+    )
+`)
+.eq("user_id", user.id)
+.order("created_at");
 
     if(error){
         console.error(error);
@@ -335,14 +342,17 @@ li.innerHTML = `
 <div class="tickerCard">
 
     <div class="tickerInfo">
+<div class="tickerSymbol">
+    ${item.symbol}
+</div>
 
-        <div class="tickerSymbol">
-            ${item.symbol}
-        </div>
+<div class="tickerSubtitle">
+    ${item.tickers?.name || ""}
+</div>
 
-        <div class="tickerSubtitle">
-            Watchlist Asset
-        </div>
+<div class="tickerSubtitle">
+    ${item.tickers?.exchange || ""}
+</div>
 
     </div>
 
