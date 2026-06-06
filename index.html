@@ -1,55 +1,103 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tango</title>
 
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>Tango</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
+
 <body>
+
+<!-- LOGIN -->
 
 <div id="authContainer">
 
-    <h1>Tango</h1>
+    <h1>📈 TANGO</h1>
 
-    <input type="email" id="email" placeholder="Email">
+    <p class="subtitle">
+        Market Intelligence Platform
+    </p>
 
-    <input type="password" id="password" placeholder="Password">
+    <input
+        type="email"
+        id="email"
+        placeholder="Email"
+    >
 
-    <button id="registerBtn">Registrati</button>
+    <input
+        type="password"
+        id="password"
+        placeholder="Password"
+    >
 
-    <button id="loginBtn">Login</button>
+    <button id="registerBtn">
+        Registrati
+    </button>
+
+    <button id="loginBtn">
+        Login
+    </button>
 
     <div id="message"></div>
 
 </div>
 
+<!-- APP -->
+
 <div id="appContainer" style="display:none;">
 
-    <h1>Tango</h1>
+    <div class="headerCard">
 
-    <p id="welcomeText"></p>
-<br>
-<h3>La mia Watchlist</h3>
+        <h1>📈 TANGO</h1>
 
-<input
-    type="text"
-    id="tickerInput"
-    placeholder="Es. AAPL"
-/>
+        <p class="subtitle">
+            Personal Market Dashboard
+        </p>
 
-<button id="addTickerBtn">
-    Aggiungi Ticker
-</button>
+    </div>
 
-<div id="statusMessage"></div>
+    <div class="card">
 
-<ul id="watchlist"></ul>
+        <p id="welcomeText"></p>
 
-    <button id="logoutBtn">Logout</button>
+    </div>
+
+    <div class="card">
+
+        <h3>🔍 Cerca un ticker</h3>
+
+        <input
+            type="text"
+            id="tickerInput"
+            placeholder="Es. AAPL"
+        >
+
+        <button id="addTickerBtn">
+            Aggiungi alla Watchlist
+        </button>
+
+        <div id="statusMessage"></div>
+
+    </div>
+
+    <div class="card">
+
+        <h3>⭐ La mia Watchlist</h3>
+
+        <ul id="watchlist"></ul>
+
+    </div>
+
+    <button id="logoutBtn">
+        Logout
+    </button>
 
 </div>
 
