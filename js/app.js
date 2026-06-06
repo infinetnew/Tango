@@ -218,16 +218,72 @@ async function loadWatchlist(){
 
     data.forEach(item => {
 
-        const li =
-        document.createElement("li");
+const li =
+document.createElement("li");
 
-        li.textContent =
-        item.symbol;
+li.innerHTML = `
+<div class="tickerCard">
 
-        list.appendChild(li);
+    <div class="tickerInfo">
+
+        <div class="tickerSymbol">
+            ${item.symbol}
+        </div>
+
+        <div class="tickerSubtitle">
+            Watchlist Asset
+        </div>
+
+    </div>
+
+    <button
+        class="deleteBtn"
+        onclick="deleteTicker(${item.id})"
+    >
+        ✕
+    </button>
+
+</div>
+`;
+
+list.appendChild(li);
 
     });
 }
+async function deleteTicker(id){
+
+    const confirmed =
+    confirm("Vuoi eliminare questo ticker?");
+
+    if(!confirmed){
+        return;
+    }
+
+    const { error } =
+    await supabaseClient
+    .from("watchlist")
+    .delete()
+    .eq("id", id);
+
+    if(error){
+
+        showStatus(
+            error.message,
+            "#ff6b6b"
+        );
+
+        return;
+    }
+
+    showStatus("Ticker eliminato");
+
+    loadWatchlist();
+
+}
+
+document
+.getElementById("registerBtn")
+.addEventListener("click", register);
 
 document
 .getElementById("registerBtn")
