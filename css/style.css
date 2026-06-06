@@ -356,14 +356,22 @@ button:hover{
     grid-template-columns:
         1fr
         1fr
-        1fr;
+        1fr
+        120px;
+
+    align-items:center;
 
     padding:8px 0;
     border-bottom:1px solid rgba(255,255,255,.08);
+} border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .portfolioDetailRow:first-child{
     font-weight:bold;
+    color:#94a3b8;
+}
+
+.portfolioDetailRow strong{
     color:#94a3b8;
 }
 
@@ -426,4 +434,19 @@ button:hover{
 
 .manageBtn:hover{
     background:#64748b;
+}
+.closePositionBtn{
+    width:auto;
+
+    padding:8px 12px;
+
+    background:#dc2626;
+
+    font-size:14px;
+
+    margin:auto;
+}
+
+.closePositionBtn:hover{
+    background:#b91c1c;
 }
