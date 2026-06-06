@@ -93,15 +93,27 @@ async function register(){
 
     if(user){
 
-        await supabaseClient
-        .from("profiles")
-        .insert({
+const { error: profileError } =
+await supabaseClient
+.from("profiles")
+.insert({
 
-            id: user.id,
-            nickname: nickname,
-            email: email
+    id: user.id,
+    nickname: nickname,
+    email: email
 
-        });
+});
+
+if(profileError){
+
+    console.error(profileError);
+
+    showMessage(
+        profileError.message
+    );
+
+    return;
+}
 
     }
 
