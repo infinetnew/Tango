@@ -6,7 +6,7 @@
 
 body{
     font-family:Arial, Helvetica, sans-serif;
-    background:#0f172a;
+    background:#081226;
     color:white;
     min-height:100vh;
     display:flex;
@@ -18,20 +18,36 @@ body{
 #authContainer,
 #appContainer{
     width:100%;
-    max-width:500px;
-    background:#1e293b;
+    max-width:700px;
+    background:#14213d;
     border-radius:20px;
-    padding:25px;
-    box-shadow:0 0 25px rgba(0,0,0,.3);
+    padding:30px;
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
 }
 
 h1{
     text-align:center;
-    margin-bottom:20px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#9ca3af;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#0b1730;
+    border-radius:16px;
+    padding:18px;
+    margin-bottom:16px;
+}
+
+#welcomeText{
+    text-align:center;
 }
 
 h3{
-    margin-top:25px;
     margin-bottom:15px;
 }
 
@@ -40,10 +56,10 @@ input{
     padding:14px;
     border:none;
     border-radius:12px;
-    margin-bottom:10px;
     background:#334155;
     color:white;
     font-size:16px;
+    margin-bottom:12px;
 }
 
 input::placeholder{
@@ -57,105 +73,65 @@ button{
     border-radius:12px;
     background:#2563eb;
     color:white;
-    font-size:16px;
     cursor:pointer;
-    transition:.2s;
-    margin-bottom:10px;
+    font-size:16px;
 }
 
 button:hover{
-    background:#1d4ed8;
+    opacity:.9;
 }
 
 #logoutBtn{
     background:#dc2626;
 }
 
-#logoutBtn:hover{
-    background:#b91c1c;
-}
-
-#welcomeText{
-    text-align:center;
-    margin-bottom:20px;
-    color:#cbd5e1;
-}
-
-#message{
-    margin-top:10px;
-    text-align:center;
-    color:#22c55e;
-}
-
 #statusMessage{
-    min-height:20px;
+    min-height:24px;
     margin-top:10px;
-    margin-bottom:15px;
     text-align:center;
     font-weight:bold;
 }
 
 #watchlist{
     list-style:none;
-    padding:0;
 }
 
 #watchlist li{
-    background:#334155;
-    border-radius:12px;
-    padding:14px;
-    margin-bottom:10px;
-    font-weight:bold;
-}
-.subtitle{
-    text-align:center;
-    color:#94a3b8;
-    margin-bottom:20px;
+    margin-bottom:12px;
 }
 
-.card{
-    background:#0f172a;
-    padding:18px;
-    border-radius:16px;
-    margin-bottom:15px;
-}
-
-.headerCard{
-    margin-bottom:15px;
-}
-
-#watchlist li{
-    background:#475569;
-    border-radius:12px;
-    padding:14px;
-    margin-bottom:10px;
-    font-weight:bold;
-    font-size:16px;
-}
 .tickerCard{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    background:#334155;
+    border-radius:14px;
+    padding:15px;
 }
 
 .tickerSymbol{
-    font-size:20px;
+    font-size:22px;
     font-weight:bold;
 }
 
 .tickerSubtitle{
-    color:#94a3b8;
-    font-size:12px;
+    color:#cbd5e1;
+    font-size:13px;
     margin-top:4px;
 }
 
 .deleteBtn{
     width:auto;
-    background:#dc2626;
     padding:10px 14px;
+    background:#ef4444;
     margin:0;
 }
 
 .deleteBtn:hover{
-    background:#b91c1c;
+    background:#dc2626;
+}
+
+#message{
+    text-align:center;
+    margin-top:10px;
 }
