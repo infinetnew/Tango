@@ -502,48 +502,56 @@ async function loadPortfolio(){
         return;
     }
 
+    const grouped = {};
+
+    data.forEach(item => {
+
+        if(!grouped[item.symbol]){
+
+            grouped[item.symbol] = {
+                symbol: item.symbol,
+                invested: 0,
+                positions: []
+            };
+        }
+
+        grouped[item.symbol].invested +=
+        Number(item.invested_amount);
+
+        grouped[item.symbol].positions.push(item);
+
+    });
+
     const list =
     document.getElementById("portfolioList");
 
     list.innerHTML = "";
 
-    data.forEach(item => {
+    Object.values(grouped).forEach(stock => {
 
         const li =
         document.createElement("li");
 
         li.innerHTML = `
-        <div class="tickerCard">
+        <div class="portfolioRow">
 
-            <div class="tickerInfo">
+            <div class="tickerCol">
+                ${stock.symbol}
+            </div>
 
-                <div class="tickerSymbol">
-                    ${item.symbol}
-                </div>
+            <div class="investedCol">
+                $${stock.invested.toFixed(2)}
+            </div>
 
-                <div class="tickerSubtitle">
-                    ${item.tickers?.name || ""}
-                </div>
-
-                <div class="tickerSubtitle">
-                    Investito: $${item.invested_amount}
-                </div>
-
-                <div class="tickerSubtitle">
-                    Prezzo acquisto: $${item.purchase_price}
-                </div>
-
-                <div class="tickerSubtitle">
-                    Quantità: ${Number(item.quantity).toFixed(4)}
-                </div>
-
+            <div class="positionCount">
+                ${stock.positions.length}
             </div>
 
             <button
                 class="deleteBtn"
-                onclick="deletePosition(${item.id})"
+                onclick="event.stopPropagation()"
             >
-                ✕
+                ▼
             </button>
 
         </div>
