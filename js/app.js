@@ -541,6 +541,114 @@ function closeManagePosition(){
 
     selectedTicker = null;
 }
+async function confirmManagePosition(){
+
+    const amount =
+    parseFloat(
+        document
+        .getElementById("closeAmountInput")
+        .value
+    );
+
+    const percent =
+    parseFloat(
+        document
+        .getElementById("closePercentInput")
+        .value
+    );
+
+    if(
+        (!amount && !percent) ||
+        (amount && percent)
+    ){
+        alert(
+            "Inserisci un importo O una percentuale"
+        );
+        return;
+    }
+
+    const {
+        data:{ user }
+    } =
+    await supabaseClient.auth.getUser();
+
+    const { data: positions } =
+    await supabaseClient
+    .from("portfolio")
+    .select("*")
+    .eq("user_id", user.id)
+    .eq("symbol", selectedTicker);
+
+    if(!positions?.length){
+        return;
+    }
+
+    let totalInvested = 0;
+
+    positions.forEach(position => {
+
+        totalInvested +=
+        Number(position.invested_amount);
+
+    });
+
+    let reductionRatio = 0;
+
+    if(percent){
+
+        reductionRatio =
+        percent / 100;
+
+    }else{
+
+        reductionRatio =
+        amount / totalInvested;
+
+    }
+
+    if(reductionRatio >= 1){
+
+        await supabaseClient
+        .from("portfolio")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("symbol", selectedTicker);
+
+        closeManagePosition();
+
+        await loadPortfolio();
+
+        return;
+    }
+
+    for(const position of positions){
+
+        const newInvested =
+        Number(position.invested_amount)
+        *
+        (1 - reductionRatio);
+
+        const newQuantity =
+        Number(position.quantity)
+        *
+        (1 - reductionRatio);
+
+        await supabaseClient
+        .from("portfolio")
+        .update({
+            invested_amount:
+                newInvested,
+            quantity:
+                newQuantity
+        })
+        .eq("id", position.id);
+
+    }
+
+    closeManagePosition();
+
+    await loadPortfolio();
+}
 
 async function loadPortfolio(){
 
@@ -811,4 +919,10 @@ document
 .addEventListener(
     "click",
     closeManagePosition
+);
+document
+.getElementById("confirmManageBtn")
+.addEventListener(
+    "click",
+    confirmManagePosition
 );
