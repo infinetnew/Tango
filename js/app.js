@@ -191,6 +191,8 @@ if(profile){
 authContainer.style.display = "none";
 appContainer.style.display = "flex";
 
+showPage("dashboardPage");
+
 await loadWatchlist();
 await loadPortfolio();
 }
@@ -605,6 +607,36 @@ async function deletePosition(id){
     await loadPortfolio();
 
 }
+function showPage(pageId){
+
+    document
+    .querySelectorAll(".page")
+    .forEach(page => {
+        page.style.display = "none";
+    });
+
+    document
+    .getElementById(pageId)
+    .style.display = "block";
+}
+
+document
+.getElementById("dashboardBtn")
+.addEventListener("click", () => {
+    showPage("dashboardPage");
+});
+
+document
+.getElementById("watchlistBtn")
+.addEventListener("click", () => {
+    showPage("watchlistPage");
+});
+
+document
+.getElementById("portfolioBtn")
+.addEventListener("click", () => {
+    showPage("portfolioPage");
+});
 
 document
 .getElementById("registerBtn")
