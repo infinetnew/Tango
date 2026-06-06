@@ -230,7 +230,49 @@
     </div>
 
 </div>
+<!-- POPUP GESTIONE POSIZIONE -->
 
+<div
+    id="managePositionModal"
+    style="display:none;"
+    class="modalOverlay"
+>
+
+    <div class="modalContent">
+
+        <h3 id="manageTickerTitle">
+            Gestisci posizione
+        </h3>
+
+        <input
+            type="number"
+            id="closeAmountInput"
+            placeholder="Importo da chiudere"
+            step="0.01"
+        >
+
+        <input
+            type="number"
+            id="closePercentInput"
+            placeholder="Percentuale da chiudere"
+            step="0.01"
+        >
+
+        <div class="modalButtons">
+
+            <button id="confirmManageBtn">
+                Conferma
+            </button>
+
+            <button id="closeModalBtn">
+                Annulla
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 <script src="js/app.js"></script>
 
 </body>
