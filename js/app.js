@@ -22,8 +22,23 @@ document.getElementById("message");
 const welcomeText =
 document.getElementById("welcomeText");
 
+const statusMessage =
+document.getElementById("statusMessage");
+
 function showMessage(text){
     message.innerText = text;
+}
+
+function showStatus(text, color = "#4ade80"){
+
+    if(!statusMessage) return;
+
+    statusMessage.innerText = text;
+    statusMessage.style.color = color;
+
+    setTimeout(() => {
+        statusMessage.innerText = "";
+    }, 3000);
 }
 
 async function register(){
@@ -114,29 +129,27 @@ async function addTicker(){
         .toUpperCase();
 
         if(!symbol){
-            alert("Inserisci un ticker");
+            showStatus(
+                "Inserisci un ticker",
+                "#ff6b6b"
+            );
             return;
         }
 
         const {
-            data:{ user },
-            error:userError
+            data:{ user }
         } =
         await supabaseClient.auth.getUser();
 
-        if(userError){
-            alert("Errore utente: " + userError.message);
-            return;
-        }
-
         if(!user){
-            alert("Utente non trovato");
+            showStatus(
+                "Utente non trovato",
+                "#ff6b6b"
+            );
             return;
         }
 
-        alert("Sto salvando " + symbol);
-
-        const { data, error } =
+        const { error } =
         await supabaseClient
         .from("watchlist")
         .insert([
@@ -144,20 +157,25 @@ async function addTicker(){
                 user_id: user.id,
                 symbol: symbol
             }
-        ])
-        .select();
+        ]);
 
         if(error){
+
             console.error(error);
-            alert("Errore Supabase: " + error.message);
+
+            showStatus(
+                error.message,
+                "#ff6b6b"
+            );
+
             return;
         }
 
-        console.log(data);
+        document
+        .getElementById("tickerInput")
+        .value = "";
 
-        alert("Ticker aggiunto correttamente");
-
-        document.getElementById("tickerInput").value = "";
+        showStatus("✅ Ticker aggiunto");
 
         await loadWatchlist();
 
@@ -165,9 +183,9 @@ async function addTicker(){
 
         console.error(err);
 
-        alert(
-            "Errore Javascript: " +
-            err.message
+        showStatus(
+            err.message,
+            "#ff6b6b"
         );
 
     }
