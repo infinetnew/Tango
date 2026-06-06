@@ -24,11 +24,13 @@
     <p class="subtitle">
         Market Intelligence Platform
     </p>
-<input
-    type="text"
-    id="nickname"
-    placeholder="Nickname"
->
+
+    <input
+        type="text"
+        id="nickname"
+        placeholder="Nickname"
+    >
+
     <input
         type="email"
         id="email"
@@ -57,7 +59,9 @@
 
 <div id="appContainer" style="display:none;">
 
-    <div class="headerCard">
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
 
         <h1>📈 TANGO</h1>
 
@@ -65,74 +69,136 @@
             Personal Market Dashboard
         </p>
 
-    </div>
-
-    <div class="card">
-
-        <p id="welcomeText"></p>
-
-    </div>
-
-    <div class="card">
-
-        <h3>🔍 Cerca un ticker</h3>
-
-        <input
-            type="text"
-            id="tickerInput"
-            placeholder="Es. AAPL"
-        >
-
-        <button id="addTickerBtn">
-            Aggiungi alla Watchlist
+        <button id="dashboardBtn">
+            📊 Dashboard
         </button>
 
-        <div id="statusMessage"></div>
+        <button id="watchlistBtn">
+            ⭐ Watchlist
+        </button>
+
+        <button id="portfolioBtn">
+            💼 Portafoglio
+        </button>
+
+        <button id="logoutBtn">
+            🚪 Logout
+        </button>
 
     </div>
 
-    <div class="card">
+    <!-- CONTENUTO -->
 
-        <h3>⭐ La mia Watchlist</h3>
+    <div class="content">
 
-        <ul id="watchlist"></ul>
+        <!-- DASHBOARD -->
+
+        <div id="dashboardPage" class="page">
+
+            <div class="card">
+
+                <h2>Benvenuto</h2>
+
+                <p id="welcomeText"></p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>📈 Dashboard</h3>
+
+                <p>
+                    Benvenuto in Tango.
+                </p>
+
+                <p>
+                    Utilizza il menu laterale per gestire
+                    Watchlist e Portafoglio.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- WATCHLIST -->
+
+        <div
+            id="watchlistPage"
+            class="page"
+            style="display:none;"
+        >
+
+            <div class="card">
+
+                <h3>🔍 Cerca un ticker</h3>
+
+                <input
+                    type="text"
+                    id="tickerInput"
+                    placeholder="Es. AAPL"
+                >
+
+                <button id="addTickerBtn">
+                    Aggiungi alla Watchlist
+                </button>
+
+                <div id="statusMessage"></div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>⭐ La mia Watchlist</h3>
+
+                <ul id="watchlist"></ul>
+
+            </div>
+
+        </div>
+
+        <!-- PORTAFOGLIO -->
+
+        <div
+            id="portfolioPage"
+            class="page"
+            style="display:none;"
+        >
+
+            <div class="card">
+
+                <h3>💼 Il mio Portafoglio</h3>
+
+                <input
+                    type="text"
+                    id="portfolioTicker"
+                    placeholder="Ticker (es. AAPL)"
+                >
+
+                <input
+                    type="number"
+                    id="investedAmount"
+                    placeholder="Importo investito"
+                    step="0.01"
+                >
+
+                <input
+                    type="number"
+                    id="purchasePrice"
+                    placeholder="Prezzo acquisto"
+                    step="0.0001"
+                >
+
+                <button id="addPositionBtn">
+                    Aggiungi Posizione
+                </button>
+
+                <ul id="portfolioList"></ul>
+
+            </div>
+
+        </div>
 
     </div>
-<div class="card">
-
-    <h3>💼 Il mio Portafoglio</h3>
-
-    <input
-        type="text"
-        id="portfolioTicker"
-        placeholder="Ticker (es. AAPL)"
-    >
-
-    <input
-        type="number"
-        id="investedAmount"
-        placeholder="Importo investito"
-        step="0.01"
-    >
-
-    <input
-        type="number"
-        id="purchasePrice"
-        placeholder="Prezzo acquisto"
-        step="0.0001"
-    >
-
-    <button id="addPositionBtn">
-        Aggiungi Posizione
-    </button>
-
-    <ul id="portfolioList"></ul>
-
-</div>
-
-    <button id="logoutBtn">
-        Logout
-    </button>
 
 </div>
 
