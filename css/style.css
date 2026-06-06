@@ -1,42 +1,98 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-    font-family: Arial, sans-serif;
-    background:#111;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0f172a;
     color:white;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+    padding:20px;
 }
 
 #authContainer,
 #appContainer{
-    width:350px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-input{
-    padding:12px;
-    border:none;
-    border-radius:8px;
-}
-
-button{
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
+    width:100%;
+    max-width:500px;
+    background:#1e293b;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 25px rgba(0,0,0,.3);
 }
 
 h1{
     text-align:center;
+    margin-bottom:20px;
 }
+
+h3{
+    margin-top:25px;
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    margin-bottom:10px;
+    background:#334155;
+    color:white;
+    font-size:16px;
+}
+
+input::placeholder{
+    color:#94a3b8;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.2s;
+    margin-bottom:10px;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+#logoutBtn{
+    background:#dc2626;
+}
+
+#logoutBtn:hover{
+    background:#b91c1c;
+}
+
+#welcomeText{
+    text-align:center;
+    margin-bottom:20px;
+    color:#cbd5e1;
+}
+
+#message{
+    margin-top:10px;
+    text-align:center;
+    color:#22c55e;
+}
+
 #statusMessage{
     min-height:20px;
-    margin-top:8px;
-    font-size:14px;
-    color:#4ade80;
+    margin-top:10px;
+    margin-bottom:15px;
+    text-align:center;
+    font-weight:bold;
 }
 
 #watchlist{
@@ -45,8 +101,9 @@ h1{
 }
 
 #watchlist li{
-    background:#222;
-    padding:12px;
-    border-radius:10px;
-    margin-bottom:8px;
+    background:#334155;
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:10px;
+    font-weight:bold;
 }
