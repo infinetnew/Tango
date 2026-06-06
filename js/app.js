@@ -558,16 +558,35 @@ async function loadPortfolio(){
         grouped[item.symbol].positions.push(item);
 
     });
+let totalPortfolioInvested = 0;
 
+Object.values(grouped).forEach(stock => {
+
+    totalPortfolioInvested += stock.invested;
+
+});
+const stocks =
+Object.values(grouped);
+
+stocks.sort((a, b) => {
+
+    return b.invested - a.invested;
+
+});
     const list =
     document.getElementById("portfolioList");
 
     list.innerHTML = "";
 
-    Object.values(grouped).forEach(stock => {
+    stocks.forEach(stock => {
 
         const li =
         document.createElement("li");
+const weight =
+(
+    stock.invested /
+    totalPortfolioInvested
+) * 100;
 
 let detailsHtml = "";
 
@@ -617,15 +636,19 @@ li.innerHTML = `
         ${stock.symbol}
     </div>
 
-    <div class="investedCol">
-        $${stock.invested.toFixed(2)}
-    </div>
+<div class="investedCol">
+    $${stock.invested.toFixed(2)}
+</div>
 
-    <div class="positionCount">
-        ${stock.positions.length}
-    </div>
+<div class="weightCol">
+    ${weight.toFixed(1)}%
+</div>
 
-    <div></div>
+<div class="positionCount">
+    ${stock.positions.length}
+</div>
+
+<div></div>
 
 </div>
 
