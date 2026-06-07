@@ -496,6 +496,26 @@ await supabaseClient
 `)
 .eq("user_id", user.id)
 .order("created_at");
+const symbols =
+data.map(item => item.symbol);
+
+const { data: marketData } =
+await supabaseClient
+.from("market_data")
+.select(`
+    symbol,
+    current_price,
+    daily_change_percent
+`)
+.in("symbol", symbols);
+
+const marketMap = {};
+
+marketData?.forEach(item => {
+
+    marketMap[item.symbol] = item;
+
+});
 
     if(error){
         console.error(error);
@@ -519,13 +539,26 @@ li.innerHTML = `
         ${item.symbol}
     </div>
 
-    <div class="priceCol">
-        -
-    </div>
+<div class="priceCol">
+    ${
+        marketMap[item.symbol]?.current_price
+        ? "$" + Number(
+            marketMap[item.symbol].current_price
+          ).toFixed(2)
+        : "-"
+    }
+</div>
 
-    <div class="changeCol">
-        -
-    </div>
+<div class="changeCol">
+    ${
+        marketMap[item.symbol]?.daily_change_percent
+        ? Number(
+            marketMap[item.symbol]
+            .daily_change_percent
+          ).toFixed(2) + "%"
+        : "-"
+    }
+</div>
 
     <button
         class="deleteBtn"
