@@ -839,20 +839,49 @@ if(expandedTicker === stock.symbol){
     detailsHtml = `
     <div class="portfolioDetails">
 
-        <div class="portfolioDetailRow">
+<div class="portfolioDetailRow">
 
-            <strong>Importo Investito</strong>
-            <strong>Prezzo Acquisto</strong>
-            <strong>Quantità</strong>
-<strong>Azione</strong>
+    <strong>Investito</strong>
+    <strong>Prezzo Acq.</strong>
+    <strong>Quantità</strong>
+    <strong>P/L %</strong>
+    <strong>P/L $</strong>
+    <strong>Azione</strong>
 
-        </div>
+</div>
+${stock.positions.map(position => {
 
-  ${stock.positions.map(position => `
+    const investedValue =
+        Number(position.invested_amount);
+
+    const currentValue =
+        Number(position.quantity) *
+        currentPrice;
+
+    const positionPLDollar =
+        currentValue -
+        investedValue;
+
+    const positionPLPercent =
+        investedValue > 0
+        ?
+        (
+            positionPLDollar /
+            investedValue
+        ) * 100
+        :
+        0;
+
+    const plColor =
+        positionPLDollar >= 0
+        ? "#22c55e"
+        : "#ef4444";
+
+    return `
     <div class="portfolioDetailRow">
 
         <span>
-            $${Number(position.invested_amount).toFixed(2)}
+            $${investedValue.toFixed(2)}
         </span>
 
         <span>
@@ -863,6 +892,14 @@ if(expandedTicker === stock.symbol){
             ${Number(position.quantity).toFixed(4)}
         </span>
 
+        <span style="color:${plColor};font-weight:bold;">
+            ${positionPLPercent.toFixed(2)}%
+        </span>
+
+        <span style="color:${plColor};font-weight:bold;">
+            $${positionPLDollar.toFixed(2)}
+        </span>
+
         <button
             class="closePositionBtn"
             onclick="deletePosition(${position.id})"
@@ -871,7 +908,9 @@ if(expandedTicker === stock.symbol){
         </button>
 
     </div>
-`).join("")}
+    `;
+
+}).join("")}
 
     </div>
     `;
