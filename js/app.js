@@ -931,15 +931,12 @@ li.innerHTML = `
         ${stock.positions.length}
     </div>
 
-    <button
-        class="manageBtn"
-        onclick="
-            event.stopPropagation();
-            openManagePosition('${stock.symbol}');
-        "
-    >
-        ⚙
-    </button>
+<button
+    class="manageBtn"
+    onclick="openManagePosition('${stock.symbol}')"
+>
+    ⚙
+</button>
 
 </div>
 
