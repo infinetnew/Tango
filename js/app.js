@@ -832,6 +832,34 @@ const weight =
     totalPortfolioInvested
 ) * 100;
 
+const currentPrice =
+Number(
+    marketMap[stock.symbol]
+    ?.current_price || 0
+);
+
+let currentValue = 0;
+
+stock.positions.forEach(position => {
+
+    currentValue +=
+        Number(position.quantity)
+        * currentPrice;
+
+});
+
+const profitLossDollar =
+    currentValue - stock.invested;
+
+const profitLossPercent =
+    stock.invested > 0
+    ?
+    (
+        profitLossDollar /
+        stock.invested
+    ) * 100
+    :
+    0;
 let detailsHtml = "";
 
 if(expandedTicker === stock.symbol){
@@ -915,34 +943,7 @@ ${stock.positions.map(position => {
     </div>
     `;
 }
-const currentPrice =
-Number(
-    marketMap[stock.symbol]
-    ?.current_price || 0
-);
 
-let currentValue = 0;
-
-stock.positions.forEach(position => {
-
-    currentValue +=
-        Number(position.quantity)
-        * currentPrice;
-
-});
-
-const profitLossDollar =
-    currentValue - stock.invested;
-
-const profitLossPercent =
-    stock.invested > 0
-    ?
-    (
-        profitLossDollar /
-        stock.invested
-    ) * 100
-    :
-    0;
 li.innerHTML = `
 <div
     class="portfolioRow"
