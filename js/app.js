@@ -943,7 +943,10 @@ ${stock.positions.map(position => {
     </div>
     `;
 }
-
+const portfolioPLColor =
+    profitLossDollar >= 0
+    ? "#22c55e"
+    : "#ef4444";
 li.innerHTML = `
 <div
     class="portfolioRow"
@@ -959,8 +962,24 @@ li.innerHTML = `
         $${currentPrice.toFixed(2)}
     </div>
 
-    <div class="plPercentCol">
+    <div
+        class="plPercentCol"
+        style="
+            color:${portfolioPLColor};
+            font-weight:bold;
+        "
+    >
         ${profitLossPercent.toFixed(2)}%
+    </div>
+
+    <div
+        class="plDollarCol"
+        style="
+            color:${portfolioPLColor};
+            font-weight:bold;
+        "
+    >
+        $${profitLossDollar.toFixed(2)}
     </div>
 
     <div class="investedCol">
@@ -975,18 +994,17 @@ li.innerHTML = `
         ${stock.positions.length}
     </div>
 
-<button
-    class="manageBtn"
-    onclick="handleManageClick(event, '${stock.symbol}')"
->
-    ⚙
-</button>
+    <button
+        class="manageBtn"
+        onclick="handleManageClick(event, '${stock.symbol}')"
+    >
+        ⚙
+    </button>
 
 </div>
 
 ${detailsHtml}
 `;
-
         list.appendChild(li);
 
     });
