@@ -601,6 +601,13 @@ function openManagePosition(symbol){
     .getElementById("managePositionModal")
     .style.display = "flex";
 }
+function handleManageClick(event, symbol){
+
+    event.stopPropagation();
+
+    openManagePosition(symbol);
+
+}
 function closeManagePosition(){
 
     document
@@ -933,7 +940,7 @@ li.innerHTML = `
 
 <button
     class="manageBtn"
-    onclick="openManagePosition('${stock.symbol}')"
+    onclick="handleManageClick(event, '${stock.symbol}')"
 >
     ⚙
 </button>
