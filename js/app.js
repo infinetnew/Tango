@@ -1083,6 +1083,10 @@ window.togglePortfolioTicker =
 togglePortfolioTicker;
 window.openManagePosition =
 openManagePosition;
+window.handleManageClick =
+handleManageClick;
+window.deletePosition =
+deletePosition;
 document
 .getElementById("closeModalBtn")
 .addEventListener(
