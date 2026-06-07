@@ -867,10 +867,7 @@ if(expandedTicker === stock.symbol){
 
         <button
             class="closePositionBtn"
-            onclick="
-                event.stopPropagation();
-                deletePosition(${position.id});
-            "
+            onclick="deletePosition(${position.id})"
         >
             Chiudi
         </button>
@@ -942,7 +939,8 @@ li.innerHTML = `
 
 <button
     class="manageBtn"
-    onclick="handleManageClick(event, '${stock.symbol}')"
+    style="background:red !important;"
+    onclick="alert('TEST')"
 >
     ⚙
 </button>
