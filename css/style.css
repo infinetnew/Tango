@@ -43,8 +43,9 @@ body{
 
     display:flex;
     flex-direction:column;
-}
 
+    align-items:center;
+}
 /* APP */
 
 #appContainer{
@@ -551,4 +552,24 @@ font-size:14px;
 .secondaryBtn:hover{
 
     background:#475569;
+}
+#authContainer input{
+
+    width:100%;
+
+    margin-bottom:14px;
+}
+
+#authContainer button{
+
+    width:100%;
+}
+
+#message{
+
+    margin-top:15px;
+
+    text-align:center;
+
+    min-height:24px;
 }
