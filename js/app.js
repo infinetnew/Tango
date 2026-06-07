@@ -305,6 +305,27 @@ if(error){
 
     return;
 }
+const { data: marketExists } =
+await supabaseClient
+.from("market_data")
+.select("symbol")
+.eq("symbol", symbol)
+.maybeSingle();
+
+if(!marketExists){
+
+    await supabaseClient
+    .from("market_data")
+    .insert([
+        {
+            symbol: symbol,
+            current_price: null,
+            daily_change_percent: null,
+            last_update: null
+        }
+    ]);
+
+}
         document
         .getElementById("tickerInput")
         .value = "";
