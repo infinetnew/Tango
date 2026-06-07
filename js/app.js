@@ -590,8 +590,6 @@ function togglePortfolioTicker(symbol){
 }
 function openManagePosition(symbol){
 
-    alert("GESTISCI " + symbol);
-
     selectedTicker = symbol;
 
     document
@@ -939,8 +937,7 @@ li.innerHTML = `
 
 <button
     class="manageBtn"
-    style="background:red !important;"
-    onclick="alert('TEST')"
+    onclick="handleManageClick(event, '${stock.symbol}')"
 >
     ⚙
 </button>
@@ -981,8 +978,6 @@ async function deleteTicker(id){
 
 }
 function deletePosition(id){
-
-    alert("CHIUDI " + id);
 
     selectedPositionId = id;
 
