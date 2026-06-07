@@ -753,6 +753,28 @@ async function loadPortfolio(){
 
         return;
     }
+const symbols = [
+    ...new Set(
+        data.map(item => item.symbol)
+    )
+];
+
+const { data: marketData } =
+await supabaseClient
+.from("market_data")
+.select(`
+    symbol,
+    current_price
+`)
+.in("symbol", symbols);
+
+const marketMap = {};
+
+marketData?.forEach(item => {
+
+    marketMap[item.symbol] = item;
+
+});
 
     const grouped = {};
 
@@ -850,8 +872,34 @@ if(expandedTicker === stock.symbol){
     </div>
     `;
 }
-const currentPrice = 0;
-const profitLossPercent = 0;
+const currentPrice =
+Number(
+    marketMap[stock.symbol]
+    ?.current_price || 0
+);
+
+let currentValue = 0;
+
+stock.positions.forEach(position => {
+
+    currentValue +=
+        Number(position.quantity)
+        * currentPrice;
+
+});
+
+const profitLossDollar =
+    currentValue - stock.invested;
+
+const profitLossPercent =
+    stock.invested > 0
+    ?
+    (
+        profitLossDollar /
+        stock.invested
+    ) * 100
+    :
+    0;
 li.innerHTML = `
 <div
     class="portfolioRow"
