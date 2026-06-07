@@ -590,6 +590,8 @@ function togglePortfolioTicker(symbol){
 }
 function openManagePosition(symbol){
 
+    alert("GESTISCI " + symbol);
+
     selectedTicker = symbol;
 
     document
@@ -981,6 +983,8 @@ async function deleteTicker(id){
 
 }
 function deletePosition(id){
+
+    alert("CHIUDI " + id);
 
     selectedPositionId = id;
 
