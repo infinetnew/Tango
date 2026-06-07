@@ -850,7 +850,8 @@ if(expandedTicker === stock.symbol){
     </div>
     `;
 }
-
+const currentPrice = 0;
+const profitLossPercent = 0;
 li.innerHTML = `
 <div
     class="portfolioRow"
@@ -862,27 +863,35 @@ li.innerHTML = `
         ${stock.symbol}
     </div>
 
-<div class="investedCol">
-    $${stock.invested.toFixed(2)}
-</div>
+    <div class="priceCol">
+        $${currentPrice.toFixed(2)}
+    </div>
 
-<div class="weightCol">
-    ${weight.toFixed(1)}%
-</div>
+    <div class="plPercentCol">
+        ${profitLossPercent.toFixed(2)}%
+    </div>
 
-<div class="positionCount">
-    ${stock.positions.length}
-</div>
+    <div class="investedCol">
+        $${stock.invested.toFixed(2)}
+    </div>
 
-<button
-    class="manageBtn"
-    onclick="
-        event.stopPropagation();
-        openManagePosition('${stock.symbol}');
-    "
->
-    ⚙
-</button>
+    <div class="weightCol">
+        ${weight.toFixed(1)}%
+    </div>
+
+    <div class="positionCount">
+        ${stock.positions.length}
+    </div>
+
+    <button
+        class="manageBtn"
+        onclick="
+            event.stopPropagation();
+            openManagePosition('${stock.symbol}');
+        "
+    >
+        ⚙
+    </button>
 
 </div>
 
