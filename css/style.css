@@ -378,14 +378,16 @@ button:hover{
         120px;
 
     align-items:center;
+font-size:14px;
 
     padding:8px 0;
     border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .portfolioDetailRow:first-child{
-    font-weight:bold;
     color:#94a3b8;
+    font-size:14px;
+    font-weight:600;
 }
 
 .portfolioDetailRow strong{
