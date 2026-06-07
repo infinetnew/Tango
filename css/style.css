@@ -321,6 +321,7 @@ button:hover{
         1fr
         1fr
         1fr
+1fr
         1fr
         60px;
 
@@ -352,6 +353,9 @@ button:hover{
 }
 
 .plPercentCol{
+    text-align:center;
+}
+.plDollarCol{
     text-align:center;
 }
 
