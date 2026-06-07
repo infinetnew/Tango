@@ -294,6 +294,8 @@ button:hover{
         1fr
         1fr
         1fr
+        1fr
+        1fr
         60px;
 
     padding:10px 15px;
@@ -314,6 +316,8 @@ button:hover{
     display:grid;
     grid-template-columns:
         2fr
+        1fr
+        1fr
         1fr
         1fr
         1fr
@@ -342,6 +346,13 @@ button:hover{
 .weightCol{
     text-align:center;
 }
+.priceCol{
+    text-align:center;
+}
+
+.plPercentCol{
+    text-align:center;
+}
 
 .portfolioDetails{
     background:#26354d;
@@ -363,8 +374,7 @@ button:hover{
 
     padding:8px 0;
     border-bottom:1px solid rgba(255,255,255,.08);
-} border-bottom:1px solid rgba(255,255,255,.08);
-}
+
 
 .portfolioDetailRow:first-child{
     font-weight:bold;
