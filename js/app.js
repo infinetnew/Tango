@@ -331,6 +331,21 @@ if(!marketExists){
         }
     ]);
 
+    fetch(
+        "https://fkudvfkjjxmcbppvfinf.supabase.co/functions/v1/bootstrap-history",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization":
+                    `Bearer ${SUPABASE_ANON_KEY}`
+            },
+            body: JSON.stringify({
+                symbol: symbol
+            })
+        }
+    ).catch(console.error);
+
 }else{
 
     await supabaseClient
@@ -485,6 +500,21 @@ if(!marketExists){
             portfolio_count: 1
         }
     ]);
+
+    fetch(
+        "https://fkudvfkjjxmcbppvfinf.supabase.co/functions/v1/bootstrap-history",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization":
+                    `Bearer ${SUPABASE_ANON_KEY}`
+            },
+            body: JSON.stringify({
+                symbol: symbol
+            })
+        }
+    ).catch(console.error);
 
 }else{
 
