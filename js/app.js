@@ -463,7 +463,11 @@ if(error){
 const { data: marketExists } =
 await supabaseClient
 .from("market_data")
-.select("symbol")
+.select(`
+    symbol,
+    watchlist_count,
+    portfolio_count
+`)
 .eq("symbol", symbol)
 .maybeSingle();
 
@@ -476,9 +480,21 @@ if(!marketExists){
             symbol: symbol,
             current_price: null,
             daily_change_percent: null,
-            last_update: null
+            last_update: null,
+            watchlist_count: 0,
+            portfolio_count: 1
         }
     ]);
+
+}else{
+
+    await supabaseClient
+    .from("market_data")
+    .update({
+        portfolio_count:
+            marketExists.portfolio_count + 1
+    })
+    .eq("symbol", symbol);
 
 }
 
@@ -1113,6 +1129,16 @@ function deletePosition(id){
 }
 async function confirmClosePosition(){
 
+    const { data: positionData } =
+    await supabaseClient
+    .from("portfolio")
+    .select("symbol")
+    .eq("id", selectedPositionId)
+    .single();
+
+    const symbol =
+    positionData.symbol;
+
     const { error } =
     await supabaseClient
     .from("portfolio")
@@ -1127,6 +1153,49 @@ async function confirmClosePosition(){
         );
 
         return;
+    }
+
+    const { data: marketData } =
+    await supabaseClient
+    .from("market_data")
+    .select(`
+        watchlist_count,
+        portfolio_count
+    `)
+    .eq("symbol", symbol)
+    .single();
+
+    const newPortfolioCount =
+        Math.max(
+            0,
+            marketData.portfolio_count - 1
+        );
+
+    if(
+        marketData.watchlist_count === 0 &&
+        newPortfolioCount === 0
+    ){
+
+        await supabaseClient
+        .from("market_data")
+        .delete()
+        .eq("symbol", symbol);
+
+        await supabaseClient
+        .from("market_history")
+        .delete()
+        .eq("symbol", symbol);
+
+    }else{
+
+        await supabaseClient
+        .from("market_data")
+        .update({
+            portfolio_count:
+                newPortfolioCount
+        })
+        .eq("symbol", symbol);
+
     }
 
     document
