@@ -308,7 +308,11 @@ if(error){
 const { data: marketExists } =
 await supabaseClient
 .from("market_data")
-.select("symbol")
+.select(`
+    symbol,
+    watchlist_count,
+    portfolio_count
+`)
 .eq("symbol", symbol)
 .maybeSingle();
 
@@ -321,9 +325,21 @@ if(!marketExists){
             symbol: symbol,
             current_price: null,
             daily_change_percent: null,
-            last_update: null
+            last_update: null,
+            watchlist_count: 1,
+            portfolio_count: 0
         }
     ]);
+
+}else{
+
+    await supabaseClient
+    .from("market_data")
+    .update({
+        watchlist_count:
+            marketExists.watchlist_count + 1
+    })
+    .eq("symbol", symbol);
 
 }
         document
@@ -1010,57 +1026,9 @@ ${detailsHtml}
     });
 
 }
-async function cleanupTicker(symbol){
-
-    const { count: watchlistCount } =
-    await supabaseClient
-    .from("watchlist")
-    .select("*", {
-        count: "exact",
-        head: true
-    })
-    .eq("symbol", symbol);
-
-    const { count: portfolioCount } =
-    await supabaseClient
-    .from("portfolio")
-    .select("*", {
-        count: "exact",
-        head: true
-    })
-    .eq("symbol", symbol);
-
-    if(
-        watchlistCount === 0 &&
-        portfolioCount === 0
-    ){
-
-        await supabaseClient
-        .from("market_data")
-        .delete()
-        .eq("symbol", symbol);
-
-        await supabaseClient
-        .from("market_history")
-        .delete()
-        .eq("symbol", symbol);
-
-        console.log(
-            `${symbol} eliminato da market_data e market_history`
-        );
-    }
-}
 async function deleteTicker(id){
 
-    const { data: tickerData } =
-    await supabaseClient
-    .from("watchlist")
-    .select("symbol")
-    .eq("id", id)
-    .single();
 
-    const symbol =
-    tickerData.symbol;
 
     const { error } =
     await supabaseClient
@@ -1078,13 +1046,10 @@ async function deleteTicker(id){
         return;
     }
 
-    await cleanupTicker(symbol);
-
-    showStatus(
-        "Ticker rimosso dalla watchlist"
-    );
+    showStatus("Ticker rimosso dalla watchlist");
 
     loadWatchlist();
+
 }
 function deletePosition(id){
 
@@ -1095,16 +1060,6 @@ function deletePosition(id){
     .style.display = "flex";
 }
 async function confirmClosePosition(){
-
-    const { data: position } =
-    await supabaseClient
-    .from("portfolio")
-    .select("symbol")
-    .eq("id", selectedPositionId)
-    .single();
-
-    const symbol =
-    position.symbol;
 
     const { error } =
     await supabaseClient
@@ -1121,8 +1076,6 @@ async function confirmClosePosition(){
 
         return;
     }
-
-    await cleanupTicker(symbol);
 
     document
     .getElementById("confirmCloseModal")
