@@ -1028,7 +1028,15 @@ ${detailsHtml}
 }
 async function deleteTicker(id){
 
+    const { data: tickerData } =
+    await supabaseClient
+    .from("watchlist")
+    .select("symbol")
+    .eq("id", id)
+    .single();
 
+    const symbol =
+    tickerData.symbol;
 
     const { error } =
     await supabaseClient
@@ -1046,10 +1054,54 @@ async function deleteTicker(id){
         return;
     }
 
-    showStatus("Ticker rimosso dalla watchlist");
+    const { data: marketData } =
+    await supabaseClient
+    .from("market_data")
+    .select(`
+        watchlist_count,
+        portfolio_count
+    `)
+    .eq("symbol", symbol)
+    .single();
 
-    loadWatchlist();
+    const newWatchlistCount =
+        Math.max(
+            0,
+            marketData.watchlist_count - 1
+        );
 
+    if(
+        newWatchlistCount === 0 &&
+        marketData.portfolio_count === 0
+    ){
+
+        await supabaseClient
+        .from("market_data")
+        .delete()
+        .eq("symbol", symbol);
+
+        await supabaseClient
+        .from("market_history")
+        .delete()
+        .eq("symbol", symbol);
+
+    }else{
+
+        await supabaseClient
+        .from("market_data")
+        .update({
+            watchlist_count:
+                newWatchlistCount
+        })
+        .eq("symbol", symbol);
+
+    }
+
+    showStatus(
+        "Ticker rimosso dalla watchlist"
+    );
+
+    await loadWatchlist();
 }
 function deletePosition(id){
 
