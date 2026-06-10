@@ -336,26 +336,16 @@ if(!marketExists){
         {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 symbol: symbol
             })
         }
     ).catch(console.error);
-fetch(
-    "https://fkudvfkjjxmcbppvfinf.supabase.co/functions/v1/bootstrap-market-data",
-    {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            symbol: symbol
-        })
-    }
-).catch(console.error);
-}else{
+
+}
+else{
 
     await supabaseClient
     .from("market_data")
@@ -366,13 +356,32 @@ fetch(
     .eq("symbol", symbol);
 
 }
+
+showStatus(
+    "Recupero dati di mercato..."
+);
+
+await fetch(
+    "https://fkudvfkjjxmcbppvfinf.supabase.co/functions/v1/bootstrap-market-data",
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            symbol: symbol
+        })
+    }
+);
         document
         .getElementById("tickerInput")
         .value = "";
 
-        showStatus("Ticker aggiunto alla tua Watchlist");
+await loadWatchlist();
 
-        await loadWatchlist();
+showStatus(
+    "Ticker aggiunto alla tua Watchlist"
+);
 
     } catch(err){
 
@@ -515,7 +524,7 @@ if(!marketExists){
         {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 symbol: symbol
@@ -523,7 +532,8 @@ if(!marketExists){
         }
     ).catch(console.error);
 
-}else{
+}
+else{
 
     await supabaseClient
     .from("market_data")
@@ -534,14 +544,33 @@ if(!marketExists){
     .eq("symbol", symbol);
 
 }
+showPortfolioStatus(
+    "Recupero dati di mercato..."
+);
+
+await fetch(
+    "https://fkudvfkjjxmcbppvfinf.supabase.co/functions/v1/bootstrap-market-data",
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            symbol: symbol
+        })
+    }
+);
+
+await loadPortfolio();
 
 showPortfolioStatus(
     "Posizione aggiunta al tuo Portfolio"
 );
+
 document.getElementById("portfolioTicker").value = "";
 document.getElementById("investedAmount").value = "";
 document.getElementById("purchasePrice").value = "";
-await loadPortfolio();
+
 
 }
 
