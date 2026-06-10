@@ -829,6 +829,10 @@ if(reductionRatio >= 1){
         .from("market_history")
         .delete()
         .eq("symbol", selectedTicker);
+await supabaseClient
+.from("technical_indicators")
+.delete()
+.eq("symbol", selectedTicker);
 
     }else{
 
@@ -1214,6 +1218,11 @@ async function deleteTicker(id){
         .delete()
         .eq("symbol", symbol);
 
+await supabaseClient
+.from("technical_indicators")
+.delete()
+.eq("symbol", symbol);
+
     }else{
 
         await supabaseClient
@@ -1298,6 +1307,11 @@ async function confirmClosePosition(){
         .from("market_history")
         .delete()
         .eq("symbol", symbol);
+
+await supabaseClient
+.from("technical_indicators")
+.delete()
+.eq("symbol", symbol);
 
     }else{
 
