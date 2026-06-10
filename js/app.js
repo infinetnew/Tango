@@ -787,20 +787,67 @@ async function confirmManagePosition(){
 
     }
 
-    if(reductionRatio >= 1){
+if(reductionRatio >= 1){
+
+    const positionsToDelete =
+        positions.length;
+
+    await supabaseClient
+    .from("portfolio")
+    .delete()
+    .eq("user_id", user.id)
+    .eq("symbol", selectedTicker);
+
+    const { data: marketData } =
+    await supabaseClient
+    .from("market_data")
+    .select(`
+        watchlist_count,
+        portfolio_count
+    `)
+    .eq("symbol", selectedTicker)
+    .single();
+
+    const newPortfolioCount =
+        Math.max(
+            0,
+            marketData.portfolio_count -
+            positionsToDelete
+        );
+
+    if(
+        marketData.watchlist_count === 0 &&
+        newPortfolioCount === 0
+    ){
 
         await supabaseClient
-        .from("portfolio")
+        .from("market_data")
         .delete()
-        .eq("user_id", user.id)
         .eq("symbol", selectedTicker);
 
-        closeManagePosition();
+        await supabaseClient
+        .from("market_history")
+        .delete()
+        .eq("symbol", selectedTicker);
 
-        await loadPortfolio();
+    }else{
 
-        return;
+        await supabaseClient
+        .from("market_data")
+        .update({
+            portfolio_count:
+                newPortfolioCount
+        })
+        .eq("symbol", selectedTicker);
+
     }
+
+    closeManagePosition();
+
+    await loadPortfolio();
+
+    return;
+}
 
     for(const position of positions){
 
