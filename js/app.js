@@ -343,7 +343,18 @@ if(!marketExists){
             })
         }
     ).catch(console.error);
-
+fetch(
+    "https://fkudvfkjjxmcbppvfinf.supabase.co/functions/v1/bootstrap-market-data",
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            symbol: symbol
+        })
+    }
+).catch(console.error);
 }else{
 
     await supabaseClient
