@@ -669,10 +669,13 @@ document.createElement("li");
 li.innerHTML = `
 <div class="watchlistRow">
 
-    <div class="tickerCol">
-        ${item.symbol}
-    </div>
-
+<div
+    class="tickerCol"
+    onclick="openTickerDetails('${item.symbol}')"
+    style="cursor:pointer;"
+>
+    ${item.symbol}
+</div>
 <div class="priceCol">
     ${
         marketMap[item.symbol]?.current_price
@@ -1395,6 +1398,30 @@ function closeConfirmModal(){
 
     selectedPositionId = null;
 }
+function openTickerDetails(symbol){
+
+    document
+    .getElementById("tickerDetailsTitle")
+    .innerText = symbol;
+
+    document
+    .getElementById("tickerDetailsContent")
+    .innerHTML =
+    "Caricamento dati...";
+
+    document
+    .getElementById("tickerDetailsModal")
+    .style.display = "flex";
+
+}
+
+function closeTickerDetails(){
+
+    document
+    .getElementById("tickerDetailsModal")
+    .style.display = "none";
+
+}
 function showPage(pageId){
 
     document
@@ -1452,6 +1479,8 @@ window.togglePortfolioTicker =
 togglePortfolioTicker;
 window.openManagePosition =
 openManagePosition;
+window.openTickerDetails =
+openTickerDetails;
 window.handleManageClick =
 handleManageClick;
 window.deletePosition =
@@ -1480,4 +1509,10 @@ document
 .addEventListener(
     "click",
     closeConfirmModal
+);
+document
+.getElementById("closeTickerDetailsBtn")
+.addEventListener(
+    "click",
+    closeTickerDetails
 );
