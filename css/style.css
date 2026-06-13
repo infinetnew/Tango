@@ -322,12 +322,17 @@ button:hover{
         1fr
         1fr
         1fr
-1fr
+        1fr
         60px;
 
     padding:10px 15px;
-    color:#94a3b8;
-    font-size:14px;
+
+    color:#facc15;
+
+    font-size:18px;
+
+    font-weight:600;
+
     margin-bottom:10px;
 }
 
