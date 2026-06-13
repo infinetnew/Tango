@@ -225,30 +225,26 @@ async function waitForIndicators(symbol){
         const { data } =
         await supabaseClient
         .from("technical_indicators")
-        .select(`
-            long_score,
-            entry_score
-        `)
+.select(`
+    long_score,
+    entry_score,
+    sma200,
+    rsi14,
+    macd
+`)
         .eq("symbol", symbol)
         .maybeSingle();
 
-        if(
-            data &&
-            data.long_score !== null &&
-            data.entry_score !== null
-        ){
+if(
+    data &&
+    data.long_score !== null &&
+    data.entry_score !== null &&
+    data.sma200 !== null &&
+    data.rsi14 !== null &&
+    data.macd !== null
+){
 
-            if(
-                previousLong === data.long_score &&
-                previousEntry === data.entry_score
-            ){
-
-                return true;
-
-            }
-
-            previousLong = data.long_score;
-            previousEntry = data.entry_score;
+return true;
 
         }
 
