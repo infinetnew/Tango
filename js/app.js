@@ -229,10 +229,10 @@ async function waitForIndicators(symbol){
         .eq("symbol", symbol)
         .maybeSingle();
 
-      if(
+if(
     data &&
-    data.long_score > 0 &&
-    data.entry_score > 0
+    data.long_score !== null &&
+    data.entry_score !== null
 ){
 
             return true;
