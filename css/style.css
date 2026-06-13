@@ -586,3 +586,16 @@ font-size:14px;
     color:white;
 
 }
+.clickableTicker{
+
+    cursor:pointer;
+
+    text-decoration:underline;
+
+}
+
+.clickableTicker:hover{
+
+    color:#60a5fa;
+
+}
