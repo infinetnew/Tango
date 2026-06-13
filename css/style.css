@@ -687,14 +687,23 @@ font-size:14px;
 
 }
 #varAsc,
-#varDesc,
+#varDesc{
+
+    color:white;
+
+    font-size:14px;
+
+}
+
 #tiAsc,
 #tiDesc,
 #teAsc,
 #teDesc{
 
-    color:white;
+    color:#facc15;
 
-    font-size:14px;
+    font-size:12px;
+
+    font-weight:600;
 
 }
