@@ -685,15 +685,36 @@ li.innerHTML = `
     }
 </div>
 
-<div class="changeCol">
+<div
+    class="changeCol"
+    style="
+        color:${
+            Number(
+                marketMap[item.symbol]
+                ?.daily_change_percent || 0
+            ) >= 0
+            ? '#22c55e'
+            : '#ef4444'
+        };
+        font-weight:bold;
+    "
+>
     ${
-        marketMap[item.symbol]?.daily_change_percent
-        ? Number(
+        Number(
             marketMap[item.symbol]
-            .daily_change_percent
-          ).toFixed(2) + "%"
+            ?.daily_change_percent || 0
+        ) >= 0
+        ? "+"
         : "-"
     }
+    ${
+        Math.abs(
+            Number(
+                marketMap[item.symbol]
+                ?.daily_change_percent || 0
+            )
+        ).toFixed(2)
+    }%
 </div>
 
 <div class="tangoCol">
@@ -1411,6 +1432,21 @@ async function openTickerDetails(symbol){
         return;
 
     }
+const formatSigned = (
+    value,
+    decimals = 2,
+    suffix = ""
+) => {
+
+    const num = Number(value);
+
+    return `
+        ${num >= 0 ? "+" : "-"}
+        ${Math.abs(num).toFixed(decimals)}
+        ${suffix}
+    `.replace(/\s+/g, " ").trim();
+
+};
 
     document
     .getElementById("tickerDetailsTitle")
@@ -1447,28 +1483,36 @@ async function openTickerDetails(symbol){
             <div>${Number(data.rsi14).toFixed(2)}</div>
 
             <div>MACD</div>
-            <div>${Number(data.macd).toFixed(2)}</div>
+            <div>${formatSigned(data.macd)}</div>
 
             <div>MACD Signal</div>
-            <div>${Number(data.macd_signal).toFixed(2)}</div>
+            <div>${formatSigned(data.macd_signal)}</div>
 
             <div>MACD Hist</div>
-            <div>${Number(data.macd_histogram).toFixed(2)}</div>
+            <div>${formatSigned(data.macd_histogram)}</div>
 
             <div>────────────</div>
             <div></div>
 
             <div>52W High</div>
-            <div>${data.distance_52w_high}%</div>
+            <div>${formatSigned(
+    data.distance_52w_high,
+    2,
+    "%"
+)}</div>
 
-            <div>52W Low</div>
-            <div>+${data.distance_52w_low}%</div>
+     <div>52W Low</div>
+<div>${formatSigned(
+    data.distance_52w_low,
+    2,
+    "%"
+)}</div>
 
-            <div>Bollinger Pos</div>
-            <div>${Number(data.bollinger_position).toFixed(2)}</div>
+<div>Bollinger Pos</div>
+<div>${Math.round(data.bollinger_position * 100)}%</div>
 
-            <div>Volume Ratio</div>
-            <div>${Number(data.volume_ratio).toFixed(2)}</div>
+<div>Volume Ratio</div>
+<div>${Math.round(data.volume_ratio * 100)}%</div>
 
         </div>
     `;
