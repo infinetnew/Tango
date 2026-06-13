@@ -607,6 +607,22 @@ await supabaseClient
 `)
 .eq("user_id", user.id)
 .order("created_at");
+
+if(error){
+
+    console.error(error);
+
+    return;
+
+}
+
+if(!data || data.length === 0){
+
+    document.getElementById("watchlist").innerHTML = "";
+
+    return;
+
+}
 const symbols =
 data.map(item => item.symbol);
 
@@ -682,13 +698,40 @@ if(currentSort === "teDesc"){
     );
 
 }
-    if(error){
-        console.error(error);
-        return;
-    }
+if(currentSort === "varAsc"){
 
-    const list =
-    document.getElementById("watchlist");
+    data.sort((a,b) =>
+        Number(
+            marketMap[a.symbol]
+            ?.daily_change_percent || 0
+        )
+        -
+        Number(
+            marketMap[b.symbol]
+            ?.daily_change_percent || 0
+        )
+    );
+
+}
+
+if(currentSort === "varDesc"){
+
+    data.sort((a,b) =>
+        Number(
+            marketMap[b.symbol]
+            ?.daily_change_percent || 0
+        )
+        -
+        Number(
+            marketMap[a.symbol]
+            ?.daily_change_percent || 0
+        )
+    );
+
+}
+
+const list =
+document.getElementById("watchlist");
 
     list.innerHTML = "";
 
@@ -1655,6 +1698,25 @@ document
 .addEventListener("click", () => {
 
     currentSort = "teDesc";
+
+    loadWatchlist();
+
+});
+document
+.getElementById("varAsc")
+.addEventListener("click", () => {
+
+    currentSort = "varAsc";
+
+    loadWatchlist();
+
+});
+
+document
+.getElementById("varDesc")
+.addEventListener("click", () => {
+
+    currentSort = "varDesc";
 
     loadWatchlist();
 
