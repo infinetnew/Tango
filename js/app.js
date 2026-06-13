@@ -670,9 +670,8 @@ li.innerHTML = `
 <div class="watchlistRow">
 
 <div
-    class="tickerCol"
+    class="tickerCol clickableTicker"
     onclick="openTickerDetails('${item.symbol}')"
-    style="cursor:pointer;"
 >
     ${item.symbol}
 </div>
