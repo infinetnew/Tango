@@ -390,6 +390,11 @@ await fetch(
         .getElementById("tickerInput")
         .value = "";
 
+await new Promise(
+    resolve =>
+    setTimeout(resolve, 3000)
+);
+
 await loadWatchlist();
 
 showStatus(
