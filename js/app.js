@@ -219,7 +219,40 @@ showPage("dashboardPage");
 await loadWatchlist();
 await loadPortfolio();
 }
+async function waitForIndicators(symbol){
 
+    for(let i = 0; i < 30; i++){
+
+        const { data } =
+        await supabaseClient
+        .from("technical_indicators")
+        .select(`
+            long_score,
+            entry_score
+        `)
+        .eq("symbol", symbol)
+        .maybeSingle();
+
+      if(
+    data &&
+    data.long_score > 0 &&
+    data.entry_score > 0
+){
+
+            return true;
+
+        }
+
+        await new Promise(
+            resolve =>
+            setTimeout(resolve, 1000)
+        );
+
+    }
+
+    return false;
+
+}
 async function addTicker(){
 
     try {
@@ -390,10 +423,19 @@ await fetch(
         .getElementById("tickerInput")
         .value = "";
 
-await new Promise(
-    resolve =>
-    setTimeout(resolve, 3000)
-);
+const indicatorsReady =
+await waitForIndicators(symbol);
+
+if(!indicatorsReady){
+
+    showStatus(
+        "Timeout calcolo indicatori",
+        "#ff6b6b"
+    );
+
+    return;
+
+}
 
 await loadWatchlist();
 
