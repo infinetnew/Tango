@@ -653,3 +653,26 @@ font-size:14px;
     color:#60a5fa;
 
 }
+.variationHeader{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:4px;
+
+}
+
+.variationHeader span{
+
+    cursor:pointer;
+
+}
+
+.variationHeader span:hover{
+
+    color:#60a5fa;
+
+}
