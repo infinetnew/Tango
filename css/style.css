@@ -650,6 +650,10 @@ font-size:14px;
 
     font-size:12px;
 
+    color:#facc15;
+
+    font-weight:600;
+
 }
 
 .tangoFilters span{
@@ -700,7 +704,7 @@ font-size:14px;
 #teAsc,
 #teDesc{
 
-    color:#facc15;
+    color:white;
 
     font-size:12px;
 
