@@ -1397,7 +1397,20 @@ function closeConfirmModal(){
 
     selectedPositionId = null;
 }
-function openTickerDetails(symbol){
+async function openTickerDetails(symbol){
+
+    const { data } =
+    await supabaseClient
+    .from("technical_indicators")
+    .select("*")
+    .eq("symbol", symbol)
+    .single();
+
+    if(!data){
+
+        return;
+
+    }
 
     document
     .getElementById("tickerDetailsTitle")
@@ -1405,8 +1418,60 @@ function openTickerDetails(symbol){
 
     document
     .getElementById("tickerDetailsContent")
-    .innerHTML =
-    "Caricamento dati...";
+    .innerHTML = `
+
+        <div class="detailGrid">
+
+            <div>Tango Index</div>
+            <div>${data.long_score}</div>
+
+            <div>Tango Entry</div>
+            <div>${data.entry_score}</div>
+
+            <div>────────────</div>
+            <div></div>
+
+            <div>Trend Score</div>
+            <div>${data.trend_score}</div>
+
+            <div>Momentum Score</div>
+            <div>${data.momentum_score}</div>
+
+            <div>Strength Score</div>
+            <div>${data.strength_score}</div>
+
+            <div>────────────</div>
+            <div></div>
+
+            <div>RSI</div>
+            <div>${Number(data.rsi14).toFixed(2)}</div>
+
+            <div>MACD</div>
+            <div>${Number(data.macd).toFixed(2)}</div>
+
+            <div>MACD Signal</div>
+            <div>${Number(data.macd_signal).toFixed(2)}</div>
+
+            <div>MACD Hist</div>
+            <div>${Number(data.macd_histogram).toFixed(2)}</div>
+
+            <div>────────────</div>
+            <div></div>
+
+            <div>52W High</div>
+            <div>${data.distance_52w_high}%</div>
+
+            <div>52W Low</div>
+            <div>+${data.distance_52w_low}%</div>
+
+            <div>Bollinger Pos</div>
+            <div>${Number(data.bollinger_position).toFixed(2)}</div>
+
+            <div>Volume Ratio</div>
+            <div>${Number(data.volume_ratio).toFixed(2)}</div>
+
+        </div>
+    `;
 
     document
     .getElementById("tickerDetailsModal")
