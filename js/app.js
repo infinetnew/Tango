@@ -217,6 +217,9 @@ await loadPortfolio();
 }
 async function waitForIndicators(symbol){
 
+    let previousLong = null;
+    let previousEntry = null;
+
     for(let i = 0; i < 30; i++){
 
         const { data } =
@@ -229,13 +232,23 @@ async function waitForIndicators(symbol){
         .eq("symbol", symbol)
         .maybeSingle();
 
-if(
-    data &&
-    data.long_score !== null &&
-    data.entry_score !== null
-){
+        if(
+            data &&
+            data.long_score !== null &&
+            data.entry_score !== null
+        ){
 
-            return true;
+            if(
+                previousLong === data.long_score &&
+                previousEntry === data.entry_score
+            ){
+
+                return true;
+
+            }
+
+            previousLong = data.long_score;
+            previousEntry = data.entry_score;
 
         }
 
