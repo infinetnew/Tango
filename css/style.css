@@ -599,3 +599,24 @@ font-size:14px;
     color:#60a5fa;
 
 }
+.detailGrid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        100px;
+
+    gap:8px;
+
+    margin-top:15px;
+
+}
+
+.detailGrid div:nth-child(even){
+
+    text-align:right;
+
+    font-weight:bold;
+
+}
