@@ -373,6 +373,18 @@ await fetch(
         })
     }
 );
+await fetch(
+    "https://fkudvfkjjxmcbppvfinf.supabase.co/functions/v1/calculate-indicators",
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            symbol: symbol
+        })
+    }
+);
         document
         .getElementById("tickerInput")
         .value = "";
@@ -642,6 +654,14 @@ technicalData?.forEach(item => {
     list.innerHTML = "";
 
     data.forEach(item => {
+const technical =
+technicalMap[item.symbol];
+
+if(!technical){
+
+    return;
+
+}
 
 const li =
 document.createElement("li");
@@ -676,15 +696,15 @@ li.innerHTML = `
 
 <div class="tangoCol">
 
-    TI ${
-        technicalMap[item.symbol]?.long_score ?? "-"
-    }
+TI=${
+    technicalMap[item.symbol]?.long_score ?? "..."
+}
 
-    <br>
+<br>
 
-    TE ${
-        technicalMap[item.symbol]?.entry_score ?? "-"
-    }
+TE=${
+    technicalMap[item.symbol]?.entry_score ?? "..."
+}
 
 </div>
 
