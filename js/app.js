@@ -696,13 +696,13 @@ li.innerHTML = `
 
 <div class="tangoCol">
 
-TI=${
+TI = ${
     technicalMap[item.symbol]?.long_score ?? "..."
 }
 
 <br>
 
-TE=${
+TE = ${
     technicalMap[item.symbol]?.entry_score ?? "..."
 }
 
