@@ -27,6 +27,7 @@ document.getElementById("statusMessage");
 let expandedTicker = null;
 let selectedTicker = null;
 let selectedPositionId = null;
+let currentSort = null;
 const portfolioStatusMessage =
 document.getElementById(
     "portfolioStatusMessage"
@@ -642,7 +643,45 @@ technicalData?.forEach(item => {
     technicalMap[item.symbol] = item;
 
 });
+if(currentSort === "tiAsc"){
 
+    data.sort((a,b) =>
+        (technicalMap[a.symbol]?.long_score || 0)
+        -
+        (technicalMap[b.symbol]?.long_score || 0)
+    );
+
+}
+
+if(currentSort === "tiDesc"){
+
+    data.sort((a,b) =>
+        (technicalMap[b.symbol]?.long_score || 0)
+        -
+        (technicalMap[a.symbol]?.long_score || 0)
+    );
+
+}
+
+if(currentSort === "teAsc"){
+
+    data.sort((a,b) =>
+        (technicalMap[a.symbol]?.entry_score || 0)
+        -
+        (technicalMap[b.symbol]?.entry_score || 0)
+    );
+
+}
+
+if(currentSort === "teDesc"){
+
+    data.sort((a,b) =>
+        (technicalMap[b.symbol]?.entry_score || 0)
+        -
+        (technicalMap[a.symbol]?.entry_score || 0)
+    );
+
+}
     if(error){
         console.error(error);
         return;
@@ -1581,7 +1620,45 @@ document
 document
 .getElementById("addPositionBtn")
 .addEventListener("click", addPosition);
+document
+.getElementById("tiAsc")
+.addEventListener("click", () => {
 
+    currentSort = "tiAsc";
+
+    loadWatchlist();
+
+});
+
+document
+.getElementById("tiDesc")
+.addEventListener("click", () => {
+
+    currentSort = "tiDesc";
+
+    loadWatchlist();
+
+});
+
+document
+.getElementById("teAsc")
+.addEventListener("click", () => {
+
+    currentSort = "teAsc";
+
+    loadWatchlist();
+
+});
+
+document
+.getElementById("teDesc")
+.addEventListener("click", () => {
+
+    currentSort = "teDesc";
+
+    loadWatchlist();
+
+});
 loadUser();
 window.togglePortfolioTicker =
 togglePortfolioTicker;
