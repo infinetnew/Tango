@@ -217,6 +217,7 @@ button:hover{
         2fr
         1fr
         1fr
+        1fr
         60px;
 
     padding:10px 15px;
@@ -237,6 +238,7 @@ button:hover{
     display:grid;
     grid-template-columns:
         2fr
+        1fr
         1fr
         1fr
         60px;
@@ -572,4 +574,17 @@ font-size:14px;
     text-align:center;
 
     min-height:24px;
+}
+.tangoCol{
+
+    text-align:center;
+
+    font-size:12px;
+
+    line-height:1.4;
+
+    font-weight:600;
+
+    color:#60a5fa;
+
 }
