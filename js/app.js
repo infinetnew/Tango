@@ -606,12 +606,28 @@ await supabaseClient
     daily_change_percent
 `)
 .in("symbol", symbols);
+const { data: technicalData } =
+await supabaseClient
+.from("technical_indicators")
+.select(`
+    symbol,
+    long_score,
+    entry_score
+`)
+.in("symbol", symbols);
 
 const marketMap = {};
 
 marketData?.forEach(item => {
 
     marketMap[item.symbol] = item;
+
+});
+const technicalMap = {};
+
+technicalData?.forEach(item => {
+
+    technicalMap[item.symbol] = item;
 
 });
 
@@ -658,8 +674,22 @@ li.innerHTML = `
     }
 </div>
 
-    <button
-        class="deleteBtn"
+<div class="tangoCol">
+
+    TI ${
+        technicalMap[item.symbol]?.long_score ?? "-"
+    }
+
+    <br>
+
+    TE ${
+        technicalMap[item.symbol]?.entry_score ?? "-"
+    }
+
+</div>
+
+<button
+    class="deleteBtn"
         onclick="deleteTicker(${item.id})"
     >
         ✕
