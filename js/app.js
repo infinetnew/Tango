@@ -37,16 +37,16 @@ function showMessage(text){
     message.innerText = text;
 }
 
-function showStatus(text, color = "#4ade80"){
+function showStatus(
+    text,
+    color = "#4ade80"
+){
 
     if(!statusMessage) return;
 
     statusMessage.innerText = text;
     statusMessage.style.color = color;
 
-    setTimeout(() => {
-        statusMessage.innerText = "";
-    }, 3000);
 }
 function showPortfolioStatus(
     text,
@@ -57,10 +57,6 @@ function showPortfolioStatus(
 
     portfolioStatusMessage.innerText = text;
     portfolioStatusMessage.style.color = color;
-
-    setTimeout(() => {
-        portfolioStatusMessage.innerText = "";
-    }, 3000);
 
 }
 
@@ -422,7 +418,9 @@ await fetch(
         document
         .getElementById("tickerInput")
         .value = "";
-
+showStatus(
+    "Calcolo indicatori tecnici..."
+);
 const indicatorsReady =
 await waitForIndicators(symbol);
 
@@ -442,6 +440,11 @@ await loadWatchlist();
 showStatus(
     "Ticker aggiunto alla tua Watchlist"
 );
+setTimeout(() => {
+
+    showStatus("");
+
+}, 2000);
 
     } catch(err){
 
@@ -605,7 +608,7 @@ else{
 
 }
 showPortfolioStatus(
-    "Recupero dati di mercato..."
+    "Aggiornamento portafoglio..."
 );
 
 await fetch(
@@ -626,6 +629,11 @@ await loadPortfolio();
 showPortfolioStatus(
     "Posizione aggiunta al tuo Portfolio"
 );
+setTimeout(() => {
+
+    showPortfolioStatus("");
+
+}, 2000);
 
 document.getElementById("portfolioTicker").value = "";
 document.getElementById("investedAmount").value = "";
