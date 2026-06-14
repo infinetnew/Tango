@@ -721,10 +721,24 @@ if(type === "momentumIndex"){
         <h3>Momentum Index</h3>
 
         <p>
-            Misura accelerazione e forza del movimento.
+            Misura l'accelerazione e la forza del movimento attraverso l'analisi combinata di RSI, MACD, EMA e volumi.
         </p>
 
         <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            Momentum Index =
+            RSI Slope +
+            MACD Histogram Slope +
+            EMA Spread Slope +
+            Volume Slope
+        </p>
+
+        <br>
+
+        <h4>Componenti</h4>
 
 <div
     class="docItem"
@@ -754,49 +768,346 @@ if(type === "momentumIndex"){
     Volume Slope
 </div>
 
+        <br>
+
+        <h4>Peso dei componenti</h4>
+
+        <p>
+            RSI Slope → 30 punti
+        </p>
+
+        <p>
+            MACD Histogram Slope → 30 punti
+        </p>
+
+        <p>
+            EMA Spread Slope → 20 punti
+        </p>
+
+        <p>
+            Volume Slope → 20 punti
+        </p>
+
+        <br>
+
+        <h4>Punteggio massimo</h4>
+
+        <p>
+            100 punti.
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Momentum Index rappresenta la componente dinamica del Tango Index e misura la velocità con cui il trend sta accelerando o rallentando.
+        </p>
+
     `;
 }
 if(type === "rsiSlope"){
 
     html = `
+
         <h3>RSI Slope</h3>
 
         <p>
-            Misura la velocità di variazione dell'RSI.
+            Misura la velocità di variazione dell'RSI nelle ultime 10 sessioni.
         </p>
+
+        <p>
+            Non valuta il livello assoluto dell'RSI, ma la sua accelerazione nel tempo.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            RSI Slope = Pendenza della regressione lineare
+            applicata agli ultimi 10 valori di RSI.
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            RSI Slope misura l'accelerazione del momentum.
+        </p>
+
+        <p>
+            Un RSI in crescita genera un contributo positivo al Momentum Index.
+        </p>
+
+        <p>
+            Un RSI in rallentamento o in discesa riduce il contributo.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            30 punti su 100 del Momentum Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>
+            > 3.0 → 30 punti
+        </p>
+
+        <p>
+            > 2.0 → 25 punti
+        </p>
+
+        <p>
+            > 1.0 → 20 punti
+        </p>
+
+        <p>
+            > 0.0 → 10 punti
+        </p>
+
+        <p>
+            ≤ 0.0 → 0 punti
+        </p>
+
     `;
 }
 
 if(type === "macdHistogramSlope"){
 
     html = `
+
         <h3>MACD Histogram Slope</h3>
 
         <p>
-            Misura l'accelerazione del MACD Histogram.
+            Misura l'accelerazione del MACD Histogram nelle ultime 10 sessioni.
         </p>
+
+        <p>
+            È uno dei componenti più importanti del Momentum Index poiché consente di individuare l'aumento o il rallentamento della forza del movimento prima che sia evidente sul prezzo.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            MACD Histogram Slope = Pendenza della regressione lineare
+            applicata agli ultimi 10 valori del MACD Histogram.
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Un valore crescente indica un'accelerazione del momentum.
+        </p>
+
+        <p>
+            Un valore decrescente indica una perdita di forza del movimento.
+        </p>
+
+        <p>
+            Il MACD Histogram viene utilizzato perché misura la distanza tra MACD e Signal Line, anticipando spesso i cambiamenti di momentum.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            30 punti su 100 del Momentum Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>
+            > 0.30 → 30 punti
+        </p>
+
+        <p>
+            > 0.20 → 25 punti
+        </p>
+
+        <p>
+            > 0.10 → 20 punti
+        </p>
+
+        <p>
+            > 0.00 → 10 punti
+        </p>
+
+        <p>
+            ≤ 0.00 → 0 punti
+        </p>
+
     `;
 }
-
 if(type === "emaSpreadSlope"){
 
     html = `
+
         <h3>EMA Spread Slope</h3>
 
         <p>
-            Misura la variazione della distanza tra EMA12 ed EMA26.
+            Misura la velocità di variazione della distanza tra EMA12 ed EMA26 nelle ultime 10 sessioni.
         </p>
+
+        <p>
+            Consente di valutare se il trend sta accelerando o rallentando nel breve periodo.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            EMA Spread =
+            ((EMA12 - EMA26) / EMA26) × 100
+        </p>
+
+        <p>
+            EMA Spread Slope =
+            Pendenza della regressione lineare applicata agli ultimi 10 valori di EMA Spread.
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Un aumento dell'EMA Spread indica che la media veloce sta allontanandosi dalla media lenta.
+        </p>
+
+        <p>
+            Questo comportamento è tipico dei trend in accelerazione.
+        </p>
+
+        <p>
+            Una diminuzione dell'EMA Spread indica invece una perdita di forza del movimento.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            20 punti su 100 del Momentum Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>
+            > 0.50 → 20 punti
+        </p>
+
+        <p>
+            > 0.25 → 15 punti
+        </p>
+
+        <p>
+            > 0.10 → 10 punti
+        </p>
+
+        <p>
+            > 0.00 → 5 punti
+        </p>
+
+        <p>
+            ≤ 0.00 → 0 punti
+        </p>
+
     `;
 }
 
 if(type === "volumeSlope"){
 
     html = `
+
         <h3>Volume Slope</h3>
 
         <p>
-            Misura l'accelerazione dei volumi.
+            Misura la velocità di variazione dei volumi rispetto alla media degli ultimi 20 giorni.
         </p>
+
+        <p>
+            Consente di individuare l'ingresso progressivo di interesse da parte del mercato.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            Volume Ratio =
+            Volume Attuale / Volume Medio 20 Giorni
+        </p>
+
+        <p>
+            Volume Slope =
+            Pendenza della regressione lineare applicata agli ultimi 10 valori di Volume Ratio.
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Un Volume Slope positivo indica che i volumi stanno aumentando nel tempo.
+        </p>
+
+        <p>
+            L'aumento progressivo dei volumi è spesso associato ad un crescente interesse degli investitori.
+        </p>
+
+        <p>
+            Volumi in accelerazione rendono più affidabili i segnali di trend e momentum.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            20 punti su 100 del Momentum Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>
+            > 0.10 → 20 punti
+        </p>
+
+        <p>
+            > 0.05 → 15 punti
+        </p>
+
+        <p>
+            > 0.02 → 10 punti
+        </p>
+
+        <p>
+            > 0.00 → 5 punti
+        </p>
+
+        <p>
+            ≤ 0.00 → 0 punti
+        </p>
+
     `;
 }
 
