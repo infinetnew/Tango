@@ -267,7 +267,6 @@ function loadIndicatorDocs(){
 
     <div class="card">
 
-        <h3>📚 Documentazione Indicatori</h3>
 
         <div class="docItem"
             onclick="showIndicatorDoc('tangoIndex')">
