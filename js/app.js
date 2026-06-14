@@ -214,6 +214,7 @@ showPage("dashboardPage");
 
 await loadWatchlist();
 await loadPortfolio();
+await loadDashboardStats();
 }
 async function waitForIndicators(symbol){
 
@@ -1205,7 +1206,134 @@ await supabaseClient
 
     await loadPortfolio();
 }
+async function loadDashboardStats(){
 
+    const {
+        data:{ user }
+    } =
+    await supabaseClient.auth.getUser();
+
+    if(!user) return;
+
+    const { data: portfolio } =
+    await supabaseClient
+    .from("portfolio")
+    .select(`
+        symbol,
+        invested_amount,
+        quantity
+    `)
+    .eq("user_id", user.id);
+
+    const { data: watchlist } =
+    await supabaseClient
+    .from("watchlist")
+    .select("id")
+    .eq("user_id", user.id);
+
+    let totalInvested = 0;
+
+    portfolio?.forEach(position => {
+
+        totalInvested +=
+        Number(position.invested_amount);
+
+    });
+
+    const symbols = [
+        ...new Set(
+            portfolio?.map(
+                p => p.symbol
+            ) || []
+        )
+    ];
+
+    let currentValue = 0;
+
+    if(symbols.length > 0){
+
+        const { data: marketData } =
+        await supabaseClient
+        .from("market_data")
+        .select(`
+            symbol,
+            current_price
+        `)
+        .in("symbol", symbols);
+
+        const marketMap = {};
+
+        marketData?.forEach(item => {
+
+            marketMap[item.symbol] = item;
+
+        });
+
+        portfolio.forEach(position => {
+
+            currentValue +=
+                Number(position.quantity)
+                *
+                Number(
+                    marketMap[position.symbol]
+                    ?.current_price || 0
+                );
+
+        });
+
+    }
+
+    const totalPL =
+        currentValue - totalInvested;
+
+    const totalPLPercent =
+        totalInvested > 0
+        ?
+        (
+            totalPL /
+            totalInvested
+        ) * 100
+        :
+        0;
+
+    const plColor =
+        totalPL >= 0
+        ? "#22c55e"
+        : "#ef4444";
+
+    document
+    .getElementById("dashboardStats")
+    .innerHTML = `
+
+    <div class="dashboardGrid">
+
+        <div class="card">
+            <h3>💼 Valore Portafoglio</h3>
+            <p>$${currentValue.toFixed(2)}</p>
+        </div>
+
+        <div class="card">
+            <h3>📈 P/L Totale</h3>
+            <p style="color:${plColor};">
+                $${totalPL.toFixed(2)}
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>📊 P/L %</h3>
+            <p style="color:${plColor};">
+                ${totalPLPercent.toFixed(2)}%
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>⭐ Watchlist</h3>
+            <p>${watchlist?.length || 0}</p>
+        </div>
+
+    </div>
+    `;
+}
 async function loadPortfolio(){
 
     const {
