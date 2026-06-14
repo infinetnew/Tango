@@ -451,14 +451,73 @@ if(type === "trendStrength"){
         <p>≤ -20% → 0 punti</p>
 
     `;
-}if(type === "smaSpread"){
+}
+
+if(type === "smaSpread"){
 
     html = `
+
         <h3>SMA Spread</h3>
 
         <p>
-            Misura la distanza tra le medie mobili.
+            Misura la separazione tra la media mobile a 50 giorni e la media mobile a 200 giorni.
         </p>
+
+        <p>
+            È uno dei principali indicatori utilizzati per valutare la qualità strutturale del trend.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            SMA Spread =
+            ((SMA50 - SMA200) / SMA200) × 100
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Quando la SMA50 si trova molto sopra la SMA200 significa che il trend di medio periodo è nettamente più forte del trend di lungo periodo.
+        </p>
+
+        <p>
+            Valori elevati indicano una struttura rialzista solida e consolidata.
+        </p>
+
+        <p>
+            Valori vicini a zero indicano una fase neutrale.
+        </p>
+
+        <p>
+            Valori negativi indicano una struttura debole o ribassista.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            25 punti su 100 del Trend Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>> 25% → 25 punti</p>
+
+        <p>> 15% → 20 punti</p>
+
+        <p>> 5% → 10 punti</p>
+
+        <p>> 0% → 5 punti</p>
+
+        <p>< 0% → 0 punti</p>
+
     `;
 }
 
