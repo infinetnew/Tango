@@ -316,7 +316,7 @@ if(type === "tangoIndex"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             Tango Index =
             (Trend Index × 0.70)
@@ -327,7 +327,7 @@ if(type === "tangoIndex"){
         <br>
 
         <h4>Componenti</h4>
-
+<br>
         <div
             class="docItem"
             onclick="showIndicatorDoc('trendIndex')"
@@ -345,7 +345,7 @@ if(type === "tangoIndex"){
         <br>
 
         <h4>Pesi</h4>
-
+<br>
         <p>
             Trend Index → 70%
         </p>
@@ -357,7 +357,7 @@ if(type === "tangoIndex"){
         <br>
 
         <h4>Punteggio massimo</h4>
-
+<br>
         <p>
             100 punti.
         </p>
@@ -365,7 +365,7 @@ if(type === "tangoIndex"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Tango Index rappresenta il principale indicatore di qualità del trend utilizzato da Tango.
         </p>
@@ -377,7 +377,7 @@ if(type === "tangoIndex"){
         <br>
 
         <h4>Interpretazione</h4>
-
+<br>
         <p>
             90 - 100 → 🟣 Esplosivo
         </p>
@@ -426,7 +426,7 @@ if(type === "tangoEntry"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             Tango Entry =
             (Entry Index × 0.60)
@@ -437,7 +437,7 @@ if(type === "tangoEntry"){
         <br>
 
         <h4>Componenti</h4>
-
+<br>
 <div
     class="docItem"
     onclick="showIndicatorDoc('entryIndex')"
@@ -455,7 +455,7 @@ if(type === "tangoEntry"){
         <br>
 
         <h4>Pesi</h4>
-
+<br>
         <p>
             Entry Index → 60%
         </p>
@@ -467,7 +467,7 @@ if(type === "tangoEntry"){
         <br>
 
         <h4>Punteggio massimo</h4>
-
+<br>
         <p>
             100 punti.
         </p>
@@ -475,7 +475,7 @@ if(type === "tangoEntry"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Tango Entry rappresenta il principale indicatore di qualità dell'ingresso.
         </p>
@@ -486,7 +486,7 @@ if(type === "tangoEntry"){
 <br>
 
 <h4>Interpretazione</h4>
-
+<br>
 <p>
     80 - 100 → 🟣 Perfetta
 </p>
@@ -534,7 +534,7 @@ if(type === "entryIndex"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             Entry Index =
             RSI14 +
@@ -545,7 +545,7 @@ if(type === "entryIndex"){
         <br>
 
         <h4>Componenti</h4>
-
+<br>
 <div
     class="docItem"
     onclick="showIndicatorDoc('rsi14')"
@@ -570,7 +570,7 @@ if(type === "entryIndex"){
         <br>
 
         <h4>Pesi</h4>
-
+<br>
         <p>
             RSI14 → 40 punti
         </p>
@@ -586,7 +586,7 @@ if(type === "entryIndex"){
         <br>
 
         <h4>Punteggio massimo</h4>
-
+<br>
         <p>
             100 punti.
         </p>
@@ -594,7 +594,7 @@ if(type === "entryIndex"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Entry Index rappresenta la componente tecnica di ingresso del Tango Entry.
         </p>
@@ -622,7 +622,7 @@ if(type === "rsi14"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             RSI = 100 − (100 / (1 + RS))
         </p>
@@ -634,7 +634,7 @@ if(type === "rsi14"){
         <br>
 
         <h4>Periodo utilizzato</h4>
-
+<br>
         <p>
             RSI a 14 periodi.
         </p>
@@ -642,7 +642,7 @@ if(type === "rsi14"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Un RSI elevato indica una forte pressione d'acquisto.
         </p>
@@ -658,7 +658,7 @@ if(type === "rsi14"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             40 punti su 100 dell'Entry Index.
         </p>
@@ -666,7 +666,7 @@ if(type === "rsi14"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>
             RSI > 70 → 40 punti
         </p>
@@ -706,7 +706,7 @@ if(type === "macdHistogram"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             MACD Histogram =
             MACD − Signal Line
@@ -715,7 +715,7 @@ if(type === "macdHistogram"){
         <br>
 
         <h4>Componenti del MACD</h4>
-
+<br>
         <p>
             MACD =
             EMA12 − EMA26
@@ -729,7 +729,7 @@ if(type === "macdHistogram"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Un MACD Histogram positivo indica che il MACD si trova sopra la Signal Line.
         </p>
@@ -745,7 +745,7 @@ if(type === "macdHistogram"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             40 punti su 100 dell'Entry Index.
         </p>
@@ -753,7 +753,7 @@ if(type === "macdHistogram"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>
             MACD Histogram > 2.00 → 40 punti
         </p>
@@ -789,7 +789,7 @@ if(type === "volumeRatio"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             Volume Ratio =
             Volume Attuale /
@@ -799,7 +799,7 @@ if(type === "volumeRatio"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Un valore superiore a 1 indica che il volume attuale è superiore alla media.
         </p>
@@ -815,7 +815,7 @@ if(type === "volumeRatio"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             20 punti su 100 dell'Entry Index.
         </p>
@@ -823,7 +823,7 @@ if(type === "volumeRatio"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>
             Volume Ratio ≥ 2.00 → 20 punti
         </p>
@@ -863,7 +863,7 @@ if(type === "tangoDelta"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             Tango Delta =
             Tango Entry − Tango Index
@@ -872,7 +872,7 @@ if(type === "tangoDelta"){
         <br>
 
         <h4>Componenti</h4>
-
+<br>
 <div
     class="docItem"
     onclick="showIndicatorDoc('tangoEntry')"
@@ -890,7 +890,7 @@ if(type === "tangoDelta"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Un valore positivo indica che la qualità dell'ingresso è superiore alla qualità del trend.
         </p>
@@ -905,7 +905,7 @@ if(type === "tangoDelta"){
 <br>
 
 <h4>Interpretazione</h4>
-
+<br>
 <p>
     ≥ 20 → 🟣 Occasione Eccezionale
 </p>
@@ -951,7 +951,7 @@ if(type === "trendIndex"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             Trend Index =
             Trend Strength +
@@ -963,7 +963,7 @@ if(type === "trendIndex"){
         <br>
 
         <h4>Componenti</h4>
-
+<br>
 <div
     class="docItem"
     onclick="showIndicatorDoc('trendStrength')"
@@ -995,7 +995,7 @@ if(type === "trendIndex"){
         <br>
 
         <h4>Peso dei componenti</h4>
-
+<br>
         <p>
             Trend Strength → 40 punti
         </p>
@@ -1015,7 +1015,7 @@ if(type === "trendIndex"){
         <br>
 
         <h4>Punteggio massimo</h4>
-
+<br>
         <p>
             100 punti.
         </p>
@@ -1023,7 +1023,7 @@ if(type === "trendIndex"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Trend Index rappresenta la componente strutturale del Tango Index e viene combinato con il Momentum Index per determinare la qualità complessiva del trend.
         </p>
@@ -1043,7 +1043,7 @@ if(type === "trendStrength"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             Trend Strength =
             ((Prezzo Attuale - SMA200) / SMA200) × 100
@@ -1052,7 +1052,7 @@ if(type === "trendStrength"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Trend Strength è uno dei quattro componenti del Trend Index.
         </p>
@@ -1064,7 +1064,7 @@ if(type === "trendStrength"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             40 punti su 100 del Trend Index.
         </p>
@@ -1072,7 +1072,7 @@ if(type === "trendStrength"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>> 60% → 40 punti</p>
         <p>> 40% → 35 punti</p>
         <p>> 30% → 30 punti</p>
@@ -1103,7 +1103,7 @@ if(type === "smaSpread"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             SMA Spread =
             ((SMA50 - SMA200) / SMA200) × 100
@@ -1112,7 +1112,7 @@ if(type === "smaSpread"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Quando la SMA50 si trova molto sopra la SMA200 significa che il trend di medio periodo è nettamente più forte del trend di lungo periodo.
         </p>
@@ -1132,7 +1132,7 @@ if(type === "smaSpread"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             25 punti su 100 del Trend Index.
         </p>
@@ -1140,7 +1140,7 @@ if(type === "smaSpread"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>> 25% → 25 punti</p>
 
         <p>> 15% → 20 punti</p>
@@ -1171,7 +1171,7 @@ if(type === "distance52wHigh"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             Distance 52W High =
             ((Prezzo Attuale - Massimo 52 Settimane) / Massimo 52 Settimane) × 100
@@ -1180,7 +1180,7 @@ if(type === "distance52wHigh"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             I titoli che si trovano vicino ai propri massimi annuali tendono ad essere quelli più forti del mercato.
         </p>
@@ -1196,7 +1196,7 @@ if(type === "distance52wHigh"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             25 punti su 100 del Trend Index.
         </p>
@@ -1204,7 +1204,7 @@ if(type === "distance52wHigh"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>
             ≥ -5% → 25 punti
         </p>
@@ -1245,7 +1245,7 @@ if(type === "volatilityScore"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             ATR % =
             (ATR14 / Bollinger Middle) × 100
@@ -1254,7 +1254,7 @@ if(type === "volatilityScore"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Una volatilità moderata tende a favorire trend più sostenibili e prevedibili.
         </p>
@@ -1270,7 +1270,7 @@ if(type === "volatilityScore"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             10 punti su 100 del Trend Index.
         </p>
@@ -1278,7 +1278,7 @@ if(type === "volatilityScore"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>
             ATR% tra 1% e 4% → 10 punti
         </p>
@@ -1310,7 +1310,7 @@ if(type === "momentumIndex"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             Momentum Index =
             RSI Slope +
@@ -1322,7 +1322,7 @@ if(type === "momentumIndex"){
         <br>
 
         <h4>Componenti</h4>
-
+<br>
 <div
     class="docItem"
     onclick="showIndicatorDoc('rsiSlope')"
@@ -1354,7 +1354,7 @@ if(type === "momentumIndex"){
         <br>
 
         <h4>Peso dei componenti</h4>
-
+<br>
         <p>
             RSI Slope → 30 punti
         </p>
@@ -1374,7 +1374,7 @@ if(type === "momentumIndex"){
         <br>
 
         <h4>Punteggio massimo</h4>
-
+<br>
         <p>
             100 punti.
         </p>
@@ -1382,7 +1382,7 @@ if(type === "momentumIndex"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Momentum Index rappresenta la componente dinamica del Tango Index e misura la velocità con cui il trend sta accelerando o rallentando.
         </p>
@@ -1406,7 +1406,7 @@ if(type === "rsiSlope"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             RSI Slope = Pendenza della regressione lineare
             applicata agli ultimi 10 valori di RSI.
@@ -1415,7 +1415,7 @@ if(type === "rsiSlope"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             RSI Slope misura l'accelerazione del momentum.
         </p>
@@ -1431,7 +1431,7 @@ if(type === "rsiSlope"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             30 punti su 100 del Momentum Index.
         </p>
@@ -1439,7 +1439,7 @@ if(type === "rsiSlope"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>
             > 3.0 → 30 punti
         </p>
@@ -1480,7 +1480,7 @@ if(type === "macdHistogramSlope"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             MACD Histogram Slope = Pendenza della regressione lineare
             applicata agli ultimi 10 valori del MACD Histogram.
@@ -1489,7 +1489,7 @@ if(type === "macdHistogramSlope"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Un valore crescente indica un'accelerazione del momentum.
         </p>
@@ -1505,7 +1505,7 @@ if(type === "macdHistogramSlope"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             30 punti su 100 del Momentum Index.
         </p>
@@ -1513,7 +1513,7 @@ if(type === "macdHistogramSlope"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>
             > 0.30 → 30 punti
         </p>
@@ -1553,7 +1553,7 @@ if(type === "emaSpreadSlope"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             EMA Spread =
             ((EMA12 - EMA26) / EMA26) × 100
@@ -1567,7 +1567,7 @@ if(type === "emaSpreadSlope"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Un aumento dell'EMA Spread indica che la media veloce sta allontanandosi dalla media lenta.
         </p>
@@ -1583,7 +1583,7 @@ if(type === "emaSpreadSlope"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             20 punti su 100 del Momentum Index.
         </p>
@@ -1591,7 +1591,7 @@ if(type === "emaSpreadSlope"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>
             > 0.50 → 20 punti
         </p>
@@ -1632,7 +1632,7 @@ if(type === "volumeSlope"){
         <br>
 
         <h4>Formula</h4>
-
+<br>
         <p>
             Volume Ratio =
             Volume Attuale / Volume Medio 20 Giorni
@@ -1646,7 +1646,7 @@ if(type === "volumeSlope"){
         <br>
 
         <h4>Ruolo nel sistema</h4>
-
+<br>
         <p>
             Un Volume Slope positivo indica che i volumi stanno aumentando nel tempo.
         </p>
@@ -1662,7 +1662,7 @@ if(type === "volumeSlope"){
         <br>
 
         <h4>Peso massimo</h4>
-
+<br>
         <p>
             20 punti su 100 del Momentum Index.
         </p>
@@ -1670,7 +1670,7 @@ if(type === "volumeSlope"){
         <br>
 
         <h4>Conversione in punteggio</h4>
-
+<br>
         <p>
             > 0.10 → 20 punti
         </p>
