@@ -362,10 +362,24 @@ if(type === "trendIndex"){
         <h3>Trend Index</h3>
 
         <p>
-            Misura la qualità strutturale del trend.
+            Misura la qualità strutturale del trend attraverso l'analisi combinata di trend di lungo periodo, allineamento delle medie mobili, vicinanza ai massimi annuali e qualità della volatilità.
         </p>
 
         <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            Trend Index =
+            Trend Strength +
+            SMA Spread +
+            Distance 52W High +
+            Volatility Score
+        </p>
+
+        <br>
+
+        <h4>Componenti</h4>
 
 <div
     class="docItem"
@@ -394,6 +408,42 @@ if(type === "trendIndex"){
 >
     Volatility Score
 </div>
+
+        <br>
+
+        <h4>Peso dei componenti</h4>
+
+        <p>
+            Trend Strength → 40 punti
+        </p>
+
+        <p>
+            SMA Spread → 25 punti
+        </p>
+
+        <p>
+            Distance 52W High → 25 punti
+        </p>
+
+        <p>
+            Volatility Score → 10 punti
+        </p>
+
+        <br>
+
+        <h4>Punteggio massimo</h4>
+
+        <p>
+            100 punti.
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Trend Index rappresenta la componente strutturale del Tango Index e viene combinato con il Momentum Index per determinare la qualità complessiva del trend.
+        </p>
 
     `;
 }
@@ -524,22 +574,144 @@ if(type === "smaSpread"){
 if(type === "distance52wHigh"){
 
     html = `
+
         <h3>Distance 52W High</h3>
 
         <p>
-            Misura la distanza dal massimo delle ultime 52 settimane.
+            Misura la distanza percentuale tra il prezzo attuale e il massimo registrato nelle ultime 52 settimane.
         </p>
+
+        <p>
+            È uno degli indicatori più importanti per valutare la leadership di un titolo.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            Distance 52W High =
+            ((Prezzo Attuale - Massimo 52 Settimane) / Massimo 52 Settimane) × 100
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            I titoli che si trovano vicino ai propri massimi annuali tendono ad essere quelli più forti del mercato.
+        </p>
+
+        <p>
+            Valori vicini a zero indicano che il titolo sta testando o superando i massimi annuali.
+        </p>
+
+        <p>
+            Valori molto negativi indicano che il prezzo è ancora distante dai livelli di forza precedenti.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            25 punti su 100 del Trend Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>
+            ≥ -5% → 25 punti
+        </p>
+
+        <p>
+            ≥ -10% → 20 punti
+        </p>
+
+        <p>
+            ≥ -20% → 15 punti
+        </p>
+
+        <p>
+            ≥ -30% → 10 punti
+        </p>
+
+        <p>
+            < -30% → 0 punti
+        </p>
+
     `;
 }
 
 if(type === "volatilityScore"){
 
     html = `
+
         <h3>Volatility Score</h3>
 
         <p>
-            Misura la stabilità del movimento del prezzo.
+            Misura la qualità della volatilità del titolo utilizzando l'ATR in rapporto al prezzo medio.
         </p>
+
+        <p>
+            L'obiettivo è favorire i titoli con una volatilità equilibrata, evitando sia i movimenti troppo lenti sia quelli eccessivamente instabili.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            ATR % =
+            (ATR14 / Bollinger Middle) × 100
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Una volatilità moderata tende a favorire trend più sostenibili e prevedibili.
+        </p>
+
+        <p>
+            Volatilità troppo elevata può indicare instabilità e maggiore rischio operativo.
+        </p>
+
+        <p>
+            Volatilità troppo bassa può indicare assenza di movimento e scarso interesse del mercato.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            10 punti su 100 del Trend Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>
+            ATR% tra 1% e 4% → 10 punti
+        </p>
+
+        <p>
+            ATR% fino a 6% → 7 punti
+        </p>
+
+        <p>
+            ATR% fino a 8% → 4 punti
+        </p>
+
+        <p>
+            ATR% oltre 8% → 0 punti
+        </p>
+
     `;
 }
 if(type === "momentumIndex"){
