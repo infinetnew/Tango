@@ -763,6 +763,25 @@ if(currentSort === "teDesc"){
     );
 
 }
+if(currentSort === "tdAsc"){
+
+    data.sort((a,b) =>
+        (technicalMap[a.symbol]?.tango_delta || 0)
+        -
+        (technicalMap[b.symbol]?.tango_delta || 0)
+    );
+
+}
+
+if(currentSort === "tdDesc"){
+
+    data.sort((a,b) =>
+        (technicalMap[b.symbol]?.tango_delta || 0)
+        -
+        (technicalMap[a.symbol]?.tango_delta || 0)
+    );
+
+}
 if(currentSort === "varAsc"){
 
     data.sort((a,b) =>
@@ -1767,6 +1786,25 @@ document
 .addEventListener("click", () => {
 
     currentSort = "teDesc";
+
+    loadWatchlist();
+
+});
+document
+.getElementById("tdAsc")
+.addEventListener("click", () => {
+
+    currentSort = "tdAsc";
+
+    loadWatchlist();
+
+});
+
+document
+.getElementById("tdDesc")
+.addEventListener("click", () => {
+
+    currentSort = "tdDesc";
 
     loadWatchlist();
 
