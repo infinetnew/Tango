@@ -673,6 +673,52 @@ function getTrendLabel(value)
     return "⚫ Trend Nullo";
 }
 
+function getEntryLabel(value)
+{
+    if (value >= 80)
+        return "🟣 Entrata Perfetta";
+
+    if (value >= 65)
+        return "🔵 Entrata Ottima";
+
+    if (value >= 50)
+        return "🟢 Entrata Buona";
+
+    if (value >= 35)
+        return "🟡 Entrata Discreta";
+
+    if (value >= 20)
+        return "🟠 Entrata Debole";
+
+    if (value >= 10)
+        return "🔴 Entrata Rischiosa";
+
+    return "⚫ Da non Entrare";
+}
+
+function getDeltaLabel(value)
+{
+    if (value >= 20)
+        return "🟣 Occasione Forte";
+
+    if (value >= 10)
+        return "🔵 Occasione";
+
+    if (value >= 5)
+        return "🟢 Interessante";
+
+    if (value >= -5)
+        return "🟡 Equilibrato";
+
+    if (value >= -15)
+        return "🟠 Da Attendere";
+
+    if (value >= -30)
+        return "🔴 Poco Attraente";
+
+    return "⚫ Evitare";
+}
+
 async function loadWatchlist(){
 
     const {
@@ -914,11 +960,15 @@ TI = ${
 }
 
 TE = ${
-    technicalMap[item.symbol]?.tango_entry ?? "..."
+    getEntryLabel(
+        technicalMap[item.symbol]?.tango_entry || 0
+    )
 }
 
 TD = ${
-    technicalMap[item.symbol]?.tango_delta ?? "..."
+    getDeltaLabel(
+        technicalMap[item.symbol]?.tango_delta || 0
+    )
 }
 
 </div>
