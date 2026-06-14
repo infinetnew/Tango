@@ -400,15 +400,58 @@ if(type === "trendIndex"){
 if(type === "trendStrength"){
 
     html = `
+
         <h3>Trend Strength</h3>
 
         <p>
-            Misura la forza del trend principale.
+            Misura la distanza percentuale tra il prezzo attuale e la SMA200, valutando la forza strutturale del trend di lungo periodo.
         </p>
-    `;
-}
 
-if(type === "smaSpread"){
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            Trend Strength =
+            ((Prezzo Attuale - SMA200) / SMA200) × 100
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Trend Strength è uno dei quattro componenti del Trend Index.
+        </p>
+
+        <p>
+            Maggiore è la distanza positiva dalla SMA200, maggiore sarà il contributo al Trend Index.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            40 punti su 100 del Trend Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>> 60% → 40 punti</p>
+        <p>> 40% → 35 punti</p>
+        <p>> 30% → 30 punti</p>
+        <p>> 20% → 25 punti</p>
+        <p>> 10% → 20 punti</p>
+        <p>> 0% → 15 punti</p>
+        <p>> -10% → 10 punti</p>
+        <p>> -20% → 5 punti</p>
+        <p>≤ -20% → 0 punti</p>
+
+    `;
+}if(type === "smaSpread"){
 
     html = `
         <h3>SMA Spread</h3>
