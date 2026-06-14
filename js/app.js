@@ -452,22 +452,77 @@ if(type === "momentumIndex"){
 
         <br>
 
-        <div class="docItem">
-            RSI Slope
-        </div>
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('rsiSlope')"
+>
+    RSI Slope
+</div>
 
-        <div class="docItem">
-            MACD Histogram Slope
-        </div>
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('macdHistogramSlope')"
+>
+    MACD Histogram Slope
+</div>
 
-        <div class="docItem">
-            EMA Spread Slope
-        </div>
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('emaSpreadSlope')"
+>
+    EMA Spread Slope
+</div>
 
-        <div class="docItem">
-            Volume Slope
-        </div>
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('volumeSlope')"
+>
+    Volume Slope
+</div>
 
+    `;
+}
+if(type === "rsiSlope"){
+
+    html = `
+        <h3>RSI Slope</h3>
+
+        <p>
+            Misura la velocità di variazione dell'RSI.
+        </p>
+    `;
+}
+
+if(type === "macdHistogramSlope"){
+
+    html = `
+        <h3>MACD Histogram Slope</h3>
+
+        <p>
+            Misura l'accelerazione del MACD Histogram.
+        </p>
+    `;
+}
+
+if(type === "emaSpreadSlope"){
+
+    html = `
+        <h3>EMA Spread Slope</h3>
+
+        <p>
+            Misura la variazione della distanza tra EMA12 ed EMA26.
+        </p>
+    `;
+}
+
+if(type === "volumeSlope"){
+
+    html = `
+        <h3>Volume Slope</h3>
+
+        <p>
+            Misura l'accelerazione dei volumi.
+        </p>
     `;
 }
 
