@@ -367,22 +367,77 @@ if(type === "trendIndex"){
 
         <br>
 
-        <div class="docItem">
-            Trend Strength
-        </div>
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('trendStrength')"
+>
+    Trend Strength
+</div>
 
-        <div class="docItem">
-            SMA Spread
-        </div>
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('smaSpread')"
+>
+    SMA Spread
+</div>
 
-        <div class="docItem">
-            Distance 52W High
-        </div>
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('distance52wHigh')"
+>
+    Distance 52W High
+</div>
 
-        <div class="docItem">
-            Volatility Score
-        </div>
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('volatilityScore')"
+>
+    Volatility Score
+</div>
 
+    `;
+}
+if(type === "trendStrength"){
+
+    html = `
+        <h3>Trend Strength</h3>
+
+        <p>
+            Misura la forza del trend principale.
+        </p>
+    `;
+}
+
+if(type === "smaSpread"){
+
+    html = `
+        <h3>SMA Spread</h3>
+
+        <p>
+            Misura la distanza tra le medie mobili.
+        </p>
+    `;
+}
+
+if(type === "distance52wHigh"){
+
+    html = `
+        <h3>Distance 52W High</h3>
+
+        <p>
+            Misura la distanza dal massimo delle ultime 52 settimane.
+        </p>
+    `;
+}
+
+if(type === "volatilityScore"){
+
+    html = `
+        <h3>Volatility Score</h3>
+
+        <p>
+            Misura la stabilità del movimento del prezzo.
+        </p>
     `;
 }
 if(type === "momentumIndex"){
