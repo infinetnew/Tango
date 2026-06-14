@@ -484,6 +484,37 @@ if(type === "tangoEntry"){
         <p>
             Valuta se le condizioni tecniche attuali sono favorevoli per l'apertura o l'incremento di una posizione.
         </p>
+<br>
+
+<h4>Interpretazione</h4>
+
+<p>
+    80 - 100 → 🟣 Perfetta
+</p>
+
+<p>
+    65 - 79 → 🔵 Ottima
+</p>
+
+<p>
+    50 - 64 → 🟢 Buona
+</p>
+
+<p>
+    35 - 49 → 🟡 Discreta
+</p>
+
+<p>
+    20 - 34 → 🟠 Debole
+</p>
+
+<p>
+    10 - 19 → 🔴 Rischiosa
+</p>
+
+<p>
+    0 - 9 → ⚫ Da non Considerare
+</p>
 
     `;
 }
@@ -872,6 +903,37 @@ if(type === "tangoDelta"){
         <p>
             Valori vicini allo zero indicano un buon allineamento tra struttura del trend e momentum operativo.
         </p>
+<br>
+
+<h4>Interpretazione</h4>
+
+<p>
+    ≥ 20 → 🟣 Occasione Eccezionale
+</p>
+
+<p>
+    10 - 19 → 🔵 Buona Occasione
+</p>
+
+<p>
+    5 - 9 → 🟢 Interessante
+</p>
+
+<p>
+    -5 - 4 → 🟡 Equilibrato
+</p>
+
+<p>
+    -15 - -6 → 🟠 Fai Attenzione
+</p>
+
+<p>
+    -30 - -16 → 🔴 Da Attendere
+</p>
+
+<p>
+    < -30 → ⚫ Poco Attraente
+</p>
 
 
 
@@ -2085,25 +2147,25 @@ function getEntryLabel(value)
 
 function getDeltaLabel(value)
 {
-    if (value >= 20)
-        return "🟣 Occasione Eccezionale";
+if (value >= 20)
+    return "🟣 Occasione Eccezionale";
 
-    if (value >= 10)
-        return "🔵 Buona Occasione";
+if (value >= 10)
+    return "🔵 Buona Occasione";
 
-    if (value >= 5)
-        return "🟢 Interessante";
+if (value >= 5)
+    return "🟢 Interessante";
 
-    if (value >= -5)
-        return "🟡 Occasione";
+if (value >= -5)
+    return "🟡 Equilibrato";
 
-    if (value >= -15)
-        return "🟠 Equilibrato";
+if (value >= -15)
+    return "🟠 Fai Attenzione";
 
-    if (value >= -30)
-        return "🔴 Da Attendere";
+if (value >= -30)
+    return "🔴 Da Attendere";
 
-    return "⚫ Poco Attraente";
+return "⚫ Poco Attraente";
 }
 
 async function loadWatchlist(){
