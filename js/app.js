@@ -679,12 +679,7 @@ async function loadWatchlist(){
         data:{ user }
     } =
     await supabaseClient.auth.getUser();
-async function loadWatchlist(){
 
-    const {
-        data:{ user }
-    } =
-    await supabaseClient.auth.getUser();
 
 const { data, error } =
 await supabaseClient
