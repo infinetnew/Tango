@@ -650,7 +650,35 @@ document.getElementById("purchasePrice").value = "";
 
 
 }
+function getTrendLabel(value)
+{
+    if (value >= 90)
+        return "🟣 Trend Esplosivo";
 
+    if (value >= 75)
+        return "🔵 Trend Molto Forte";
+
+    if (value >= 60)
+        return "🟢 Trend Forte";
+
+    if (value >= 45)
+        return "🟡 Trend Costruttivo";
+
+    if (value >= 30)
+        return "🟠 Trend Debole";
+
+    if (value >= 15)
+        return "🔴 Trend Fragile";
+
+    return "⚫ Trend Nullo";
+}
+
+async function loadWatchlist(){
+
+    const {
+        data:{ user }
+    } =
+    await supabaseClient.auth.getUser();
 async function loadWatchlist(){
 
     const {
@@ -882,11 +910,12 @@ li.innerHTML = `
         ).toFixed(2)
     }%
 </div>
-
 <div class="tangoCol">
 
 TI = ${
-    technicalMap[item.symbol]?.tango_index ?? "..."
+    getTrendLabel(
+        technicalMap[item.symbol]?.tango_index || 0
+    )
 }
 
 TE = ${
