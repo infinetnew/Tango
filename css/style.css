@@ -773,3 +773,23 @@ font-size:14px;
     font-weight:700;
 
 }
+.docItem{
+
+    cursor:pointer;
+
+    text-decoration:underline;
+
+    font-weight:600;
+
+    margin-bottom:12px;
+
+    color:white;
+
+    transition:.2s;
+}
+
+.docItem:hover{
+
+    color:#60a5fa;
+
+}
