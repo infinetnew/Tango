@@ -653,70 +653,70 @@ document.getElementById("purchasePrice").value = "";
 function getTrendLabel(value)
 {
     if (value >= 90)
-        return "🟣 Trend Esplosivo";
+        return "🟣 Esplosivo";
 
     if (value >= 75)
-        return "🔵 Trend Molto Forte";
+        return "🔵 Molto Forte";
 
     if (value >= 60)
-        return "🟢 Trend Forte";
+        return "🟢 Forte";
 
     if (value >= 45)
-        return "🟡 Trend Costruttivo";
+        return "🟡 Costruttivo";
 
     if (value >= 30)
-        return "🟠 Trend Debole";
+        return "🟠 Debole";
 
     if (value >= 15)
-        return "🔴 Trend Fragile";
+        return "🔴 Fragile";
 
-    return "⚫ Trend Nullo";
+    return "⚫ Nullo";
 }
 
 function getEntryLabel(value)
 {
     if (value >= 80)
-        return "🟣 Entrata Perfetta";
+        return "🟣 Perfetta";
 
     if (value >= 65)
-        return "🔵 Entrata Ottima";
+        return "🔵 Ottima";
 
     if (value >= 50)
-        return "🟢 Entrata Buona";
+        return "🟢 Buona";
 
     if (value >= 35)
-        return "🟡 Entrata Discreta";
+        return "🟡 Discreta";
 
     if (value >= 20)
-        return "🟠 Entrata Debole";
+        return "🟠 Debole";
 
     if (value >= 10)
-        return "🔴 Entrata Rischiosa";
+        return "🔴 Rischiosa";
 
-    return "⚫ Da non Entrare";
+    return "⚫ Da non Considerare";
 }
 
 function getDeltaLabel(value)
 {
     if (value >= 20)
-        return "🟣 Occasione Forte";
+        return "🟣 Occasione Eccezionale";
 
     if (value >= 10)
-        return "🔵 Occasione";
+        return "🔵 Buona Occasione";
 
     if (value >= 5)
         return "🟢 Interessante";
 
     if (value >= -5)
-        return "🟡 Equilibrato";
+        return "🟡 Occasione";
 
     if (value >= -15)
-        return "🟠 Da Attendere";
+        return "🟠 Equilibrato";
 
     if (value >= -30)
-        return "🔴 Poco Attraente";
+        return "🔴 Da Attendere";
 
-    return "⚫ Evitare";
+    return "⚫ Poco Attraente";
 }
 
 async function loadWatchlist(){
@@ -953,19 +953,19 @@ li.innerHTML = `
 </div>
 <div class="tangoCol">
 
-TI = ${
+Trend = ${
     getTrendLabel(
         technicalMap[item.symbol]?.tango_index || 0
     )
 }
 
-TE = ${
+Entrata= ${
     getEntryLabel(
         technicalMap[item.symbol]?.tango_entry || 0
     )
 }
 
-TD = ${
+Opportunità = ${
     getDeltaLabel(
         technicalMap[item.symbol]?.tango_delta || 0
     )
