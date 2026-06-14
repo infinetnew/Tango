@@ -297,22 +297,150 @@ function showIndicatorDoc(type){
 
     let html = "";
 
-    if(type === "tangoIndex"){
+if(type === "tangoIndex"){
 
-        html = `
-            <h3>Tango Index</h3>
+    html = `
 
-            <p>
-                Misura la qualità complessiva del trend.
-            </p>
+        <h3>Tango Index</h3>
 
-            <br>
+        <p>
+            Tango Index è l'indicatore principale del sistema Tango.
+        </p>
+
+        <p>
+            Misura la qualità complessiva di un trend combinando la componente strutturale del movimento con la componente dinamica del momentum.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            Tango Index =
+            (Trend Index × 0.70)
+            +
+            (Momentum Index × 0.30)
+        </p>
+
+        <br>
+
+        <h4>Componenti</h4>
+
+        <div
+            class="docItem"
+            onclick="showIndicatorDoc('trendIndex')"
+        >
+            Trend Index
+        </div>
+
+        <div
+            class="docItem"
+            onclick="showIndicatorDoc('momentumIndex')"
+        >
+            Momentum Index
+        </div>
+
+        <br>
+
+        <h4>Pesi</h4>
+
+        <p>
+            Trend Index → 70%
+        </p>
+
+        <p>
+            Momentum Index → 30%
+        </p>
+
+        <br>
+
+        <h4>Punteggio massimo</h4>
+
+        <p>
+            100 punti.
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Tango Index rappresenta il principale indicatore di qualità del trend utilizzato da Tango.
+        </p>
+
+        <p>
+            Combina la struttura del trend con la velocità del momentum per individuare i titoli più forti del mercato.
+        </p>
+
+        <br>
+
+        <h4>Interpretazione</h4>
+
+        <p>
+            90 - 100 → 🟣 Esplosivo
+        </p>
+
+        <p>
+            75 - 89 → 🔵 Molto Forte
+        </p>
+
+        <p>
+            60 - 74 → 🟢 Forte
+        </p>
+
+        <p>
+            45 - 59 → 🟡 Costruttivo
+        </p>
+
+        <p>
+            30 - 44 → 🟠 Debole
+        </p>
+
+        <p>
+            15 - 29 → 🔴 Fragile
+        </p>
+
+        <p>
+            0 - 14 → ⚫ Nullo
+        </p>
+
+    `;
+}
+
+if(type === "tangoEntry"){
+
+    html = `
+
+        <h3>Tango Entry</h3>
+
+        <p>
+            Tango Entry misura la qualità dell'opportunità di ingresso in un titolo.
+        </p>
+
+        <p>
+            Combina la qualità delle condizioni attuali di entrata con la forza del momentum per individuare le configurazioni più interessanti.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            Tango Entry =
+            (Entry Index × 0.60)
+            +
+            (Momentum Index × 0.40)
+        </p>
+
+        <br>
+
+        <h4>Componenti</h4>
 
 <div
     class="docItem"
-    onclick="showIndicatorDoc('trendIndex')"
+    onclick="showIndicatorDoc('entryIndex')"
 >
-    Trend Index
+    Entry Index
 </div>
 
 <div
@@ -321,40 +449,431 @@ function showIndicatorDoc(type){
 >
     Momentum Index
 </div>
-        `;
-    }
 
-    if(type === "tangoEntry"){
+        <br>
 
-        html = `
-            <h3>Tango Entry</h3>
+        <h4>Pesi</h4>
 
-            <p>
-                Misura la qualità dell'ingresso.
-            </p>
+        <p>
+            Entry Index → 60%
+        </p>
 
-            <br>
+        <p>
+            Momentum Index → 40%
+        </p>
 
-            <div class="docItem">
-                Entry Index
-            </div>
+        <br>
 
-            <div class="docItem">
-                Momentum Index
-            </div>
-        `;
-    }
+        <h4>Punteggio massimo</h4>
 
-    if(type === "tangoDelta"){
+        <p>
+            100 punti.
+        </p>
 
-        html = `
-            <h3>Tango Delta</h3>
+        <br>
 
-            <p>
-                Confronta Entrata e Trend.
-            </p>
-        `;
-    }
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Tango Entry rappresenta il principale indicatore di qualità dell'ingresso.
+        </p>
+
+        <p>
+            Valuta se le condizioni tecniche attuali sono favorevoli per l'apertura o l'incremento di una posizione.
+        </p>
+
+    `;
+}
+if(type === "entryIndex"){
+
+    html = `
+
+        <h3>Entry Index</h3>
+
+        <p>
+            Entry Index misura la qualità tecnica dell'ingresso utilizzando momentum attuale, forza del MACD e partecipazione dei volumi.
+        </p>
+
+        <p>
+            L'obiettivo è individuare titoli che mostrano contemporaneamente forza, accelerazione e interesse da parte del mercato.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            Entry Index =
+            RSI14 +
+            MACD Histogram +
+            Volume Ratio
+        </p>
+
+        <br>
+
+        <h4>Componenti</h4>
+
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('rsi14')"
+>
+    RSI14
+</div>
+
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('macdHistogram')"
+>
+    MACD Histogram
+</div>
+
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('volumeRatio')"
+>
+    Volume Ratio
+</div>
+
+        <br>
+
+        <h4>Pesi</h4>
+
+        <p>
+            RSI14 → 40 punti
+        </p>
+
+        <p>
+            MACD Histogram → 40 punti
+        </p>
+
+        <p>
+            Volume Ratio → 20 punti
+        </p>
+
+        <br>
+
+        <h4>Punteggio massimo</h4>
+
+        <p>
+            100 punti.
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Entry Index rappresenta la componente tecnica di ingresso del Tango Entry.
+        </p>
+
+        <p>
+            Valuta se il titolo mostra condizioni operative favorevoli nel momento attuale.
+        </p>
+
+    `;
+}
+if(type === "rsi14"){
+
+    html = `
+
+        <h3>RSI14</h3>
+
+        <p>
+            RSI (Relative Strength Index) è un indicatore di momentum che misura la velocità e l'intensità dei movimenti di prezzo.
+        </p>
+
+        <p>
+            Nel sistema Tango viene utilizzato per valutare la forza attuale del movimento e la qualità dell'ingresso.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            RSI = 100 − (100 / (1 + RS))
+        </p>
+
+        <p>
+            RS = Guadagni Medi / Perdite Medie
+        </p>
+
+        <br>
+
+        <h4>Periodo utilizzato</h4>
+
+        <p>
+            RSI a 14 periodi.
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Un RSI elevato indica una forte pressione d'acquisto.
+        </p>
+
+        <p>
+            Un RSI basso indica una pressione d'acquisto debole o una prevalenza delle vendite.
+        </p>
+
+        <p>
+            Nell'Entry Index l'RSI viene utilizzato come misura della forza immediata del movimento.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            40 punti su 100 dell'Entry Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>
+            RSI > 70 → 40 punti
+        </p>
+
+        <p>
+            RSI > 60 → 30 punti
+        </p>
+
+        <p>
+            RSI > 50 → 20 punti
+        </p>
+
+        <p>
+            RSI > 40 → 10 punti
+        </p>
+
+        <p>
+            RSI ≤ 40 → 0 punti
+        </p>
+
+    `;
+}
+if(type === "macdHistogram"){
+
+    html = `
+
+        <h3>MACD Histogram</h3>
+
+        <p>
+            MACD Histogram misura la distanza tra il MACD e la Signal Line.
+        </p>
+
+        <p>
+            È uno degli indicatori principali utilizzati dal sistema Tango per valutare la forza del momentum nel momento attuale.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            MACD Histogram =
+            MACD − Signal Line
+        </p>
+
+        <br>
+
+        <h4>Componenti del MACD</h4>
+
+        <p>
+            MACD =
+            EMA12 − EMA26
+        </p>
+
+        <p>
+            Signal Line =
+            EMA a 9 periodi del MACD
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Un MACD Histogram positivo indica che il MACD si trova sopra la Signal Line.
+        </p>
+
+        <p>
+            Maggiore è il valore dell'Histogram, maggiore è la forza del momentum.
+        </p>
+
+        <p>
+            Valori negativi indicano invece una perdita di forza del movimento.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            40 punti su 100 dell'Entry Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>
+            MACD Histogram > 2.00 → 40 punti
+        </p>
+
+        <p>
+            MACD Histogram > 1.00 → 30 punti
+        </p>
+
+        <p>
+            MACD Histogram > 0.00 → 20 punti
+        </p>
+
+        <p>
+            MACD Histogram ≤ 0.00 → 0 punti
+        </p>
+
+    `;
+}
+if(type === "volumeRatio"){
+
+    html = `
+
+        <h3>Volume Ratio</h3>
+
+        <p>
+            Volume Ratio misura il rapporto tra il volume della seduta corrente e il volume medio degli ultimi 20 giorni.
+        </p>
+
+        <p>
+            Consente di valutare il livello di partecipazione del mercato al movimento in corso.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            Volume Ratio =
+            Volume Attuale /
+            Volume Medio 20 Giorni
+        </p>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Un valore superiore a 1 indica che il volume attuale è superiore alla media.
+        </p>
+
+        <p>
+            Valori elevati suggeriscono un maggiore interesse degli investitori verso il titolo.
+        </p>
+
+        <p>
+            L'aumento dei volumi rende generalmente più affidabili i segnali tecnici.
+        </p>
+
+        <br>
+
+        <h4>Peso massimo</h4>
+
+        <p>
+            20 punti su 100 dell'Entry Index.
+        </p>
+
+        <br>
+
+        <h4>Conversione in punteggio</h4>
+
+        <p>
+            Volume Ratio ≥ 2.00 → 20 punti
+        </p>
+
+        <p>
+            Volume Ratio ≥ 1.50 → 15 punti
+        </p>
+
+        <p>
+            Volume Ratio ≥ 1.20 → 10 punti
+        </p>
+
+        <p>
+            Volume Ratio ≥ 1.00 → 5 punti
+        </p>
+
+        <p>
+            Volume Ratio < 1.00 → 0 punti
+        </p>
+
+    `;
+}
+if(type === "tangoDelta"){
+
+    html = `
+
+        <h3>Tango Delta</h3>
+
+        <p>
+            Tango Delta misura la differenza tra la qualità dell'ingresso e la qualità del trend.
+        </p>
+
+        <p>
+            Consente di individuare situazioni in cui il momentum di breve periodo è più forte o più debole rispetto alla struttura complessiva del trend.
+        </p>
+
+        <br>
+
+        <h4>Formula</h4>
+
+        <p>
+            Tango Delta =
+            Tango Entry − Tango Index
+        </p>
+
+        <br>
+
+        <h4>Componenti</h4>
+
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('tangoEntry')"
+>
+    Tango Entry
+</div>
+
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('tangoIndex')"
+>
+    Tango Index
+</div>
+
+        <br>
+
+        <h4>Ruolo nel sistema</h4>
+
+        <p>
+            Un valore positivo indica che la qualità dell'ingresso è superiore alla qualità del trend.
+        </p>
+
+        <p>
+            Un valore negativo indica che il trend è più forte delle condizioni di ingresso attuali.
+        </p>
+
+        <p>
+            Valori vicini allo zero indicano un buon allineamento tra struttura del trend e momentum operativo.
+        </p>
+
+
+
+    `;
+}
 if(type === "trendIndex"){
 
     html = `
