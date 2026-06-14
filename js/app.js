@@ -704,8 +704,8 @@ await supabaseClient
 .from("technical_indicators")
 .select(`
     symbol,
-    long_score,
-    entry_score
+    tango_index,
+    tango_entry
 `)
 .in("symbol", symbols);
 
@@ -726,9 +726,9 @@ technicalData?.forEach(item => {
 if(currentSort === "tiAsc"){
 
     data.sort((a,b) =>
-        (technicalMap[a.symbol]?.long_score || 0)
+        (technicalMap[a.symbol]?.tango_index || 0)
         -
-        (technicalMap[b.symbol]?.long_score || 0)
+        (technicalMap[b.symbol]?.tango_index || 0)
     );
 
 }
@@ -736,9 +736,9 @@ if(currentSort === "tiAsc"){
 if(currentSort === "tiDesc"){
 
     data.sort((a,b) =>
-        (technicalMap[b.symbol]?.long_score || 0)
+        (technicalMap[b.symbol]?.tango_index || 0)
         -
-        (technicalMap[a.symbol]?.long_score || 0)
+        (technicalMap[a.symbol]?.tango_index || 0)
     );
 
 }
@@ -746,9 +746,9 @@ if(currentSort === "tiDesc"){
 if(currentSort === "teAsc"){
 
     data.sort((a,b) =>
-        (technicalMap[a.symbol]?.entry_score || 0)
+        (technicalMap[a.symbol]?.tango_entry|| 0)
         -
-        (technicalMap[b.symbol]?.entry_score || 0)
+        (technicalMap[b.symbol]?.tango_entry || 0)
     );
 
 }
@@ -756,9 +756,9 @@ if(currentSort === "teAsc"){
 if(currentSort === "teDesc"){
 
     data.sort((a,b) =>
-        (technicalMap[b.symbol]?.entry_score || 0)
+        (technicalMap[b.symbol]?.tango_entry || 0)
         -
-        (technicalMap[a.symbol]?.entry_score || 0)
+        (technicalMap[a.symbol]?.tango_entry || 0)
     );
 
 }
@@ -865,15 +865,13 @@ li.innerHTML = `
 
 <div class="tangoCol">
 
-    TI = ${
-        technicalMap[item.symbol]?.long_score ?? "..."
-    }
+TI = ${
+    technicalMap[item.symbol]?.tango_index ?? "..."
+}
 
-    &nbsp;&nbsp;&nbsp;&nbsp;
-
-    TE = ${
-        technicalMap[item.symbol]?.entry_score ?? "..."
-    }
+TE = ${
+    technicalMap[item.symbol]?.tango_entry ?? "..."
+}
 
 </div>
 
@@ -1603,24 +1601,23 @@ const formatSigned = (
     .innerHTML = `
 
         <div class="detailGrid">
+<div>Tango Index</div>
+<div>${data.tango_index}</div>
 
-            <div>Tango Index</div>
-            <div>${data.long_score}</div>
-
-            <div>Tango Entry</div>
-            <div>${data.entry_score}</div>
+<div>Tango Entry</div>
+<div>${data.tango_entry}</div>
 
             <div>────────────</div>
             <div></div>
 
-            <div>Trend Score</div>
-            <div>${data.trend_score}</div>
+<div>Trend Index</div>
+<div>${data.trend_index}</div>
 
-            <div>Momentum Score</div>
-            <div>${data.momentum_score}</div>
+<div>Momentum Index</div>
+<div>${data.momentum_index}</div>
 
-            <div>Strength Score</div>
-            <div>${data.strength_score}</div>
+<div>Entry Index</div>
+<div>${data.entry_index}</div>
 
             <div>────────────</div>
             <div></div>
