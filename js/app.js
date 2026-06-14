@@ -308,13 +308,19 @@ function showIndicatorDoc(type){
 
             <br>
 
-            <div class="docItem">
-                Trend Index
-            </div>
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('trendIndex')"
+>
+    Trend Index
+</div>
 
-            <div class="docItem">
-                Momentum Index
-            </div>
+<div
+    class="docItem"
+    onclick="showIndicatorDoc('momentumIndex')"
+>
+    Momentum Index
+</div>
         `;
     }
 
@@ -349,6 +355,66 @@ function showIndicatorDoc(type){
             </p>
         `;
     }
+if(type === "trendIndex"){
+
+    html = `
+
+        <h3>Trend Index</h3>
+
+        <p>
+            Misura la qualità strutturale del trend.
+        </p>
+
+        <br>
+
+        <div class="docItem">
+            Trend Strength
+        </div>
+
+        <div class="docItem">
+            SMA Spread
+        </div>
+
+        <div class="docItem">
+            Distance 52W High
+        </div>
+
+        <div class="docItem">
+            Volatility Score
+        </div>
+
+    `;
+}
+if(type === "momentumIndex"){
+
+    html = `
+
+        <h3>Momentum Index</h3>
+
+        <p>
+            Misura accelerazione e forza del movimento.
+        </p>
+
+        <br>
+
+        <div class="docItem">
+            RSI Slope
+        </div>
+
+        <div class="docItem">
+            MACD Histogram Slope
+        </div>
+
+        <div class="docItem">
+            EMA Spread Slope
+        </div>
+
+        <div class="docItem">
+            Volume Slope
+        </div>
+
+    `;
+}
 
     document.getElementById(
         "tickerDetailsTitle"
