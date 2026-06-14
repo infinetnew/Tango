@@ -705,7 +705,8 @@ await supabaseClient
 .select(`
     symbol,
     tango_index,
-    tango_entry
+    tango_entry,
+    tango_delta
 `)
 .in("symbol", symbols);
 
@@ -871,6 +872,10 @@ TI = ${
 
 TE = ${
     technicalMap[item.symbol]?.tango_entry ?? "..."
+}
+
+TD = ${
+    technicalMap[item.symbol]?.tango_delta ?? "..."
 }
 
 </div>
@@ -1606,6 +1611,9 @@ const formatSigned = (
 
 <div>Tango Entry</div>
 <div>${data.tango_entry}</div>
+
+<div>Tango Delta</div>
+<div>${data.tango_delta}</div>
 
             <div>────────────</div>
             <div></div>
