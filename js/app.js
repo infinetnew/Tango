@@ -28,6 +28,7 @@ let expandedTicker = null;
 let selectedTicker = null;
 let selectedPositionId = null;
 let currentSort = null;
+let docHistory = [];
 const portfolioStatusMessage =
 document.getElementById(
     "portfolioStatusMessage"
@@ -294,6 +295,8 @@ function loadIndicatorDocs(){
     `;
 }
 function showIndicatorDoc(type){
+
+    docHistory.push(type);
 
     let html = "";
 
@@ -3286,7 +3289,25 @@ const formatSigned = (
     .style.display = "flex";
 
 }
+function goBackDoc(){
 
+    docHistory.pop();
+
+    const previousType =
+        docHistory[docHistory.length - 1];
+
+    if(!previousType){
+
+        closeTickerDetails();
+
+        return;
+    }
+
+    docHistory.pop();
+
+    showIndicatorDoc(previousType);
+
+}
 function closeTickerDetails(){
 
     document
@@ -3431,6 +3452,8 @@ window.openTickerDetails =
 openTickerDetails;
 window.showIndicatorDoc =
 showIndicatorDoc;
+window.goBackDoc =
+goBackDoc;
 window.handleManageClick =
 handleManageClick;
 window.deletePosition =
