@@ -215,6 +215,7 @@ showPage("dashboardPage");
 await loadWatchlist();
 await loadPortfolio();
 await loadDashboardStats();
+loadIndicatorDocs();
 }
 async function waitForIndicators(symbol){
 
@@ -258,6 +259,108 @@ return true;
 
     return false;
 
+}
+function loadIndicatorDocs(){
+
+    document.getElementById("indicatorDocs").innerHTML = `
+
+    <div class="card">
+
+        <h3>📚 Documentazione Indicatori</h3>
+
+        <div class="docItem"
+            onclick="showIndicatorDoc('tangoIndex')">
+
+            📈 Tango Index
+
+        </div>
+
+        <div class="docItem"
+            onclick="showIndicatorDoc('tangoEntry')">
+
+            🎯 Tango Entry
+
+        </div>
+
+        <div class="docItem"
+            onclick="showIndicatorDoc('tangoDelta')">
+
+            ⚡ Tango Delta
+
+        </div>
+
+    </div>
+
+    `;
+}
+function showIndicatorDoc(type){
+
+    let html = "";
+
+    if(type === "tangoIndex"){
+
+        html = `
+            <h3>Tango Index</h3>
+
+            <p>
+                Misura la qualità complessiva del trend.
+            </p>
+
+            <br>
+
+            <div class="docItem">
+                Trend Index
+            </div>
+
+            <div class="docItem">
+                Momentum Index
+            </div>
+        `;
+    }
+
+    if(type === "tangoEntry"){
+
+        html = `
+            <h3>Tango Entry</h3>
+
+            <p>
+                Misura la qualità dell'ingresso.
+            </p>
+
+            <br>
+
+            <div class="docItem">
+                Entry Index
+            </div>
+
+            <div class="docItem">
+                Momentum Index
+            </div>
+        `;
+    }
+
+    if(type === "tangoDelta"){
+
+        html = `
+            <h3>Tango Delta</h3>
+
+            <p>
+                Confronta Entrata e Trend.
+            </p>
+        `;
+    }
+
+    document.getElementById(
+        "tickerDetailsTitle"
+    ).innerText = "Documentazione";
+
+    document.getElementById(
+        "tickerDetailsContent"
+    ).innerHTML = html;
+
+    document.getElementById(
+        "tickerDetailsModal"
+    ).style.display = "flex";
 }
 async function addTicker(){
 
@@ -2046,6 +2149,8 @@ window.openManagePosition =
 openManagePosition;
 window.openTickerDetails =
 openTickerDetails;
+window.showIndicatorDoc =
+showIndicatorDoc;
 window.handleManageClick =
 handleManageClick;
 window.deletePosition =
