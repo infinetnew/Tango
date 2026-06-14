@@ -189,7 +189,15 @@ button:hover{
 /* WATCHLIST */
 
 #watchlist{
+
     list-style:none;
+
+    max-height:65vh;
+
+    overflow-y:auto;
+
+    padding-right:6px;
+
 }
 
 #watchlist li{
@@ -290,7 +298,15 @@ button:hover{
 /* PORTFOLIO */
 
 #portfolioList{
+
     list-style:none;
+
+    max-height:70vh;
+
+    overflow-y:auto;
+
+    padding-right:6px;
+
 }
 
 #portfolioList li{
