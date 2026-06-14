@@ -462,8 +462,13 @@ font-size:14px;
 }
 
 .modalContent{
-    width:500px;
+
+    width:700px;
     max-width:90%;
+
+    max-height:80vh;
+
+    overflow-y:auto;
 
     background:#14213d;
 
@@ -472,6 +477,7 @@ font-size:14px;
     border-radius:16px;
 
     box-shadow:0 10px 40px rgba(0,0,0,.35);
+
 }
 
 .modalContent h3{
