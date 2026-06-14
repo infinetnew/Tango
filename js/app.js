@@ -953,23 +953,32 @@ li.innerHTML = `
 </div>
 <div class="tangoCol">
 
-Trend = ${
+<div>
+Trend =
+${
     getTrendLabel(
         technicalMap[item.symbol]?.tango_index || 0
     )
 }
+</div>
 
-Entrata= ${
+<div>
+Entrata =
+${
     getEntryLabel(
         technicalMap[item.symbol]?.tango_entry || 0
     )
 }
+</div>
 
-Opportunità = ${
+<div>
+Opportunità =
+${
     getDeltaLabel(
         technicalMap[item.symbol]?.tango_delta || 0
     )
 }
+</div>
 
 </div>
 
