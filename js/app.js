@@ -3524,6 +3524,8 @@ window.handleManageClick =
 handleManageClick;
 window.deletePosition =
 deletePosition;
+window.openChart =
+openChart;
 document
 .getElementById("closeModalBtn")
 .addEventListener(
