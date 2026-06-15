@@ -222,13 +222,16 @@ button:hover{
 }
 
 .watchlistHeader{
+
     display:grid;
-grid-template-columns:
-    2fr
-    1fr
-    1fr
-    1fr
-    60px;
+
+    grid-template-columns:
+        60px
+        2fr
+        1fr
+        1fr
+        1fr
+        60px;
 
     padding:10px 15px;
 
@@ -239,6 +242,7 @@ grid-template-columns:
     font-weight:600;
 
     margin-bottom:10px;
+
 }
 
 .watchlistHeader span{
