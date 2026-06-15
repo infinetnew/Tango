@@ -2429,7 +2429,12 @@ ${
 </div>
 
 </div>
-
+<button
+    class="chartBtn"
+    onclick="openChart('${item.symbol}')"
+>
+    📈
+</button>
 <button
     class="deleteBtn"
         onclick="deleteTicker(${item.id})"
