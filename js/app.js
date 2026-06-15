@@ -2352,12 +2352,20 @@ document.createElement("li");
 li.innerHTML = `
 <div class="watchlistRow">
 
+<button
+    class="chartBtn"
+    onclick="openChart('${item.symbol}')"
+>
+    📈
+</button>
+
 <div
     class="tickerCol clickableTicker"
     onclick="openTickerDetails('${item.symbol}')"
 >
     ${item.symbol}
 </div>
+
 <div class="priceCol">
     ${
         marketMap[item.symbol]?.current_price
@@ -2429,18 +2437,13 @@ ${
 </div>
 
 </div>
-<button
-    class="chartBtn"
-    onclick="openChart('${item.symbol}')"
->
-    📈
-</button>
+
 <button
     class="deleteBtn"
-        onclick="deleteTicker(${item.id})"
-    >
-        ✕
-    </button>
+    onclick="deleteTicker(${item.id})"
+>
+    🗑️
+</button>
 
 </div>
 `;
