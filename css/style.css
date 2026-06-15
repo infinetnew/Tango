@@ -223,12 +223,12 @@ button:hover{
 
 .watchlistHeader{
     display:grid;
-    grid-template-columns:
-        2fr
-        1fr
-        1fr
-        1fr
-        60px;
+grid-template-columns:
+    2fr
+    1fr
+    1fr
+    1fr
+    60px;
 
     padding:10px 15px;
 
@@ -245,18 +245,19 @@ button:hover{
     text-align:center;
 }
 
-.watchlistHeader span:first-child{
+.watchlistHeader span:nth-child(2){
     text-align:left;
 }
 
 .watchlistRow{
     display:grid;
-    grid-template-columns:
-        2fr
-        1fr
-        1fr
-        1fr
-        60px;
+grid-template-columns:
+    60px
+    2fr
+    1fr
+    1fr
+    1fr
+    60px;
 
     align-items:center;
     background:#334155;
@@ -805,5 +806,21 @@ font-size:14px;
     color:#facc15;
 
     margin-bottom:10px;
+
+}
+.chartBtn{
+
+    width:42px;
+    height:42px;
+
+    padding:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#475569;
+
+    margin:auto;
 
 }
