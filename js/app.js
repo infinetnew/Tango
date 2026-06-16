@@ -668,51 +668,47 @@ if(type === "rsi14"){
         <h4>Conversione in punteggio</h4>
 <br>
 <p>
-    RSI 55 - 65 → 40 punti
-</p>
-
-<p>
     RSI 50 - 55 → 40 punti
 </p>
 
 <p>
-    RSI 60 - 65 → 35 punti
+    RSI 45 - 50 → 35 punti
 </p>
 
 <p>
-    RSI 65 - 70 → 30 punti
+    RSI 55 - 60 → 35 punti
 </p>
 
 <p>
-    RSI 45 - 50 → 30 punti
+    RSI 40 - 45 → 30 punti
 </p>
 
 <p>
-    RSI 40 - 45 → 25 punti
+    RSI 60 - 65 → 25 punti
 </p>
 
 <p>
-    RSI 70 - 75 → 20 punti
+    RSI 35 - 40 → 25 punti
 </p>
 
 <p>
-    RSI 35 - 40 → 20 punti
+    RSI 30 - 35 → 20 punti
 </p>
 
 <p>
-    RSI 30 - 35 → 15 punti
+    RSI 65 - 70 → 20 punti
 </p>
 
 <p>
-    RSI 75 - 80 → 10 punti
+    RSI 70 - 75 → 5 punti
 </p>
 
 <p>
-    RSI ≤ 30 → 5 punti
+    RSI > 75 → 0 punti
 </p>
 
 <p>
-    RSI > 80 → 0 punti
+    RSI ≤ 30 → 0 punti
 </p>
     `;
 }
