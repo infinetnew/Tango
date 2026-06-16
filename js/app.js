@@ -668,25 +668,40 @@ if(type === "rsi14"){
         <h4>Conversione in punteggio</h4>
 <br>
         <p>
-            RSI > 70 → 40 punti
-        </p>
+    RSI 55 - 65 → 40 punti
+</p>
 
-        <p>
-            RSI > 60 → 30 punti
-        </p>
+<p>
+    RSI 65 - 70 → 35 punti
+</p>
 
-        <p>
-            RSI > 50 → 20 punti
-        </p>
+<p>
+    RSI 45 - 55 → 30 punti
+</p>
 
-        <p>
-            RSI > 40 → 10 punti
-        </p>
+<p>
+    RSI 70 - 75 → 25 punti
+</p>
 
-        <p>
-            RSI ≤ 40 → 0 punti
-        </p>
+<p>
+    RSI 35 - 45 → 15 punti
+</p>
 
+<p>
+    RSI 75 - 80 → 15 punti
+</p>
+
+<p>
+    RSI 30 - 35 → 5 punti
+</p>
+
+<p>
+    RSI > 80 → 5 punti
+</p>
+
+<p>
+    RSI ≤ 30 → 0 punti
+</p>
     `;
 }
 if(type === "macdHistogram"){
@@ -754,21 +769,25 @@ if(type === "macdHistogram"){
 
         <h4>Conversione in punteggio</h4>
 <br>
-        <p>
-            MACD Histogram > 2.00 → 40 punti
-        </p>
+<p>
+    MACD Histogram 0.00 - 0.25 → 40 punti
+</p>
 
-        <p>
-            MACD Histogram > 1.00 → 30 punti
-        </p>
+<p>
+    MACD Histogram 0.25 - 0.75 → 35 punti
+</p>
 
-        <p>
-            MACD Histogram > 0.00 → 20 punti
-        </p>
+<p>
+    MACD Histogram 0.75 - 1.50 → 25 punti
+</p>
 
-        <p>
-            MACD Histogram ≤ 0.00 → 0 punti
-        </p>
+<p>
+    MACD Histogram > 1.50 → 15 punti
+</p>
+
+<p>
+    MACD Histogram ≤ 0.00 → 0 punti
+</p>
 
     `;
 }
