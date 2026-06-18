@@ -3,6 +3,8 @@ let candleSeries = null;
 
 let sma50Visible = false;
 let sma50Data = [];
+let sma200Visible = false;
+let sma200Data = [];
 
 function openChart(symbol) {
 
@@ -42,6 +44,14 @@ window.sma50Series =
         LightweightCharts.LineSeries,
         {
             color: "#facc15",
+            lineWidth: 2
+        }
+    );
+window.sma200Series =
+    chart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#a855f7",
             lineWidth: 2
         }
     );
@@ -135,6 +145,11 @@ sma50Data =
         candles,
         50
     );
+sma200Data =
+    calculateSMAHistory(
+        candles,
+        200
+    );
 
 
 
@@ -181,6 +196,49 @@ btn.classList.add(
 sma50Visible = false;
     }
 }
+function toggleSMA200()
+{
+    if (!window.sma200Series)
+    {
+        return;
+    }
+
+    const btn =
+        document.getElementById(
+            "sma200Btn"
+        );
+
+    if (!sma200Visible)
+    {
+        window.sma200Series.setData(
+            sma200Data
+        );
+
+        btn.classList.remove(
+            "smaInactive"
+        );
+
+        btn.classList.add(
+            "smaActive"
+        );
+
+        sma200Visible = true;
+    }
+    else
+    {
+        window.sma200Series.setData([]);
+
+        btn.classList.remove(
+            "smaActive"
+        );
+
+        btn.classList.add(
+            "smaInactive"
+        );
+
+        sma200Visible = false;
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
 
     document
@@ -189,6 +247,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             toggleSMA50
         );
+document
+    .getElementById("sma200Btn")
+    ?.addEventListener(
+        "click",
+        toggleSMA200
+    );
 
     document
         .getElementById("closeChartBtn")
