@@ -27,8 +27,10 @@ function openChart(symbol) {
             }
         );
 
-    const series =
-        chart.addCandlestickSeries();
+ const series =
+    chart.addSeries(
+        LightweightCharts.CandlestickSeries
+    );
 
     series.setData([
         {
