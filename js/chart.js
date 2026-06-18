@@ -55,6 +55,23 @@ window.sma200Series =
             lineWidth: 2
         }
     );
+
+sma50Visible = false;
+sma200Visible = false;
+document
+    .getElementById("sma50Btn")
+    ?.classList.remove("smaActive");
+
+document
+    .getElementById("sma50Btn")
+    ?.classList.add("smaInactive");
+document
+    .getElementById("sma200Btn")
+    ?.classList.remove("smaActive");
+
+document
+    .getElementById("sma200Btn")
+    ?.classList.add("sma200Inactive");
 loadChart(symbol);
 
 }
@@ -214,9 +231,9 @@ function toggleSMA200()
             sma200Data
         );
 
-        btn.classList.remove(
-            "smaInactive"
-        );
+btn.classList.remove(
+    "sma200Inactive"
+);
 
         btn.classList.add(
             "smaActive"
@@ -232,9 +249,9 @@ function toggleSMA200()
             "smaActive"
         );
 
-        btn.classList.add(
-            "smaInactive"
-        );
+btn.classList.add(
+    "sma200Inactive"
+);
 
         sma200Visible = false;
     }
