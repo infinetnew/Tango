@@ -146,20 +146,39 @@ function toggleSMA50()
     {
         return;
     }
-
+const btn =
+    document.getElementById(
+        "sma50Btn"
+    );
     if (!sma50Visible)
     {
-        window.sma50Series.setData(
-            sma50Data
-        );
+window.sma50Series.setData(
+    sma50Data
+);
 
-        sma50Visible = true;
+btn.classList.remove(
+    "smaInactive"
+);
+
+btn.classList.add(
+    "smaActive"
+);
+
+sma50Visible = true;
     }
     else
     {
-        window.sma50Series.setData([]);
+window.sma50Series.setData([]);
 
-        sma50Visible = false;
+btn.classList.remove(
+    "smaActive"
+);
+
+btn.classList.add(
+    "smaInactive"
+);
+
+sma50Visible = false;
     }
 }
 document.addEventListener("DOMContentLoaded", () => {
