@@ -41,6 +41,42 @@ window.sma50Series =
 loadChart(symbol);
 
 }
+function calculateSMAHistory(
+    candles,
+    period
+)
+{
+    const result = [];
+
+    for (
+        let i = period - 1;
+        i < candles.length;
+        i++
+    )
+    {
+        let sum = 0;
+
+        for (
+            let j = i - period + 1;
+            j <= i;
+            j++
+        )
+        {
+            sum += candles[j].close;
+        }
+
+        result.push({
+            time: candles[i].time,
+            value: Number(
+                (
+                    sum / period
+                ).toFixed(2)
+            )
+        });
+    }
+
+    return result;
+}
 async function loadChart(symbol)
 {
     const { data, error } =
@@ -102,6 +138,16 @@ const candles =
 console.log(candles);
 
 candleSeries.setData(candles);
+
+const sma50 =
+    calculateSMAHistory(
+        candles,
+        50
+    );
+
+window.sma50Series.setData(
+    sma50
+);
 
 chart.timeScale().fitContent();
 }
