@@ -36,9 +36,12 @@ candleSeries =
 
 window.sma50Series =
     chart.addSeries(
-        LightweightCharts.LineSeries
+        LightweightCharts.LineSeries,
+        {
+            color: "#facc15",
+            lineWidth: 2
+        }
     );
-
 loadChart(symbol);
 
 }
