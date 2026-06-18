@@ -828,3 +828,33 @@ font-size:14px;
     margin:auto;
 
 }
+.chartModalContent{
+
+    width:90vw;
+
+    height:90vh;
+
+    max-width:1800px;
+
+    background:#14213d;
+
+    padding:25px;
+
+    border-radius:16px;
+
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+#chartContainer{
+
+    flex:1;
+
+    width:100%;
+
+    min-height:700px;
+
+}
