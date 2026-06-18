@@ -881,11 +881,13 @@ font-size:14px;
 }
 .chartToolbar button{
 
-    width:auto;
+    width:auto !important;
 
     min-width:90px;
 
     padding:8px 14px;
+
+    flex:none;
 
 }
 .chartButtons{
@@ -900,8 +902,10 @@ font-size:14px;
 
 .chartButtons button{
 
-    width:auto;
+    width:auto !important;
 
     min-width:120px;
+
+    flex:none;
 
 }
