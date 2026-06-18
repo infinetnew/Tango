@@ -1,4 +1,5 @@
 let chart = null;
+let candleSeries = null;
 
 function openChart(symbol) {
 
@@ -27,37 +28,36 @@ function openChart(symbol) {
             }
         );
 
- const series =
+candleSeries =
     chart.addSeries(
         LightweightCharts.CandlestickSeries
     );
 
-    series.setData([
-        {
-            time: "2026-06-10",
-            open: 100,
-            high: 110,
-            low: 95,
-            close: 108
-        },
-        {
-            time: "2026-06-11",
-            open: 108,
-            high: 120,
-            low: 105,
-            close: 118
-        },
-        {
-            time: "2026-06-12",
-            open: 118,
-            high: 125,
-            low: 115,
-            close: 121
-        }
-    ]);
+loadChart(symbol);
 
-    chart.timeScale().fitContent();
+}
+async function loadChart(symbol)
+{
+    const { data, error } =
+        await supabaseClient
+            .from("market_history")
+            .select(`
+                trading_date,
+                open_price,
+                day_high,
+                day_low,
+                close_price
+            `)
+            .eq("symbol", symbol)
+            .order(
+                "trading_date",
+                {
+                    ascending: true
+                }
+            );
 
+    console.log("DATA", data);
+    console.log("ERROR", error);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
