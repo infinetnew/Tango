@@ -858,3 +858,24 @@ font-size:14px;
     min-height:700px;
 
 }
+.chartToolbar{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+}
+
+.chartToolbar button{
+
+    width:auto;
+
+    padding:8px 16px;
+
+    background:#334155;
+
+    border:1px solid #475569;
+
+}
