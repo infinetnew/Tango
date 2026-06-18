@@ -33,6 +33,11 @@ candleSeries =
         LightweightCharts.CandlestickSeries
     );
 
+window.sma50Series =
+    chart.addSeries(
+        LightweightCharts.LineSeries
+    );
+
 loadChart(symbol);
 
 }
@@ -55,6 +60,23 @@ async function loadChart(symbol)
                     ascending: true
                 }
             );
+const { data: sma50Data, error: sma50Error } =
+    await supabaseClient
+        .from("technical_indicators")
+        .select(`
+            trading_date,
+            sma50
+        `)
+        .eq("symbol", symbol)
+        .order(
+            "trading_date",
+            {
+                ascending: true
+            }
+        );
+
+console.log("SMA50", sma50Data);
+console.log("SMA50 ERROR", sma50Error);
 
 if (error)
 {
