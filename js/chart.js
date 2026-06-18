@@ -1,6 +1,9 @@
 let chart = null;
 let candleSeries = null;
 
+let sma50Visible = false;
+let sma50Data = [];
+
 function openChart(symbol) {
 
     document.getElementById("chartTitle").innerText =
@@ -100,23 +103,7 @@ async function loadChart(symbol)
                     ascending: true
                 }
             );
-const { data: sma50Data, error: sma50Error } =
-    await supabaseClient
-        .from("technical_indicators")
-        .select(`
-            trading_date,
-            sma50
-        `)
-        .eq("symbol", symbol)
-        .order(
-            "trading_date",
-            {
-                ascending: true
-            }
-        );
 
-console.log("SMA50", sma50Data);
-console.log("SMA50 ERROR", sma50Error);
 
 if (error)
 {
@@ -143,20 +130,46 @@ console.log(candles);
 
 candleSeries.setData(candles);
 
-const sma50 =
+sma50Data =
     calculateSMAHistory(
         candles,
         50
     );
 
-window.sma50Series.setData(
-    sma50
-);
+
 
 chart.timeScale().fitContent();
 }
+function toggleSMA50()
+{
+    if (!window.sma50Series)
+    {
+        return;
+    }
 
+    if (!sma50Visible)
+    {
+        window.sma50Series.setData(
+            sma50Data
+        );
+
+        sma50Visible = true;
+    }
+    else
+    {
+        window.sma50Series.setData([]);
+
+        sma50Visible = false;
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
+
+    document
+        .getElementById("sma50Btn")
+        ?.addEventListener(
+            "click",
+            toggleSMA50
+        );
 
     document
         .getElementById("closeChartBtn")
