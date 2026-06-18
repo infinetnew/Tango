@@ -56,8 +56,32 @@ async function loadChart(symbol)
                 }
             );
 
-    console.log("DATA", data);
-    console.log("ERROR", error);
+if (error)
+{
+    console.error(error);
+    return;
+}
+
+const candles =
+    data.map(row => ({
+
+        time: row.trading_date,
+
+        open: Number(row.open_price),
+
+        high: Number(row.day_high),
+
+        low: Number(row.day_low),
+
+        close: Number(row.close_price)
+
+    }));
+
+console.log(candles);
+
+candleSeries.setData(candles);
+
+chart.timeScale().fitContent();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
