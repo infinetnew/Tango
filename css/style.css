@@ -879,3 +879,29 @@ font-size:14px;
     border:1px solid #475569;
 
 }
+.chartToolbar button{
+
+    width:auto;
+
+    min-width:90px;
+
+    padding:8px 14px;
+
+}
+.chartButtons{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:15px;
+
+}
+
+.chartButtons button{
+
+    width:auto;
+
+    min-width:120px;
+
+}
