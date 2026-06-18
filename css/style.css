@@ -909,3 +909,18 @@ font-size:14px;
     flex:none;
 
 }
+.smaInactive{
+
+    background:#facc15 !important;
+
+    color:#000 !important;
+
+}
+
+.smaActive{
+
+    background:#475569 !important;
+
+    color:white !important;
+
+}
