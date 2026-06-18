@@ -20,13 +20,14 @@ function openChart(symbol) {
 
     }
 
-    chart =
-        LightweightCharts.createChart(
-            container,
-            {
-                height: 500
-            }
-        );
+chart =
+    LightweightCharts.createChart(
+        container,
+        {
+            width: container.clientWidth,
+            height: container.clientHeight
+        }
+    );
 
 candleSeries =
     chart.addSeries(
