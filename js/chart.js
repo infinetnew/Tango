@@ -7,6 +7,8 @@ let sma200Visible = false;
 let sma200Data = [];
 let ema12Visible = false;
 let ema12Data = [];
+let ema26Visible = false;
+let ema26Data = [];
 
 function openChart(symbol) {
 
@@ -65,10 +67,19 @@ window.ema12Series =
             lineWidth: 2
         }
     );
+window.ema26Series =
+    chart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#ef4444",
+            lineWidth: 2
+        }
+    );
 
 sma50Visible = false;
 sma200Visible = false;
 ema12Visible = false;
+ema26Visible = false;
 document
     .getElementById("sma50Btn")
     ?.classList.remove("smaActive");
@@ -235,6 +246,15 @@ ema12Data =
         candles,
         12
     );
+ema26Data =
+    calculateEMAHistory(
+        candles,
+        26
+    );
+console.log(
+    "EMA26 DATA",
+    ema26Data.length
+);
 console.log(
     "EMA12 DATA",
     ema12Data.length
