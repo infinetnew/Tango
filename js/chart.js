@@ -68,6 +68,7 @@ window.ema12Series =
 
 sma50Visible = false;
 sma200Visible = false;
+ema12Visible = false;
 document
     .getElementById("sma50Btn")
     ?.classList.remove("smaActive");
@@ -83,6 +84,13 @@ document
     .getElementById("sma200Btn")
     ?.classList.add("sma200Inactive");
 loadChart(symbol);
+document
+    .getElementById("ema12Btn")
+    ?.classList.remove("smaActive");
+
+document
+    .getElementById("ema12Btn")
+    ?.classList.add("ema12Inactive");
 
 }
 function calculateSMAHistory(
