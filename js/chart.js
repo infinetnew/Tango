@@ -327,6 +327,49 @@ btn.classList.add(
         sma200Visible = false;
     }
 }
+function toggleEMA12()
+{
+    if (!window.ema12Series)
+    {
+        return;
+    }
+
+    const btn =
+        document.getElementById(
+            "ema12Btn"
+        );
+
+    if (!ema12Visible)
+    {
+        window.ema12Series.setData(
+            ema12Data
+        );
+
+        btn.classList.remove(
+            "ema12Inactive"
+        );
+
+        btn.classList.add(
+            "smaActive"
+        );
+
+        ema12Visible = true;
+    }
+    else
+    {
+        window.ema12Series.setData([]);
+
+        btn.classList.remove(
+            "smaActive"
+        );
+
+        btn.classList.add(
+            "ema12Inactive"
+        );
+
+        ema12Visible = false;
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
 
     document
@@ -340,6 +383,12 @@ document
     ?.addEventListener(
         "click",
         toggleSMA200
+    );
+document
+    .getElementById("ema12Btn")
+    ?.addEventListener(
+        "click",
+        toggleEMA12
     );
 
     document
