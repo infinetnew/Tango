@@ -102,6 +102,13 @@ document
 document
     .getElementById("ema12Btn")
     ?.classList.add("ema12Inactive");
+document
+    .getElementById("ema26Btn")
+    ?.classList.remove("smaActive");
+
+document
+    .getElementById("ema26Btn")
+    ?.classList.add("ema26Inactive");
 
 }
 function calculateSMAHistory(
