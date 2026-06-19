@@ -121,6 +121,50 @@ function calculateSMAHistory(
 
     return result;
 }
+function calculateEMAHistory(
+    candles,
+    period
+)
+{
+    const result = [];
+
+    const multiplier =
+        2 / (period + 1);
+
+    let ema =
+        candles[0].close;
+
+    result.push({
+        time: candles[0].time,
+        value: Number(
+            ema.toFixed(2)
+        )
+    });
+
+    for (
+        let i = 1;
+        i < candles.length;
+        i++
+    )
+    {
+        ema =
+            (
+                candles[i].close -
+                ema
+            ) *
+            multiplier +
+            ema;
+
+        result.push({
+            time: candles[i].time,
+            value: Number(
+                ema.toFixed(2)
+            )
+        });
+    }
+
+    return result;
+}
 async function loadChart(symbol)
 {
     const { data, error } =
@@ -141,32 +185,8 @@ async function loadChart(symbol)
                 }
             );
 
-const {
-    data: emaData,
-    error: emaError
-} =
-    await supabaseClient
-        .from("technical_indicators")
-        .select(`
-            trading_date,
-            ema12
-        `)
-        .eq("symbol", symbol)
-        .order(
-            "trading_date",
-            {
-                ascending: true
-            }
-        );
-console.log(
-    "EMA12 LENGTH",
-    emaData?.length
-);
 
-console.log(
-    "EMA12 FIRST",
-    emaData?.[0]
-);console.log("EMA12 ERROR", emaError);
+
 if (error)
 {
     console.error(error);
@@ -202,7 +222,15 @@ sma200Data =
         candles,
         200
     );
-
+ema12Data =
+    calculateEMAHistory(
+        candles,
+        12
+    );
+console.log(
+    "EMA12 DATA",
+    ema12Data.length
+);
 
 
 chart.timeScale().fitContent();
