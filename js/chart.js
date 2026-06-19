@@ -397,6 +397,49 @@ function toggleEMA12()
         ema12Visible = false;
     }
 }
+function toggleEMA26()
+{
+    if (!window.ema26Series)
+    {
+        return;
+    }
+
+    const btn =
+        document.getElementById(
+            "ema26Btn"
+        );
+
+    if (!ema26Visible)
+    {
+        window.ema26Series.setData(
+            ema26Data
+        );
+
+        btn.classList.remove(
+            "ema26Inactive"
+        );
+
+        btn.classList.add(
+            "smaActive"
+        );
+
+        ema26Visible = true;
+    }
+    else
+    {
+        window.ema26Series.setData([]);
+
+        btn.classList.remove(
+            "smaActive"
+        );
+
+        btn.classList.add(
+            "ema26Inactive"
+        );
+
+        ema26Visible = false;
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
 
     document
@@ -416,6 +459,12 @@ document
     ?.addEventListener(
         "click",
         toggleEMA12
+    );
+document
+    .getElementById("ema26Btn")
+    ?.addEventListener(
+        "click",
+        toggleEMA26
     );
 
     document
