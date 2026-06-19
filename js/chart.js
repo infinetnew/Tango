@@ -5,6 +5,8 @@ let sma50Visible = false;
 let sma50Data = [];
 let sma200Visible = false;
 let sma200Data = [];
+let ema12Visible = false;
+let ema12Data = [];
 
 function openChart(symbol) {
 
@@ -52,6 +54,14 @@ window.sma200Series =
         LightweightCharts.LineSeries,
         {
             color: "#a855f7",
+            lineWidth: 2
+        }
+    );
+window.ema12Series =
+    chart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#22c55e",
             lineWidth: 2
         }
     );
@@ -131,7 +141,25 @@ async function loadChart(symbol)
                 }
             );
 
-
+const {
+    data: emaData,
+    error: emaError
+} =
+    await supabaseClient
+        .from("technical_indicators")
+        .select(`
+            trading_date,
+            ema12
+        `)
+        .eq("symbol", symbol)
+        .order(
+            "trading_date",
+            {
+                ascending: true
+            }
+        );
+console.log("EMA12", emaData);
+console.log("EMA12 ERROR", emaError);
 if (error)
 {
     console.error(error);
