@@ -158,8 +158,15 @@ const {
                 ascending: true
             }
         );
-console.log("EMA12", emaData);
-console.log("EMA12 ERROR", emaError);
+console.log(
+    "EMA12 LENGTH",
+    emaData?.length
+);
+
+console.log(
+    "EMA12 FIRST",
+    emaData?.[0]
+);console.log("EMA12 ERROR", emaError);
 if (error)
 {
     console.error(error);
