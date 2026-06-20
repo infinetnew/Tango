@@ -9,6 +9,11 @@ let ema12Visible = false;
 let ema12Data = [];
 let ema26Visible = false;
 let ema26Data = [];
+let bollingerVisible = false;
+
+let bollingerUpperData = [];
+let bollingerMiddleData = [];
+let bollingerLowerData = [];
 
 function openChart(symbol) {
 
@@ -191,6 +196,91 @@ function calculateEMAHistory(
 
     return result;
 }
+function calculateBollingerHistory(
+    candles,
+    period,
+    multiplier
+)
+{
+    const upper = [];
+    const middle = [];
+    const lower = [];
+
+    for (
+        let i = period - 1;
+        i < candles.length;
+        i++
+    )
+    {
+        let sum = 0;
+
+        for (
+            let j = i - period + 1;
+            j <= i;
+            j++
+        )
+        {
+            sum += candles[j].close;
+        }
+
+        const sma =
+            sum / period;
+
+        let variance = 0;
+
+        for (
+            let j = i - period + 1;
+            j <= i;
+            j++
+        )
+        {
+            variance += Math.pow(
+                candles[j].close - sma,
+                2
+            );
+        }
+
+        const stdDev =
+            Math.sqrt(
+                variance / period
+            );
+
+        upper.push({
+            time: candles[i].time,
+            value: Number(
+                (
+                    sma +
+                    stdDev *
+                    multiplier
+                ).toFixed(2)
+            )
+        });
+
+        middle.push({
+            time: candles[i].time,
+            value: Number(
+                sma.toFixed(2)
+            )
+        });
+
+        lower.push({
+            time: candles[i].time,
+            value: Number(
+                (
+                    sma -
+                    stdDev *
+                    multiplier
+                ).toFixed(2)
+            )
+        });
+    }
+
+    return {
+        upper,
+        middle,
+        lower
+    };
+}
 async function loadChart(symbol)
 {
     const { data, error } =
@@ -258,6 +348,35 @@ ema26Data =
         candles,
         26
     );
+const bollinger =
+    calculateBollingerHistory(
+        candles,
+        20,
+        2
+    );
+
+bollingerUpperData =
+    bollinger.upper;
+
+bollingerMiddleData =
+    bollinger.middle;
+
+bollingerLowerData =
+    bollinger.lower;
+console.log(
+    "BOLL UPPER",
+    bollingerUpperData.length
+);
+
+console.log(
+    "BOLL MIDDLE",
+    bollingerMiddleData.length
+);
+
+console.log(
+    "BOLL LOWER",
+    bollingerLowerData.length
+);
 console.log(
     "EMA26 DATA",
     ema26Data.length
