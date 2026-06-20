@@ -80,11 +80,38 @@ window.ema26Series =
             lineWidth: 2
         }
     );
+window.bollingerUpperSeries =
+    chart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#38bdf8",
+            lineWidth: 1
+        }
+    );
+
+window.bollingerMiddleSeries =
+    chart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#94a3b8",
+            lineWidth: 1
+        }
+    );
+
+window.bollingerLowerSeries =
+    chart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#38bdf8",
+            lineWidth: 1
+        }
+    );
 
 sma50Visible = false;
 sma200Visible = false;
 ema12Visible = false;
 ema26Visible = false;
+bollingerVisible = false;
 document
     .getElementById("sma50Btn")
     ?.classList.remove("smaActive");
@@ -114,6 +141,13 @@ document
 document
     .getElementById("ema26Btn")
     ?.classList.add("ema26Inactive");
+document
+    .getElementById("bollingerBtn")
+    ?.classList.remove("smaActive");
+
+document
+    .getElementById("bollingerBtn")
+    ?.classList.add("bollingerInactive");
 
 }
 function calculateSMAHistory(
