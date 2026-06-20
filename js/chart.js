@@ -153,6 +153,11 @@ window.signalSeries =
 const macdPane =
     chart.addPane();
 console.log(
+    "MACD PANE METHODS",
+    Object.keys(macdPane)
+);
+
+console.log(
     "MACD PANE",
     macdPane
 );
