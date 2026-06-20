@@ -214,8 +214,9 @@ function calculateEMAHistory(
     const multiplier =
         2 / (period + 1);
 
-    let ema =
-        candles[0].close;
+ let ema =
+    candles[0].close ??
+    candles[0].value;
 
     result.push({
         time: candles[0].time,
@@ -230,13 +231,17 @@ function calculateEMAHistory(
         i++
     )
     {
-        ema =
-            (
-                candles[i].close -
-                ema
-            ) *
-            multiplier +
-            ema;
+ const currentValue =
+    candles[i].close ??
+    candles[i].value;
+
+ema =
+    (
+        currentValue -
+        ema
+    ) *
+    multiplier +
+    ema;
 
         result.push({
             time: candles[i].time,
