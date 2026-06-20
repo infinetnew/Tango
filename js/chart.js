@@ -871,6 +871,17 @@ function toggleMACD()
     {
         container.style.display =
             "block";
+document.getElementById(
+    "chartContainer"
+).style.height = "500px";
+
+chart.resize(
+    document.getElementById(
+        "chartContainer"
+    ).clientWidth,
+    500
+);
+
 macdChart.resize(
     container.clientWidth,
     180
@@ -913,6 +924,18 @@ console.log(
     {
         container.style.display =
             "none";
+document.getElementById(
+    "chartContainer"
+).style.height = "";
+
+chart.resize(
+    document.getElementById(
+        "chartContainer"
+    ).clientWidth,
+    document.getElementById(
+        "chartContainer"
+    ).clientHeight
+);
 
         macdLineSeries.setData([]);
 
