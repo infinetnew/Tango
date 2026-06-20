@@ -131,33 +131,9 @@ window.bollingerCloudSeries =
                 "rgba(56,189,248,0.02)"
         }
     );
-macdSeries =
-    chart.addSeries(
-        LightweightCharts.LineSeries,
-        {
-            color: "#3b82f6",
-            lineWidth: 2
-        },
-        macdPane
-    );
-
-signalSeries =
-    chart.addSeries(
-        LightweightCharts.LineSeries,
-        {
-            color: "#f97316",
-            lineWidth: 2
-        },
-        macdPane
-    );
-
-histogramSeries =
-    chart.addSeries(
-        LightweightCharts.HistogramSeries,
-        {},
-        macdPane
-    );
-
+macdSeries = null;
+signalSeries = null;
+histogramSeries = null;
 sma50Visible = false;
 sma200Visible = false;
 ema12Visible = false;
