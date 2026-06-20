@@ -869,9 +869,8 @@ function toggleMACD()
 
     if (!macdVisible)
     {
-document.getElementById(
-    "macdContainerWrapper"
-).style.display = "block";
+container.style.display =
+    "block";
 document.getElementById(
     "chartContainer"
 ).style.height = "500px";
@@ -924,9 +923,8 @@ console.log(
     }
     else
     {
-        document.getElementById(
-    "macdContainerWrapper"
-).style.display = "none";
+container.style.display =
+    "none";
 
 document.getElementById(
     "chartContainer"
