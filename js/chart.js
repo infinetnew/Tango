@@ -14,6 +14,7 @@ let bollingerVisible = false;
 let bollingerUpperData = [];
 let bollingerMiddleData = [];
 let bollingerLowerData = [];
+let bollingerCloudData = [];
 
 function openChart(symbol) {
 
@@ -85,7 +86,7 @@ window.bollingerUpperSeries =
         LightweightCharts.LineSeries,
         {
             color: "#38bdf8",
-            lineWidth: 1
+            lineWidth: 2
         }
     );
 
@@ -93,8 +94,8 @@ window.bollingerMiddleSeries =
     chart.addSeries(
         LightweightCharts.LineSeries,
         {
-            color: "#94a3b8",
-            lineWidth: 1
+            color: "#ffffff",
+            lineWidth: 2
         }
     );
 
@@ -103,7 +104,21 @@ window.bollingerLowerSeries =
         LightweightCharts.LineSeries,
         {
             color: "#38bdf8",
-            lineWidth: 1
+            lineWidth: 2
+        }
+    );
+window.bollingerCloudSeries =
+    chart.addSeries(
+        LightweightCharts.AreaSeries,
+        {
+            lineColor:
+                "rgba(0,0,0,0)",
+
+            topColor:
+                "rgba(56,189,248,0.15)",
+
+            bottomColor:
+                "rgba(56,189,248,0.02)"
         }
     );
 
@@ -397,6 +412,17 @@ bollingerMiddleData =
 
 bollingerLowerData =
     bollinger.lower;
+bollingerCloudData =
+    bollinger.upper.map(
+        (item, index) => ({
+
+            time: item.time,
+
+            value:
+                item.value
+
+        })
+    );
 console.log(
     "BOLL UPPER",
     bollingerUpperData.length
@@ -610,6 +636,9 @@ function toggleBollinger()
         window.bollingerUpperSeries.setData(
             bollingerUpperData
         );
+window.bollingerCloudSeries.setData(
+    bollingerUpperData
+);
 
         window.bollingerMiddleSeries.setData(
             bollingerMiddleData
@@ -632,6 +661,7 @@ function toggleBollinger()
     else
     {
         window.bollingerUpperSeries.setData([]);
+window.bollingerCloudSeries.setData([]);
 
         window.bollingerMiddleSeries.setData([]);
 
