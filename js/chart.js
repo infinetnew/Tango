@@ -869,10 +869,8 @@ function toggleMACD()
 
     if (!macdVisible)
     {
-        container.style.display =
-            "block";
 document.getElementById(
-    "macdLegend"
+    "macdContainerWrapper"
 ).style.display = "block";
 document.getElementById(
     "chartContainer"
@@ -889,16 +887,7 @@ macdChart.resize(
     container.clientWidth,
     180
 );
-macdChart.applyOptions({
-    watermark: {
-        visible: true,
-        text: "MACD",
-        color: "#3b82f6",
-        fontSize: 12,
-        horzAlign: "left",
-        vertAlign: "top"
-    }
-});
+
 console.log(
     "MACD RESIZE",
     container.clientWidth
@@ -935,11 +924,10 @@ console.log(
     }
     else
     {
-        container.style.display =
-            "none";
-document.getElementById(
-    "macdLegend"
+        document.getElementById(
+    "macdContainerWrapper"
 ).style.display = "none";
+
 document.getElementById(
     "chartContainer"
 ).style.height = "";
