@@ -18,6 +18,7 @@ let bollingerCloudData = [];
 let macdData = [];
 let signalData = [];
 let histogramData = [];
+let macdVisible = false;
 
 function openChart(symbol) {
 
@@ -124,12 +125,29 @@ window.bollingerCloudSeries =
                 "rgba(56,189,248,0.02)"
         }
     );
+window.macdSeries =
+    chart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#3b82f6",
+            lineWidth: 2
+        }
+    );
 
+window.signalSeries =
+    chart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#f97316",
+            lineWidth: 2
+        }
+    );
 sma50Visible = false;
 sma200Visible = false;
 ema12Visible = false;
 ema26Visible = false;
 bollingerVisible = false;
+macdVisible = false;
 document
     .getElementById("sma50Btn")
     ?.classList.remove("smaActive");
@@ -491,6 +509,13 @@ macdData =
 
 signalData =
     macdResult.signal;
+window.macdSeries.setData(
+    macdData
+);
+
+window.signalSeries.setData(
+    signalData
+);
 
 histogramData =
     macdResult.histogram;
