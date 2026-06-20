@@ -1,5 +1,6 @@
 let chart = null;
 let candleSeries = null;
+let macdChart = null;
 
 let sma50Visible = false;
 let sma50Data = [];
@@ -34,14 +35,24 @@ function openChart(symbol) {
 
     const container =
         document.getElementById("chartContainer");
+const macdContainer =
+    document.getElementById(
+        "macdContainer"
+    );
 
     container.innerHTML = "";
+macdContainer.innerHTML = "";
 
     if (chart) {
 
         chart.remove();
 
     }
+if (macdChart) {
+
+    macdChart.remove();
+
+}
 
 chart =
     LightweightCharts.createChart(
@@ -49,6 +60,15 @@ chart =
         {
             width: container.clientWidth,
             height: container.clientHeight
+        }
+    );
+macdChart =
+    LightweightCharts.createChart(
+        macdContainer,
+        {
+            width:
+                macdContainer.clientWidth,
+            height: 180
         }
     );
 // macdPane = chart.addPane();
