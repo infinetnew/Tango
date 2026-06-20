@@ -1,7 +1,9 @@
 let chart = null;
 let candleSeries = null;
 let macdChart = null;
-
+let macdLineSeries = null;
+let signalLineSeries = null;
+let histogramMacdSeries = null;
 let sma50Visible = false;
 let sma50Data = [];
 let sma200Visible = false;
@@ -70,6 +72,29 @@ macdChart =
                 macdContainer.clientWidth,
             height: 180
         }
+    );
+macdLineSeries =
+    macdChart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#3b82f6",
+            lineWidth: 2
+        }
+    );
+
+signalLineSeries =
+    macdChart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#f97316",
+            lineWidth: 2
+        }
+    );
+
+histogramMacdSeries =
+    macdChart.addSeries(
+        LightweightCharts.HistogramSeries,
+        {}
     );
 // macdPane = chart.addPane();
 
@@ -159,6 +184,7 @@ ema12Visible = false;
 ema26Visible = false;
 bollingerVisible = false;
 macdVisible = false;
+
 document
     .getElementById("macdBtn")
     ?.classList.remove("smaActive");
@@ -202,6 +228,9 @@ document
 document
     .getElementById("bollingerBtn")
     ?.classList.add("bollingerInactive");
+document.getElementById(
+    "macdContainer"
+).style.display = "none";
 
 }
 function calculateSMAHistory(
@@ -828,9 +857,71 @@ window.bollingerCloudSeries.setData([]);
 }
 function toggleMACD()
 {
-    alert(
-        "MACD in sviluppo"
-    );
+    const btn =
+        document.getElementById(
+            "macdBtn"
+        );
+
+    const container =
+        document.getElementById(
+            "macdContainer"
+        );
+
+    if (!macdVisible)
+    {
+        container.style.display =
+            "block";
+
+        macdLineSeries.setData(
+            macdData
+        );
+
+        signalLineSeries.setData(
+            signalData
+        );
+
+        histogramMacdSeries.setData(
+            histogramData.map(item => ({
+                time: item.time,
+                value: item.value,
+                color:
+                    item.value >= 0
+                    ? "#22c55e"
+                    : "#ef4444"
+            }))
+        );
+
+        btn.classList.remove(
+            "macdInactive"
+        );
+
+        btn.classList.add(
+            "smaActive"
+        );
+
+        macdVisible = true;
+    }
+    else
+    {
+        container.style.display =
+            "none";
+
+        macdLineSeries.setData([]);
+
+        signalLineSeries.setData([]);
+
+        histogramMacdSeries.setData([]);
+
+        btn.classList.remove(
+            "smaActive"
+        );
+
+        btn.classList.add(
+            "macdInactive"
+        );
+
+        macdVisible = false;
+    }
 }
 document.addEventListener("DOMContentLoaded", () => {
 
