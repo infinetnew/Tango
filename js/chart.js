@@ -150,6 +150,12 @@ window.signalSeries =
             lineWidth: 2
         }
     );
+const macdPane =
+    chart.addPane();
+console.log(
+    "MACD PANE",
+    macdPane
+);
 sma50Visible = false;
 sma200Visible = false;
 ema12Visible = false;
