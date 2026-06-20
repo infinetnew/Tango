@@ -51,8 +51,7 @@ chart =
             height: container.clientHeight
         }
     );
-macdPane =
-    chart.addPane();
+// macdPane = chart.addPane();
 
 candleSeries =
     chart.addSeries(
@@ -809,53 +808,9 @@ window.bollingerCloudSeries.setData([]);
 }
 function toggleMACD()
 {
-    const btn =
-        document.getElementById(
-            "macdBtn"
-        );
-
-    if (!macdVisible)
-    {
-        macdSeries.setData(
-            macdData
-        );
-
-        signalSeries.setData(
-            signalData
-        );
-
-        histogramSeries.setData(
-            histogramData
-        );
-
-        btn.classList.remove(
-            "macdInactive"
-        );
-
-        btn.classList.add(
-            "smaActive"
-        );
-
-        macdVisible = true;
-    }
-    else
-    {
-        macdSeries.setData([]);
-
-        signalSeries.setData([]);
-
-        histogramSeries.setData([]);
-
-        btn.classList.remove(
-            "smaActive"
-        );
-
-        btn.classList.add(
-            "macdInactive"
-        );
-
-        macdVisible = false;
-    }
+    alert(
+        "MACD in sviluppo"
+    );
 }
 document.addEventListener("DOMContentLoaded", () => {
 
