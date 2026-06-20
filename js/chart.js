@@ -872,6 +872,9 @@ function toggleMACD()
         container.style.display =
             "block";
 document.getElementById(
+    "macdLegend"
+).style.display = "block";
+document.getElementById(
     "chartContainer"
 ).style.height = "500px";
 
@@ -924,6 +927,9 @@ console.log(
     {
         container.style.display =
             "none";
+document.getElementById(
+    "macdLegend"
+).style.display = "none";
 document.getElementById(
     "chartContainer"
 ).style.height = "";
