@@ -15,6 +15,9 @@ let bollingerUpperData = [];
 let bollingerMiddleData = [];
 let bollingerLowerData = [];
 let bollingerCloudData = [];
+let macdData = [];
+let signalData = [];
+let histogramData = [];
 
 function openChart(symbol) {
 
@@ -245,6 +248,82 @@ function calculateEMAHistory(
 
     return result;
 }
+function calculateMACDHistory(
+    candles
+)
+{
+    const ema12 =
+        calculateEMAHistory(
+            candles,
+            12
+        );
+
+    const ema26 =
+        calculateEMAHistory(
+            candles,
+            26
+        );
+
+    const macd = [];
+
+    for (
+        let i = 0;
+        i < candles.length;
+        i++
+    )
+    {
+        macd.push({
+
+            time:
+                candles[i].time,
+
+            value: Number(
+                (
+                    ema12[i].value -
+                    ema26[i].value
+                ).toFixed(2)
+            )
+
+        });
+    }
+
+    const signal =
+        calculateEMAHistory(
+            macd,
+            9
+        );
+
+    const histogram = [];
+
+    for (
+        let i = 0;
+        i < macd.length;
+        i++
+    )
+    {
+        histogram.push({
+
+            time:
+                macd[i].time,
+
+            value: Number(
+                (
+                    macd[i].value -
+                    signal[i].value
+                ).toFixed(2)
+            )
+
+        });
+    }
+
+    return {
+
+        macd,
+        signal,
+        histogram
+
+    };
+}
 function calculateBollingerHistory(
     candles,
     period,
@@ -397,6 +476,33 @@ ema26Data =
         candles,
         26
     );
+const macdResult =
+    calculateMACDHistory(
+        candles
+    );
+
+macdData =
+    macdResult.macd;
+
+signalData =
+    macdResult.signal;
+
+histogramData =
+    macdResult.histogram;
+console.log(
+    "MACD",
+    macdData.length
+);
+
+console.log(
+    "SIGNAL",
+    signalData.length
+);
+
+console.log(
+    "HISTOGRAM",
+    histogramData.length
+);
 const bollinger =
     calculateBollingerHistory(
         candles,
