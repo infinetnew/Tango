@@ -94,7 +94,7 @@ window.bollingerMiddleSeries =
     chart.addSeries(
         LightweightCharts.LineSeries,
         {
-            color: "#ffffff",
+             color: "#f97316",
             lineWidth: 2
         }
     );
