@@ -51,6 +51,10 @@ console.log(
     "PANES",
     chart.panes?.()
 );
+console.log(
+    "ADD PANE",
+    typeof chart.addPane
+);
 
 candleSeries =
     chart.addSeries(
