@@ -47,6 +47,10 @@ chart =
             height: container.clientHeight
         }
     );
+console.log(
+    "PANES",
+    chart.panes?.()
+);
 
 candleSeries =
     chart.addSeries(
@@ -509,13 +513,7 @@ macdData =
 
 signalData =
     macdResult.signal;
-window.macdSeries.setData(
-    macdData
-);
 
-window.signalSeries.setData(
-    signalData
-);
 
 histogramData =
     macdResult.histogram;
