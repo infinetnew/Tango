@@ -871,6 +871,14 @@ function toggleMACD()
     {
         container.style.display =
             "block";
+macdChart.resize(
+    container.clientWidth,
+    180
+);
+console.log(
+    "MACD RESIZE",
+    container.clientWidth
+);
 
         macdLineSeries.setData(
             macdData
