@@ -951,5 +951,6 @@ font-size:14px;
 
 }
 .macdInactive{
-    background:#334155;
+    background:#3b82f6 !important;
+    color:white !important;
 }
