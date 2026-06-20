@@ -73,6 +73,16 @@ macdChart =
             height: 180
         }
     );
+macdChart.applyOptions({
+    watermark: {
+        visible: true,
+        text: "MACD   |   Signal",
+        color: "rgba(0,0,0,0.65)",
+        fontSize: 12,
+        horzAlign: "left",
+        vertAlign: "top"
+    }
+});
 macdLineSeries =
     macdChart.addSeries(
         LightweightCharts.LineSeries,
