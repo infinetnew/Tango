@@ -593,6 +593,61 @@ function toggleEMA26()
         ema26Visible = false;
     }
 }
+function toggleBollinger()
+{
+    if (!window.bollingerUpperSeries)
+    {
+        return;
+    }
+
+    const btn =
+        document.getElementById(
+            "bollingerBtn"
+        );
+
+    if (!bollingerVisible)
+    {
+        window.bollingerUpperSeries.setData(
+            bollingerUpperData
+        );
+
+        window.bollingerMiddleSeries.setData(
+            bollingerMiddleData
+        );
+
+        window.bollingerLowerSeries.setData(
+            bollingerLowerData
+        );
+
+        btn.classList.remove(
+            "bollingerInactive"
+        );
+
+        btn.classList.add(
+            "smaActive"
+        );
+
+        bollingerVisible = true;
+    }
+    else
+    {
+        window.bollingerUpperSeries.setData([]);
+
+        window.bollingerMiddleSeries.setData([]);
+
+        window.bollingerLowerSeries.setData([]);
+
+        btn.classList.remove(
+            "smaActive"
+        );
+
+        btn.classList.add(
+            "bollingerInactive"
+        );
+
+        bollingerVisible = false;
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
 
     document
@@ -618,6 +673,12 @@ document
     ?.addEventListener(
         "click",
         toggleEMA26
+    );
+document
+    .getElementById("bollingerBtn")
+    ?.addEventListener(
+        "click",
+        toggleBollinger
     );
 
     document
