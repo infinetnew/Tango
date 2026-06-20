@@ -19,6 +19,10 @@ let macdData = [];
 let signalData = [];
 let histogramData = [];
 let macdVisible = false;
+let macdPane = null;
+let macdSeries = null;
+let signalSeries = null;
+let histogramSeries = null;
 
 function openChart(symbol) {
 
@@ -47,14 +51,8 @@ chart =
             height: container.clientHeight
         }
     );
-console.log(
-    "PANES",
-    chart.panes?.()
-);
-console.log(
-    "ADD PANE",
-    typeof chart.addPane
-);
+macdPane =
+    chart.addPane();
 
 candleSeries =
     chart.addSeries(
@@ -133,40 +131,46 @@ window.bollingerCloudSeries =
                 "rgba(56,189,248,0.02)"
         }
     );
-window.macdSeries =
+macdSeries =
     chart.addSeries(
         LightweightCharts.LineSeries,
         {
             color: "#3b82f6",
             lineWidth: 2
-        }
+        },
+        macdPane
     );
 
-window.signalSeries =
+signalSeries =
     chart.addSeries(
         LightweightCharts.LineSeries,
         {
             color: "#f97316",
             lineWidth: 2
-        }
+        },
+        macdPane
     );
-const macdPane =
-    chart.addPane();
-console.log(
-    "MACD PANE METHODS",
-    Object.keys(macdPane)
-);
 
-console.log(
-    "MACD PANE",
-    macdPane
-);
+histogramSeries =
+    chart.addSeries(
+        LightweightCharts.HistogramSeries,
+        {},
+        macdPane
+    );
+
 sma50Visible = false;
 sma200Visible = false;
 ema12Visible = false;
 ema26Visible = false;
 bollingerVisible = false;
 macdVisible = false;
+document
+    .getElementById("macdBtn")
+    ?.classList.remove("smaActive");
+
+document
+    .getElementById("macdBtn")
+    ?.classList.add("macdInactive");
 document
     .getElementById("sma50Btn")
     ?.classList.remove("smaActive");
@@ -827,6 +831,56 @@ window.bollingerCloudSeries.setData([]);
         bollingerVisible = false;
     }
 }
+function toggleMACD()
+{
+    const btn =
+        document.getElementById(
+            "macdBtn"
+        );
+
+    if (!macdVisible)
+    {
+        macdSeries.setData(
+            macdData
+        );
+
+        signalSeries.setData(
+            signalData
+        );
+
+        histogramSeries.setData(
+            histogramData
+        );
+
+        btn.classList.remove(
+            "macdInactive"
+        );
+
+        btn.classList.add(
+            "smaActive"
+        );
+
+        macdVisible = true;
+    }
+    else
+    {
+        macdSeries.setData([]);
+
+        signalSeries.setData([]);
+
+        histogramSeries.setData([]);
+
+        btn.classList.remove(
+            "smaActive"
+        );
+
+        btn.classList.add(
+            "macdInactive"
+        );
+
+        macdVisible = false;
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
 
     document
@@ -859,7 +913,12 @@ document
         "click",
         toggleBollinger
     );
-
+document
+    .getElementById("macdBtn")
+    ?.addEventListener(
+        "click",
+        toggleMACD
+    );
     document
         .getElementById("closeChartBtn")
         ?.addEventListener("click", () => {
