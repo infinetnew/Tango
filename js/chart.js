@@ -889,6 +889,16 @@ macdChart.resize(
     container.clientWidth,
     180
 );
+macdChart.applyOptions({
+    watermark: {
+        visible: true,
+        text: "MACD",
+        color: "#3b82f6",
+        fontSize: 12,
+        horzAlign: "left",
+        vertAlign: "top"
+    }
+});
 console.log(
     "MACD RESIZE",
     container.clientWidth
