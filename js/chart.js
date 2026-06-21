@@ -73,16 +73,65 @@ macdChart =
             height: 180
         }
     );
-macdChart.applyOptions({
-    watermark: {
-        visible: true,
-        text: "MACD   |   Signal",
-        color: "rgba(0,0,0,0.65)",
-        fontSize: 12,
-        horzAlign: "left",
-        vertAlign: "top"
-    }
-});
+macdContainer.style.position =
+    "relative";
+
+const oldLegend =
+    document.getElementById(
+        "macdLegend"
+    );
+
+if (oldLegend)
+{
+    oldLegend.remove();
+}
+
+const legend =
+    document.createElement("div");
+
+legend.id = "macdLegend";
+
+legend.innerHTML = `
+<span style="
+color:#3b82f6;
+font-weight:600;
+">
+■ MACD
+</span>
+
+<span style="
+margin-left:15px;
+color:#f97316;
+font-weight:600;
+">
+■ Signal
+</span>
+`;
+
+legend.style.position =
+    "absolute";
+
+legend.style.top = "8px";
+
+legend.style.left = "10px";
+
+legend.style.zIndex = "1000";
+
+legend.style.fontSize = "12px";
+
+legend.style.background =
+    "rgba(255,255,255,0.7)";
+
+legend.style.padding =
+    "4px 8px";
+
+legend.style.borderRadius =
+    "4px";
+
+macdContainer.appendChild(
+    legend
+);
+
 macdLineSeries =
     macdChart.addSeries(
         LightweightCharts.LineSeries,
