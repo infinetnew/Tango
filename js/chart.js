@@ -92,19 +92,29 @@ const legend =
 legend.id = "macdLegend";
 
 legend.innerHTML = `
-<span style="
+<span id="macdValue"
+style="
 color:#3b82f6;
 font-weight:600;
 ">
-■ MACD
+■ MACD: --
 </span>
 
-<span style="
+<span id="signalValue"
+style="
 margin-left:15px;
 color:#f97316;
 font-weight:600;
 ">
-■ Signal
+■ Signal: --
+</span>
+
+<span id="histogramValue"
+style="
+margin-left:15px;
+font-weight:600;
+">
+Hist: --
 </span>
 `;
 
@@ -131,6 +141,62 @@ legend.style.borderRadius =
 macdContainer.appendChild(
     legend
 );
+macdChart.subscribeCrosshairMove(
+    param =>
+{
+    if (
+        !param ||
+        !param.time
+    )
+    {
+        return;
+    }
+
+    const macdPoint =
+        macdData.find(
+            x =>
+                x.time ===
+                param.time
+        );
+
+    const signalPoint =
+        signalData.find(
+            x =>
+                x.time ===
+                param.time
+        );
+
+    const histPoint =
+        histogramData.find(
+            x =>
+                x.time ===
+                param.time
+        );
+
+    if (macdPoint)
+    {
+        document.getElementById(
+            "macdValue"
+        ).innerHTML =
+            `■ MACD: ${macdPoint.value}`;
+    }
+
+    if (signalPoint)
+    {
+        document.getElementById(
+            "signalValue"
+        ).innerHTML =
+            `■ Signal: ${signalPoint.value}`;
+    }
+
+    if (histPoint)
+    {
+        document.getElementById(
+            "histogramValue"
+        ).innerHTML =
+            `Hist: ${histPoint.value}`;
+    }
+});
 
 macdLineSeries =
     macdChart.addSeries(
