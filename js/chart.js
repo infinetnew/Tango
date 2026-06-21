@@ -37,6 +37,8 @@ function openChart(symbol) {
 
     const container =
         document.getElementById("chartContainer");
+container.style.position =
+    "relative";
 const macdContainer =
     document.getElementById(
         "macdContainer"
@@ -150,10 +152,10 @@ bollLegend.style.position =
     "absolute";
 
 bollLegend.style.top =
-    "10px";
+    "40px";
 
 bollLegend.style.left =
-    "10px";
+    "15px";
 
 bollLegend.style.zIndex =
     "1000";
@@ -285,6 +287,38 @@ macdChart.subscribeCrosshairMove(
         ).innerHTML =
             `Hist: ${histPoint.value}`;
     }
+if (
+    bollingerVisible &&
+    bollUpperPoint
+)
+{
+    document.getElementById(
+        "bollUpperValue"
+    ).innerHTML =
+        `BOLL U: ${bollUpperPoint.value}`;
+}
+
+if (
+    bollingerVisible &&
+    bollMiddlePoint
+)
+{
+    document.getElementById(
+        "bollMiddleValue"
+    ).innerHTML =
+        `BOLL M: ${bollMiddlePoint.value}`;
+}
+
+if (
+    bollingerVisible &&
+    bollLowerPoint
+)
+{
+    document.getElementById(
+        "bollLowerValue"
+    ).innerHTML =
+        `BOLL L: ${bollLowerPoint.value}`;
+}
 });
 let isCrosshairSyncing =
     false;
