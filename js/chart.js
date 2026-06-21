@@ -1045,22 +1045,33 @@ if (currentRange)
         );
 }
 
-macdChart.resize(
-    container.clientWidth,
-    180
-);
-macdChart
-    .timeScale()
-    .setVisibleLogicalRange(
-        chart
-            .timeScale()
-            .getVisibleLogicalRange()
+setTimeout(() =>
+{
+    macdChart.resize(
+        container.clientWidth,
+        180
     );
 
-console.log(
-    "MACD RESIZE",
-    container.clientWidth
-);
+    const range =
+        chart
+            .timeScale()
+            .getVisibleLogicalRange();
+
+    if (range)
+    {
+        macdChart
+            .timeScale()
+            .setVisibleLogicalRange(
+                range
+            );
+    }
+
+    console.log(
+        "MACD RESIZE",
+        container.clientWidth
+    );
+
+}, 50);
 
         macdLineSeries.setData(
             macdData
