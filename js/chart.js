@@ -291,23 +291,24 @@ isCrosshairSyncing =
         ).innerHTML =
             `Hist: ${histPoint.value}`;
     }
-/*
-try
+if (macdPoint)
 {
-    macdChart.setCrosshairPosition(
-        param.point.x,
-        90,
-        macdLineSeries
-    );
+    try
+    {
+        macdChart.setCrosshairPosition(
+            macdPoint.value,
+            param.time,
+            macdLineSeries
+        );
+    }
+    catch (e)
+    {
+        console.log(
+            "Crosshair sync",
+            e
+        );
+    }
 }
-catch (e)
-{
-    console.log(
-        "Crosshair sync",
-        e
-    );
-}
-*/
 
 isCrosshairSyncing =
     false;
