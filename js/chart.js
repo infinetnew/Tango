@@ -223,16 +223,29 @@ macdChart.subscribeCrosshairMove(
             `Hist: ${histPoint.value}`;
     }
 });
+let isCrosshairSyncing =
+    false;
 chart.subscribeCrosshairMove(
     param =>
 {
-    if (
-        !param ||
-        !param.time
-    )
-    {
-        return;
-    }
+if (
+    !param ||
+    !param.time ||
+    !param.point
+)
+{
+    return;
+}
+
+if (
+    isCrosshairSyncing
+)
+{
+    return;
+}
+
+isCrosshairSyncing =
+    true;
 
     const macdPoint =
         macdData.find(
@@ -278,6 +291,24 @@ chart.subscribeCrosshairMove(
         ).innerHTML =
             `Hist: ${histPoint.value}`;
     }
+try
+{
+    macdChart.setCrosshairPosition(
+        param.point.x,
+        90,
+        macdLineSeries
+    );
+}
+catch (e)
+{
+    console.log(
+        "Crosshair sync",
+        e
+    );
+}
+
+isCrosshairSyncing =
+    false;
 });
 
 macdLineSeries =
