@@ -488,22 +488,22 @@ if (candlePoint)
     document.getElementById(
         "ohlcOpen"
     ).innerHTML =
-        `O: ${candlePoint.open}`;
+        `Open: ${candlePoint.open}`;
 
     document.getElementById(
         "ohlcHigh"
     ).innerHTML =
-        `H: ${candlePoint.high}`;
+        `High: ${candlePoint.high}`;
 
     document.getElementById(
         "ohlcLow"
     ).innerHTML =
-        `L: ${candlePoint.low}`;
+        `Low: ${candlePoint.low}`;
 
     document.getElementById(
         "ohlcClose"
     ).innerHTML =
-        `C: ${candlePoint.close}`;
+        `Close: ${candlePoint.close}`;
 }
 if (macdPoint)
 {
