@@ -217,7 +217,7 @@ ohlcLegend.style.top =
     "40px";
 
 ohlcLegend.style.right =
-    "15px";
+    "90px";
 
 ohlcLegend.style.zIndex =
     "99999";
