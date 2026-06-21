@@ -99,29 +99,6 @@ chart
     isSyncing = false;
 });
 
-macdChart
-    .timeScale()
-    .subscribeVisibleLogicalRangeChange(
-        range =>
-{
-    if (
-        !range ||
-        isSyncing
-    )
-    {
-        return;
-    }
-
-    isSyncing = true;
-
-    chart
-        .timeScale()
-        .setVisibleLogicalRange(
-            range
-        );
-
-    isSyncing = false;
-});
 macdContainer.style.position =
     "relative";
 
