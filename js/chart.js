@@ -1049,6 +1049,13 @@ macdChart.resize(
     container.clientWidth,
     180
 );
+macdChart
+    .timeScale()
+    .setVisibleLogicalRange(
+        chart
+            .timeScale()
+            .getVisibleLogicalRange()
+    );
 
 console.log(
     "MACD RESIZE",
