@@ -167,6 +167,67 @@ legend.style.borderRadius =
 macdContainer.appendChild(
     legend
 );
+const bollLegend =
+    document.createElement("div");
+
+bollLegend.id =
+    "bollingerLegend";
+
+bollLegend.innerHTML = `
+<span id="bollUpperValue"
+style="
+color:#38bdf8;
+font-weight:600;
+">
+BOLL U: --
+</span>
+
+<span id="bollMiddleValue"
+style="
+margin-left:15px;
+color:#f97316;
+font-weight:600;
+">
+BOLL M: --
+</span>
+
+<span id="bollLowerValue"
+style="
+margin-left:15px;
+color:#38bdf8;
+font-weight:600;
+">
+BOLL L: --
+</span>
+`;
+
+bollLegend.style.position =
+    "absolute";
+
+bollLegend.style.top =
+    "10px";
+
+bollLegend.style.right =
+    "10px";
+
+bollLegend.style.zIndex =
+    "1000";
+
+bollLegend.style.fontSize =
+    "12px";
+
+bollLegend.style.background =
+    "rgba(255,255,255,0.7)";
+
+bollLegend.style.padding =
+    "4px 8px";
+
+bollLegend.style.borderRadius =
+    "4px";
+
+container.appendChild(
+    bollLegend
+);
 macdChart.subscribeCrosshairMove(
     param =>
 {
@@ -228,6 +289,7 @@ let isCrosshairSyncing =
 chart.subscribeCrosshairMove(
     param =>
 {
+
 if (
     !param ||
     !param.time ||
