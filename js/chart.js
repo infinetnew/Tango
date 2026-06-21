@@ -197,6 +197,52 @@ bollLegend.style.display =
 container.appendChild(
     bollLegend
 );
+const ohlcLegend =
+    document.createElement("div");
+
+ohlcLegend.id =
+    "ohlcLegend";
+
+ohlcLegend.innerHTML = `
+<div id="ohlcOpen">O: --</div>
+<div id="ohlcHigh">H: --</div>
+<div id="ohlcLow">L: --</div>
+<div id="ohlcClose">C: --</div>
+`;
+
+ohlcLegend.style.position =
+    "absolute";
+
+ohlcLegend.style.top =
+    "40px";
+
+ohlcLegend.style.right =
+    "15px";
+
+ohlcLegend.style.zIndex =
+    "99999";
+
+ohlcLegend.style.background =
+    "rgba(255,255,255,0.7)";
+
+ohlcLegend.style.padding =
+    "4px 8px";
+
+ohlcLegend.style.borderRadius =
+    "4px";
+
+ohlcLegend.style.color =
+    "#000";
+
+ohlcLegend.style.fontSize =
+    "12px";
+
+ohlcLegend.style.fontWeight =
+    "600";
+
+container.appendChild(
+    ohlcLegend
+);
 
 const legend =
     document.createElement("div");
