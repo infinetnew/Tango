@@ -208,6 +208,7 @@ ohlcLegend.innerHTML = `
 <div id="ohlcHigh">H: --</div>
 <div id="ohlcLow">L: --</div>
 <div id="ohlcClose">C: --</div>
+<div id="ohlcChange">Δ: --</div>
 `;
 
 ohlcLegend.style.position =
@@ -512,6 +513,31 @@ if (candlePoint)
         `Close: ${Number(
             candlePoint.close
         ).toFixed(2)}`;
+const change =
+    candlePoint.close -
+    candlePoint.open;
+
+const changePct =
+    (
+        change /
+        candlePoint.open
+    ) * 100;
+
+document.getElementById(
+    "ohlcChange"
+).innerHTML =
+    `Δ: ${
+        change >= 0 ? "+" : ""
+    }${change.toFixed(2)}
+    (${
+        changePct >= 0 ? "+" : ""
+    }${changePct.toFixed(2)}%)`;
+document.getElementById(
+    "ohlcChange"
+).style.color =
+    change >= 0
+        ? "#22c55e"
+        : "#ef4444";
 }
 if (macdPoint)
 {
