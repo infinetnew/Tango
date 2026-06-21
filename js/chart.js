@@ -223,14 +223,10 @@ macdChart.subscribeCrosshairMove(
             `Hist: ${histPoint.value}`;
     }
 });
-let isCrosshairSyncing =
-    false;
-
 chart.subscribeCrosshairMove(
     param =>
 {
     if (
-        isCrosshairSyncing ||
         !param ||
         !param.time
     )
@@ -238,24 +234,50 @@ chart.subscribeCrosshairMove(
         return;
     }
 
-    isCrosshairSyncing = true;
+    const macdPoint =
+        macdData.find(
+            x =>
+                x.time ===
+                param.time
+        );
 
-    try
+    const signalPoint =
+        signalData.find(
+            x =>
+                x.time ===
+                param.time
+        );
+
+    const histPoint =
+        histogramData.find(
+            x =>
+                x.time ===
+                param.time
+        );
+
+    if (macdPoint)
     {
-        macdChart
-            .timeScale()
-            .setVisibleLogicalRange(
-                chart
-                    .timeScale()
-                    .getVisibleLogicalRange()
-            );
-    }
-    catch (e)
-    {
-        console.log(e);
+        document.getElementById(
+            "macdValue"
+        ).innerHTML =
+            `■ MACD: ${macdPoint.value}`;
     }
 
-    isCrosshairSyncing = false;
+    if (signalPoint)
+    {
+        document.getElementById(
+            "signalValue"
+        ).innerHTML =
+            `■ Signal: ${signalPoint.value}`;
+    }
+
+    if (histPoint)
+    {
+        document.getElementById(
+            "histogramValue"
+        ).innerHTML =
+            `Hist: ${histPoint.value}`;
+    }
 });
 
 macdLineSeries =
