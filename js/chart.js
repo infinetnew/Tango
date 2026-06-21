@@ -73,6 +73,55 @@ macdChart =
             height: 180
         }
     );
+let isSyncing = false;
+
+chart
+    .timeScale()
+    .subscribeVisibleLogicalRangeChange(
+        range =>
+{
+    if (
+        !range ||
+        isSyncing
+    )
+    {
+        return;
+    }
+
+    isSyncing = true;
+
+    macdChart
+        .timeScale()
+        .setVisibleLogicalRange(
+            range
+        );
+
+    isSyncing = false;
+});
+
+macdChart
+    .timeScale()
+    .subscribeVisibleLogicalRangeChange(
+        range =>
+{
+    if (
+        !range ||
+        isSyncing
+    )
+    {
+        return;
+    }
+
+    isSyncing = true;
+
+    chart
+        .timeScale()
+        .setVisibleLogicalRange(
+            range
+        );
+
+    isSyncing = false;
+});
 macdContainer.style.position =
     "relative";
 
