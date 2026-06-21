@@ -1045,6 +1045,10 @@ function toggleMACD()
     {
 container.style.display =
     "block";
+const currentRange =
+    chart
+        .timeScale()
+        .getVisibleLogicalRange();
 document.getElementById(
     "chartContainer"
 ).style.height = "500px";
@@ -1055,6 +1059,14 @@ chart.resize(
     ).clientWidth,
     500
 );
+if (currentRange)
+{
+    chart
+        .timeScale()
+        .setVisibleLogicalRange(
+            currentRange
+        );
+}
 
 macdChart.resize(
     container.clientWidth,
