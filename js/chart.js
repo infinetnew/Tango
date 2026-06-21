@@ -421,6 +421,12 @@ const bollLowerPoint =
             x.time ===
             param.time
     );
+const candlePoint =
+    candleSeries.data().find(
+        x =>
+            x.time ===
+            param.time
+    );
 
     if (macdPoint)
     {
@@ -476,6 +482,28 @@ if (
         "bollLowerValue"
     ).innerHTML =
         `BOLL L: ${bollLowerPoint.value}`;
+}
+if (candlePoint)
+{
+    document.getElementById(
+        "ohlcOpen"
+    ).innerHTML =
+        `O: ${candlePoint.open}`;
+
+    document.getElementById(
+        "ohlcHigh"
+    ).innerHTML =
+        `H: ${candlePoint.high}`;
+
+    document.getElementById(
+        "ohlcLow"
+    ).innerHTML =
+        `L: ${candlePoint.low}`;
+
+    document.getElementById(
+        "ohlcClose"
+    ).innerHTML =
+        `C: ${candlePoint.close}`;
 }
 if (macdPoint)
 {
