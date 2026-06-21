@@ -488,22 +488,30 @@ if (candlePoint)
     document.getElementById(
         "ohlcOpen"
     ).innerHTML =
-        `Open: ${candlePoint.open}`;
+        `Open: ${Number(
+            candlePoint.open
+        ).toFixed(2)}`;
 
     document.getElementById(
         "ohlcHigh"
     ).innerHTML =
-        `High: ${candlePoint.high}`;
+        `High: ${Number(
+            candlePoint.high
+        ).toFixed(2)}`;
 
     document.getElementById(
         "ohlcLow"
     ).innerHTML =
-        `Low: ${candlePoint.low}`;
+        `Low: ${Number(
+            candlePoint.low
+        ).toFixed(2)}`;
 
     document.getElementById(
         "ohlcClose"
     ).innerHTML =
-        `Close: ${candlePoint.close}`;
+        `Close: ${Number(
+            candlePoint.close
+        ).toFixed(2)}`;
 }
 if (macdPoint)
 {
