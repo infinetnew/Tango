@@ -179,10 +179,10 @@ window.bollingerCloudSeries =
                 "rgba(0,0,0,0)",
 
             topColor:
-                "rgba(56,189,248,0.15)",
+                "rgba(56,189,248,0.05)",
 
             bottomColor:
-                "rgba(56,189,248,0.02)"
+                "rgba(56,189,248,0.00)"
         }
     );
 macdSeries = null;
@@ -824,7 +824,7 @@ function toggleBollinger()
             bollingerUpperData
         );
 window.bollingerCloudSeries.setData(
-    bollingerUpperData
+    bollingerMiddleData
 );
 
         window.bollingerMiddleSeries.setData(
