@@ -223,6 +223,40 @@ macdChart.subscribeCrosshairMove(
             `Hist: ${histPoint.value}`;
     }
 });
+let isCrosshairSyncing =
+    false;
+
+chart.subscribeCrosshairMove(
+    param =>
+{
+    if (
+        isCrosshairSyncing ||
+        !param ||
+        !param.time
+    )
+    {
+        return;
+    }
+
+    isCrosshairSyncing = true;
+
+    try
+    {
+        macdChart
+            .timeScale()
+            .setVisibleLogicalRange(
+                chart
+                    .timeScale()
+                    .getVisibleLogicalRange()
+            );
+    }
+    catch (e)
+    {
+        console.log(e);
+    }
+
+    isCrosshairSyncing = false;
+});
 
 macdLineSeries =
     macdChart.addSeries(
