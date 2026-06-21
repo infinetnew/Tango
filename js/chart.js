@@ -158,7 +158,7 @@ bollLegend.style.left =
     "15px";
 
 bollLegend.style.zIndex =
-    "1000";
+    "99999";
 
 bollLegend.style.background =
     "rgba(255,255,255,0.7)";
@@ -168,6 +168,14 @@ bollLegend.style.padding =
 
 bollLegend.style.borderRadius =
     "4px";
+bollLegend.style.color =
+    "#000";
+
+bollLegend.style.fontSize =
+    "12px";
+
+bollLegend.style.fontWeight =
+    "600";
 
 bollLegend.style.display =
     "none";
