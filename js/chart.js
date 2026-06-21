@@ -291,6 +291,7 @@ isCrosshairSyncing =
         ).innerHTML =
             `Hist: ${histPoint.value}`;
     }
+/*
 try
 {
     macdChart.setCrosshairPosition(
@@ -306,6 +307,7 @@ catch (e)
         e
     );
 }
+*/
 
 isCrosshairSyncing =
     false;
