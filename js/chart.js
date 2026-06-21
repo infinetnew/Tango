@@ -129,23 +129,37 @@ bollLegend.id =
     "bollingerLegend";
 
 bollLegend.innerHTML = `
-<span id="bollUpperValue">
-BOLL U: --
-</span>
-
-<span
-id="bollMiddleValue"
-style="margin-left:15px;"
+<div
+    id="bollUpperValue"
+    style="
+        color:#38bdf8;
+        font-weight:600;
+    "
 >
-BOLL M: --
-</span>
+    BOLL U: --
+</div>
 
-<span
-id="bollLowerValue"
-style="margin-left:15px;"
+<div
+    id="bollMiddleValue"
+    style="
+        color:#f97316;
+        font-weight:600;
+        margin-top:3px;
+    "
 >
-BOLL L: --
-</span>
+    BOLL M: --
+</div>
+
+<div
+    id="bollLowerValue"
+    style="
+        color:#38bdf8;
+        font-weight:600;
+        margin-top:3px;
+    "
+>
+    BOLL L: --
+</div>
 `;
 
 bollLegend.style.position =
