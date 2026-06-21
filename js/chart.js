@@ -295,38 +295,6 @@ macdChart.subscribeCrosshairMove(
         ).innerHTML =
             `Hist: ${histPoint.value}`;
     }
-if (
-    bollingerVisible &&
-    bollUpperPoint
-)
-{
-    document.getElementById(
-        "bollUpperValue"
-    ).innerHTML =
-        `BOLL U: ${bollUpperPoint.value}`;
-}
-
-if (
-    bollingerVisible &&
-    bollMiddlePoint
-)
-{
-    document.getElementById(
-        "bollMiddleValue"
-    ).innerHTML =
-        `BOLL M: ${bollMiddlePoint.value}`;
-}
-
-if (
-    bollingerVisible &&
-    bollLowerPoint
-)
-{
-    document.getElementById(
-        "bollLowerValue"
-    ).innerHTML =
-        `BOLL L: ${bollLowerPoint.value}`;
-}
 });
 let isCrosshairSyncing =
     false;
@@ -417,6 +385,38 @@ const bollLowerPoint =
         ).innerHTML =
             `Hist: ${histPoint.value}`;
     }
+if (
+    bollingerVisible &&
+    bollUpperPoint
+)
+{
+    document.getElementById(
+        "bollUpperValue"
+    ).innerHTML =
+        `BOLL U: ${bollUpperPoint.value}`;
+}
+
+if (
+    bollingerVisible &&
+    bollMiddlePoint
+)
+{
+    document.getElementById(
+        "bollMiddleValue"
+    ).innerHTML =
+        `BOLL M: ${bollMiddlePoint.value}`;
+}
+
+if (
+    bollingerVisible &&
+    bollLowerPoint
+)
+{
+    document.getElementById(
+        "bollLowerValue"
+    ).innerHTML =
+        `BOLL L: ${bollLowerPoint.value}`;
+}
 if (macdPoint)
 {
     try
