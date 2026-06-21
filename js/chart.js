@@ -111,6 +111,68 @@ if (oldLegend)
 {
     oldLegend.remove();
 }
+const oldBollLegend =
+    document.getElementById(
+        "bollingerLegend"
+    );
+
+if (oldBollLegend)
+{
+    oldBollLegend.remove();
+}
+const bollLegend =
+    document.createElement("div");
+
+bollLegend.id =
+    "bollingerLegend";
+
+bollLegend.innerHTML = `
+<span id="bollUpperValue">
+BOLL U: --
+</span>
+
+<span
+id="bollMiddleValue"
+style="margin-left:15px;"
+>
+BOLL M: --
+</span>
+
+<span
+id="bollLowerValue"
+style="margin-left:15px;"
+>
+BOLL L: --
+</span>
+`;
+
+bollLegend.style.position =
+    "absolute";
+
+bollLegend.style.top =
+    "10px";
+
+bollLegend.style.left =
+    "10px";
+
+bollLegend.style.zIndex =
+    "1000";
+
+bollLegend.style.background =
+    "rgba(255,255,255,0.7)";
+
+bollLegend.style.padding =
+    "4px 8px";
+
+bollLegend.style.borderRadius =
+    "4px";
+
+bollLegend.style.display =
+    "none";
+
+container.appendChild(
+    bollLegend
+);
 
 const legend =
     document.createElement("div");
@@ -1135,7 +1197,9 @@ window.bollingerCloudSeries.setData(
         btn.classList.add(
             "smaActive"
         );
-
+document.getElementById(
+    "bollingerLegend"
+).style.display = "block";
         bollingerVisible = true;
     }
     else
@@ -1154,7 +1218,9 @@ window.bollingerCloudSeries.setData([]);
         btn.classList.add(
             "bollingerInactive"
         );
-
+document.getElementById(
+    "bollingerLegend"
+).style.display = "none";
         bollingerVisible = false;
     }
 }
