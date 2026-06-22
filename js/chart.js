@@ -280,6 +280,7 @@ ohlcLegend.innerHTML = `
 <div id="ohlcLow">L: --</div>
 <div id="ohlcClose">C: --</div>
 <div id="ohlcChange">Δ: --</div>
+<div id="ohlcVolume">Vol: --</div>
 `;
 
 ohlcLegend.style.position =
@@ -669,6 +670,21 @@ document.getElementById(
     change >= 0
         ? "#22c55e"
         : "#ef4444";
+const volumeText =
+    candlePoint.volume >= 1000000
+        ? (
+            candlePoint.volume /
+            1000000
+          ).toFixed(2) + "M"
+        : (
+            candlePoint.volume /
+            1000
+          ).toFixed(0) + "K";
+
+document.getElementById(
+    "ohlcVolume"
+).innerHTML =
+    `Vol: ${volumeText}`;
 }
 if (
     rsiVisible &&
