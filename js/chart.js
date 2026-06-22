@@ -694,12 +694,14 @@ if (
     rsiPoint.value !== null
 )
 {
-    rsiChart.setCrosshairPosition(
-        rsiPoint.value,
-        param.time,
-        rsiLineSeries
-    );
-}
+    try
+    {
+        rsiChart.setCrosshairPosition(
+            rsiPoint.value,
+            param.time,
+            rsiLineSeries
+        );
+    }
     catch (e)
     {
         console.log(
