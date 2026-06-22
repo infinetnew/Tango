@@ -2,6 +2,7 @@ let chart = null;
 let candleSeries = null;
 let volumeSeries = null;
 let macdChart = null;
+let candlesData = [];
 let rsiChart = null;
 let rsiLineSeries = null;
 let rsiData = [];
@@ -670,16 +671,32 @@ document.getElementById(
     change >= 0
         ? "#22c55e"
         : "#ef4444";
-const volumeText =
-    candlePoint.volume >= 1000000
-        ? (
-            candlePoint.volume /
-            1000000
-          ).toFixed(2) + "M"
-        : (
-            candlePoint.volume /
-            1000
-          ).toFixed(0) + "K";
+const volumePoint =
+    candles.find(
+        x =>
+            x.time ===
+            param.time
+    );
+
+if (volumePoint)
+{
+    const volumeText =
+        volumePoint.volume >=
+        1000000
+            ? (
+                volumePoint.volume /
+                1000000
+              ).toFixed(2) + "M"
+            : (
+                volumePoint.volume /
+                1000
+              ).toFixed(0) + "K";
+
+    document.getElementById(
+        "ohlcVolume"
+    ).innerHTML =
+        `Vol: ${volumeText}`;
+}
 
 document.getElementById(
     "ohlcVolume"
@@ -1385,7 +1402,7 @@ if (error)
     return;
 }
 
-const candles =
+candlesData =
     data.map(row => ({
 
         time: row.trading_date,
@@ -1404,9 +1421,11 @@ const candles =
 
 console.log(candles);
 
-candleSeries.setData(candles);
+candleSeries.setData(
+    candlesData
+);
 volumeSeries.setData(
-    candles.map(
+    candlesData.map(
         candle => ({
 
             time:
