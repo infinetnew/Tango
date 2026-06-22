@@ -811,7 +811,11 @@ volumeSeries =
                 type: "volume"
             },
 
-            priceScaleId: "volume"
+            priceScaleId: "volume",
+
+            lastValueVisible: false,
+
+            priceLineVisible: false
         }
     );
 chart.priceScale(
@@ -820,7 +824,7 @@ chart.priceScale(
 
     scaleMargins:
     {
-        top: 0.75,
+        top: 0.90,
         bottom: 0
     }
 
