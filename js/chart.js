@@ -1,5 +1,6 @@
 let chart = null;
 let candleSeries = null;
+let volumeSeries = null;
 let macdChart = null;
 let rsiChart = null;
 let rsiLineSeries = null;
@@ -801,7 +802,18 @@ candleSeries =
     chart.addSeries(
         LightweightCharts.CandlestickSeries
     );
+volumeSeries =
+    chart.addSeries(
+        LightweightCharts.HistogramSeries,
+        {
+            priceFormat:
+            {
+                type: "volume"
+            },
 
+            priceScaleId: ""
+        }
+    );
 window.sma50Series =
     chart.addSeries(
         LightweightCharts.LineSeries,
@@ -1323,7 +1335,8 @@ async function loadChart(symbol)
                 open_price,
                 day_high,
                 day_low,
-                close_price
+                 close_price,
+    volume
             `)
             .eq("symbol", symbol)
             .order(
@@ -1352,7 +1365,9 @@ const candles =
 
         low: Number(row.day_low),
 
-        close: Number(row.close_price)
+        close: Number(row.close_price),
+
+        volume: Number(row.volume)
 
     }));
 
