@@ -1,6 +1,10 @@
 let chart = null;
 let candleSeries = null;
 let macdChart = null;
+let rsiChart = null;
+let rsiLineSeries = null;
+let rsiData = [];
+let rsiVisible = false;
 let macdLineSeries = null;
 let signalLineSeries = null;
 let histogramMacdSeries = null;
@@ -43,9 +47,15 @@ const macdContainer =
     document.getElementById(
         "macdContainer"
     );
+const rsiContainer =
+    document.getElementById(
+        "rsiContainer"
+    );
 
-    container.innerHTML = "";
+container.innerHTML = "";
 macdContainer.innerHTML = "";
+rsiContainer.innerHTML = "";
+
 
     if (chart) {
 
@@ -55,6 +65,11 @@ macdContainer.innerHTML = "";
 if (macdChart) {
 
     macdChart.remove();
+
+}
+if (rsiChart) {
+
+    rsiChart.remove();
 
 }
 
@@ -72,6 +87,15 @@ macdChart =
         {
             width:
                 macdContainer.clientWidth,
+            height: 180
+        }
+    );
+rsiChart =
+    LightweightCharts.createChart(
+        rsiContainer,
+        {
+            width:
+                rsiContainer.clientWidth,
             height: 180
         }
     );
@@ -585,6 +609,14 @@ histogramMacdSeries =
         LightweightCharts.HistogramSeries,
         {}
     );
+rsiLineSeries =
+    rsiChart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#a855f7",
+            lineWidth: 2
+        }
+    );
 // macdPane = chart.addPane();
 
 candleSeries =
@@ -719,6 +751,9 @@ document
     ?.classList.add("bollingerInactive");
 document.getElementById(
     "macdContainer"
+).style.display = "none";
+document.getElementById(
+    "rsiContainer"
 ).style.display = "none";
 
 }
