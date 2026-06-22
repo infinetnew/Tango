@@ -1644,6 +1644,57 @@ chart.resize(
         macdVisible = false;
     }
 }
+function toggleRSI()
+{
+    const btn =
+        document.getElementById(
+            "rsiBtn"
+        );
+
+    const container =
+        document.getElementById(
+            "rsiContainer"
+        );
+
+    if (!rsiVisible)
+    {
+        container.style.display =
+            "block";
+
+        rsiLineSeries.setData(
+            rsiData
+        );
+
+        btn.classList.remove(
+            "rsiInactive"
+        );
+
+        btn.classList.add(
+            "smaActive"
+        );
+
+        rsiVisible = true;
+    }
+    else
+    {
+        container.style.display =
+            "none";
+
+        rsiLineSeries.setData(
+            []
+        );
+
+        btn.classList.remove(
+            "smaActive"
+        );
+
+        btn.classList.add(
+            "rsiInactive"
+        );
+
+        rsiVisible = false;
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
 
     document
@@ -1681,6 +1732,12 @@ document
     ?.addEventListener(
         "click",
         toggleMACD
+    );
+document
+    .getElementById("rsiBtn")
+    ?.addEventListener(
+        "click",
+        toggleRSI
     );
     document
         .getElementById("closeChartBtn")
