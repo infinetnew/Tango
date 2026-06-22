@@ -1779,17 +1779,6 @@ setTimeout(() =>
             );
     }
 
-    rsiChart.timeScale().fitContent();
-
-    if (range)
-    {
-        rsiChart
-            .timeScale()
-            .setVisibleLogicalRange(
-                range
-            );
-    }
-
 }, 50);
 
         rsiLineSeries.setData(
