@@ -388,14 +388,20 @@ rsiLegend.innerHTML = `
 </span>
 `;
 
+rsiContainer.style.position =
+    "relative";
+
 rsiLegend.style.position =
     "absolute";
 
 rsiLegend.style.top =
-    "10px";
+    "8px";
 
 rsiLegend.style.left =
-    "15px";
+    "10px";
+
+rsiLegend.style.zIndex =
+    "99999";
 rsiLegend.style.display =
     "none";
 
