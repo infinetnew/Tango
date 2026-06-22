@@ -1660,6 +1660,38 @@ function toggleRSI()
     {
         container.style.display =
             "block";
+const currentRange =
+    chart
+        .timeScale()
+        .getVisibleLogicalRange();
+
+document.getElementById(
+    "chartContainer"
+).style.height = "500px";
+
+chart.resize(
+    document.getElementById(
+        "chartContainer"
+    ).clientWidth,
+    500
+);
+
+if (currentRange)
+{
+    chart
+        .timeScale()
+        .setVisibleLogicalRange(
+            currentRange
+        );
+}
+
+setTimeout(() =>
+{
+    rsiChart.resize(
+        container.clientWidth,
+        180
+    );
+}, 50);
 
         rsiLineSeries.setData(
             rsiData
@@ -1679,6 +1711,18 @@ function toggleRSI()
     {
         container.style.display =
             "none";
+document.getElementById(
+    "chartContainer"
+).style.height = "";
+
+chart.resize(
+    document.getElementById(
+        "chartContainer"
+    ).clientWidth,
+    document.getElementById(
+        "chartContainer"
+    ).clientHeight
+);
 
         rsiLineSeries.setData(
             []
