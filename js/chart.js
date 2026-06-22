@@ -689,6 +689,24 @@ if (macdPoint)
         );
     }
 }
+if (rsiPoint)
+{
+    try
+    {
+        rsiChart.setCrosshairPosition(
+            rsiPoint.value,
+            param.time,
+            rsiLineSeries
+        );
+    }
+    catch (e)
+    {
+        console.log(
+            "RSI sync",
+            e
+        );
+    }
+}
 
 isCrosshairSyncing =
     false;
