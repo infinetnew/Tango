@@ -672,7 +672,7 @@ document.getElementById(
         ? "#22c55e"
         : "#ef4444";
 const volumePoint =
-    candles.find(
+    candlesData.find(
         x =>
             x.time ===
             param.time
@@ -1419,7 +1419,7 @@ candlesData =
 
     }));
 
-console.log(candles);
+console.log(candlesData);
 
 candleSeries.setData(
     candlesData
@@ -1446,27 +1446,27 @@ volumeSeries.setData(
 
 sma50Data =
     calculateSMAHistory(
-        candles,
+        candlesData,
         50
     );
 sma200Data =
     calculateSMAHistory(
-        candles,
+        candlesData,
         200
     );
 ema12Data =
     calculateEMAHistory(
-        candles,
+        candlesData,
         12
     );
 ema26Data =
     calculateEMAHistory(
-        candles,
+        candlesData,
         26
     );
 rsiData =
     calculateRSIHistory(
-        candles,
+        candlesData,
         14
     );
 console.log(
@@ -1475,7 +1475,7 @@ console.log(
 );
 const macdResult =
     calculateMACDHistory(
-        candles
+        candlesData
     );
 
 macdData =
@@ -1503,7 +1503,7 @@ console.log(
 );
 const bollinger =
     calculateBollingerHistory(
-        candles,
+        candlesData,
         20,
         2
     );
