@@ -746,7 +746,7 @@ if (
         );
     }
 }
-
+} 
 isCrosshairSyncing =
     false;
 });
