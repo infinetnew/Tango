@@ -5,6 +5,46 @@ let rsiChart = null;
 let rsiLineSeries = null;
 let rsiData = [];
 let rsiVisible = false;
+function resizeMainChart()
+{
+    let height = 680;
+
+    if (macdVisible)
+    {
+        height -= 180;
+    }
+
+    if (rsiVisible)
+    {
+        height -= 180;
+    }
+
+    document.getElementById(
+        "chartContainer"
+    ).style.height =
+        `${height}px`;
+
+    const currentRange =
+        chart
+            .timeScale()
+            .getVisibleLogicalRange();
+
+    chart.resize(
+        document.getElementById(
+            "chartContainer"
+        ).clientWidth,
+        height
+    );
+
+    if (currentRange)
+    {
+        chart
+            .timeScale()
+            .setVisibleLogicalRange(
+                currentRange
+            );
+    }
+}
 let macdLineSeries = null;
 let signalLineSeries = null;
 let histogramMacdSeries = null;
@@ -1529,28 +1569,7 @@ function toggleMACD()
     {
 container.style.display =
     "block";
-const currentRange =
-    chart
-        .timeScale()
-        .getVisibleLogicalRange();
-document.getElementById(
-    "chartContainer"
-).style.height = "500px";
 
-chart.resize(
-    document.getElementById(
-        "chartContainer"
-    ).clientWidth,
-    500
-);
-if (currentRange)
-{
-    chart
-        .timeScale()
-        .setVisibleLogicalRange(
-            currentRange
-        );
-}
 
 setTimeout(() =>
 {
@@ -1608,24 +1627,14 @@ setTimeout(() =>
         );
 
         macdVisible = true;
+resizeMainChart();
     }
     else
     {
 container.style.display =
     "none";
 
-document.getElementById(
-    "chartContainer"
-).style.height = "";
 
-chart.resize(
-    document.getElementById(
-        "chartContainer"
-    ).clientWidth,
-    document.getElementById(
-        "chartContainer"
-    ).clientHeight
-);
 
         macdLineSeries.setData([]);
 
@@ -1642,6 +1651,7 @@ chart.resize(
         );
 
         macdVisible = false;
+resizeMainChart();
     }
 }
 function toggleRSI()
@@ -1660,30 +1670,7 @@ function toggleRSI()
     {
         container.style.display =
             "block";
-const currentRange =
-    chart
-        .timeScale()
-        .getVisibleLogicalRange();
 
-document.getElementById(
-    "chartContainer"
-).style.height = "500px";
-
-chart.resize(
-    document.getElementById(
-        "chartContainer"
-    ).clientWidth,
-    500
-);
-
-if (currentRange)
-{
-    chart
-        .timeScale()
-        .setVisibleLogicalRange(
-            currentRange
-        );
-}
 
 setTimeout(() =>
 {
@@ -1706,23 +1693,13 @@ setTimeout(() =>
         );
 
         rsiVisible = true;
+resizeMainChart();
     }
     else
     {
         container.style.display =
             "none";
-document.getElementById(
-    "chartContainer"
-).style.height = "";
 
-chart.resize(
-    document.getElementById(
-        "chartContainer"
-    ).clientWidth,
-    document.getElementById(
-        "chartContainer"
-    ).clientHeight
-);
 
         rsiLineSeries.setData(
             []
@@ -1737,6 +1714,7 @@ chart.resize(
         );
 
         rsiVisible = false;
+resizeMainChart();
     }
 }
 document.addEventListener("DOMContentLoaded", () => {
