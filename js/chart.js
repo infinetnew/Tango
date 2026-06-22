@@ -811,9 +811,20 @@ volumeSeries =
                 type: "volume"
             },
 
-            priceScaleId: ""
+            priceScaleId: "volume"
         }
     );
+chart.priceScale(
+    "volume"
+).applyOptions({
+
+    scaleMargins:
+    {
+        top: 0.75,
+        bottom: 0
+    }
+
+});
 window.sma50Series =
     chart.addSeries(
         LightweightCharts.LineSeries,
