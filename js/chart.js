@@ -697,12 +697,6 @@ if (volumePoint)
     ).innerHTML =
         `Vol: ${volumeText}`;
 }
-
-document.getElementById(
-    "ohlcVolume"
-).innerHTML =
-    `Vol: ${volumeText}`;
-}
 if (
     rsiVisible &&
     rsiPoint
