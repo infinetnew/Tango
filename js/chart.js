@@ -162,6 +162,12 @@ chart
             range
         );
 
+    rsiChart
+        .timeScale()
+        .setVisibleLogicalRange(
+            range
+        );
+
     isSyncing = false;
 });
 
@@ -364,6 +370,51 @@ legend.style.borderRadius =
 macdContainer.appendChild(
     legend
 );
+const rsiLegend =
+    document.createElement("div");
+
+rsiLegend.id =
+    "rsiLegend";
+
+rsiLegend.innerHTML = `
+<span
+    id="rsiValue"
+    style="
+        color:#a855f7;
+        font-weight:600;
+    "
+>
+    RSI: --
+</span>
+`;
+
+rsiLegend.style.position =
+    "absolute";
+
+rsiLegend.style.top =
+    "8px";
+
+rsiLegend.style.left =
+    "10px";
+
+rsiLegend.style.zIndex =
+    "1000";
+
+rsiLegend.style.fontSize =
+    "12px";
+
+rsiLegend.style.background =
+    "rgba(255,255,255,0.7)";
+
+rsiLegend.style.padding =
+    "4px 8px";
+
+rsiLegend.style.borderRadius =
+    "4px";
+
+rsiContainer.appendChild(
+    rsiLegend
+);
 
 macdChart.subscribeCrosshairMove(
     param =>
@@ -492,6 +543,13 @@ const candlePoint =
             x.time ===
             param.time
     );
+const rsiPoint =
+    rsiData.find(
+        x =>
+            x.time ===
+            param.time
+    );
+
 
     if (macdPoint)
     {
@@ -602,6 +660,16 @@ document.getElementById(
     change >= 0
         ? "#22c55e"
         : "#ef4444";
+}
+if (
+    rsiVisible &&
+    rsiPoint
+)
+{
+    document.getElementById(
+        "rsiValue"
+    ).innerHTML =
+        `RSI: ${rsiPoint.value}`;
 }
 if (macdPoint)
 {
