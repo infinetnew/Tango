@@ -392,10 +392,12 @@ rsiLegend.style.position =
     "absolute";
 
 rsiLegend.style.top =
-    "8px";
+    "10px";
 
 rsiLegend.style.left =
-    "10px";
+    "15px";
+rsiLegend.style.display =
+    "none";
 
 rsiLegend.style.zIndex =
     "1000";
@@ -746,6 +748,47 @@ rsiLineSeries =
             lineWidth: 2
         }
     );
+
+const rsi70Series =
+    rsiChart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#ef4444",
+            lineWidth: 1,
+            lineStyle: 2
+        }
+    );
+
+const rsi30Series =
+    rsiChart.addSeries(
+        LightweightCharts.LineSeries,
+        {
+            color: "#22c55e",
+            lineWidth: 1,
+            lineStyle: 2
+        }
+    );
+rsi70Series.setData([
+    {
+        time: "2000-01-01",
+        value: 70
+    },
+    {
+        time: "2100-01-01",
+        value: 70
+    }
+]);
+
+rsi30Series.setData([
+    {
+        time: "2000-01-01",
+        value: 30
+    },
+    {
+        time: "2100-01-01",
+        value: 30
+    }
+]);
 // macdPane = chart.addPane();
 
 candleSeries =
@@ -1806,7 +1849,10 @@ setTimeout(() =>
         btn.classList.add(
             "smaActive"
         );
-
+document.getElementById(
+    "rsiLegend"
+).style.display =
+    "block";
         rsiVisible = true;
 resizeMainChart();
     }
@@ -1827,7 +1873,10 @@ resizeMainChart();
         btn.classList.add(
             "rsiInactive"
         );
-
+document.getElementById(
+    "rsiLegend"
+).style.display =
+    "none";
         rsiVisible = false;
 resizeMainChart();
     }
