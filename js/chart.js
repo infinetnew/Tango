@@ -1764,6 +1764,26 @@ setTimeout(() =>
         container.clientWidth,
         180
     );
+
+    const range =
+        chart
+            .timeScale()
+            .getVisibleLogicalRange();
+
+    if (range)
+    {
+        rsiChart
+            .timeScale()
+            .setVisibleLogicalRange(
+                range
+            );
+    }
+
+    console.log(
+        "RSI RESIZE",
+        container.clientWidth
+    );
+
 }, 50);
 
         rsiLineSeries.setData(
