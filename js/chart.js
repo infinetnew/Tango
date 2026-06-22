@@ -689,16 +689,17 @@ if (macdPoint)
         );
     }
 }
-if (rsiPoint)
+if (
+    rsiPoint &&
+    rsiPoint.value !== null
+)
 {
-    try
-    {
-        rsiChart.setCrosshairPosition(
-            rsiPoint.value,
-            param.time,
-            rsiLineSeries
-        );
-    }
+    rsiChart.setCrosshairPosition(
+        rsiPoint.value,
+        param.time,
+        rsiLineSeries
+    );
+}
     catch (e)
     {
         console.log(
@@ -1050,6 +1051,17 @@ function calculateRSIHistory(
 )
 {
     const result = [];
+for (
+    let i = 0;
+    i < period;
+    i++
+)
+{
+    result.push({
+        time: candles[i].time,
+        value: null
+    });
+}
 
     let gains = 0;
     let losses = 0;
