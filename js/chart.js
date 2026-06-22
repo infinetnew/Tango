@@ -1374,6 +1374,25 @@ const candles =
 console.log(candles);
 
 candleSeries.setData(candles);
+volumeSeries.setData(
+    candles.map(
+        candle => ({
+
+            time:
+                candle.time,
+
+            value:
+                candle.volume,
+
+            color:
+                candle.close >=
+                candle.open
+                    ? "#22c55e"
+                    : "#ef4444"
+
+        })
+    )
+);
 
 sma50Data =
     calculateSMAHistory(
