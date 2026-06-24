@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tango</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
+
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="authContainer">
+
+    <div class="loginLogo">
+        📈
+    </div>
+
+    <h1 class="loginTitle">
+        TANGO
+    </h1>
+
+    <p class="subtitle">
+        Personal Market Dashboard
+    </p>
+
+    <input
+        type="text"
+        id="nickname"
+        placeholder="Nickname"
+    >
+
+    <input
+        type="email"
+        id="email"
+        placeholder="Email"
+    >
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Password"
+    >
+
+    <button
+        id="loginBtn"
+        class="primaryBtn"
+    >
+        Accedi
+    </button>
+
+    <button
+        id="registerBtn"
+        class="secondaryBtn"
+    >
+        Crea account
+    </button>
+
+    <div id="message"></div>
+
+</div>
+
+<!-- APP -->
+
+<div id="appContainer" style="display:none;">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h1>📈 TANGO</h1>
+
+        <p class="subtitle">
+            Personal Market Dashboard
+        </p>
+
+        <button id="dashboardBtn">
+            📊 Dashboard
+        </button>
+
+        <button id="watchlistBtn">
+            ⭐ Watchlist
+        </button>
+
+        <button id="portfolioBtn">
+            💼 Portafoglio
+        </button>
+
+        <button id="logoutBtn">
+            🚪 Logout
+        </button>
+
+    </div>
+
+    <!-- CONTENUTO -->
+
+    <div class="content">
+
+        <!-- DASHBOARD -->
+
+<div id="dashboardPage" class="page">
+
+    <div class="card">
+
+        <h2 id="welcomeText">
+            Benvenuto
+        </h2>
+
+    </div>
+
+<div class="card">
+
+    <h3>📊 La tua piattaforma di analisi</h3>
+
+    <p>
+        Tango integra dati di mercato, indicatori tecnici e modelli proprietari per supportare l'analisi dei titoli azionari.
+    </p>
+
+    <br>
+
+<p>
+    ⭐ <strong>Watchlist</strong><br>
+    Monitora i titoli che stai seguendo e individua rapidamente le situazioni più interessanti, valutando trend, forza relativa, momentum e qualità delle opportunità attraverso metriche aggiornate automaticamente.
+</p>
+
+<br>
+
+<p>
+    💼 <strong>Portafoglio</strong><br>
+    Controlla l'andamento delle tue posizioni, la distribuzione del capitale e le performance complessive.
+</p>
+
+</div>
+<div class="card">
+
+    <h3>📚 Indicatori e Metodologia Tango</h3>
+
+    <div id="indicatorDocs"></div>
+
+</div>
+
+    <div id="dashboardStats"></div>
+
+</div>
+
+
+
+        <!-- WATCHLIST -->
+
+        <div
+            id="watchlistPage"
+            class="page"
+            style="display:none;"
+        >
+
+            <div class="card">
+
+                <h3>🔍 Cerca un ticker</h3>
+
+                <div class="searchRow">
+
+                    <input
+                        type="text"
+                        id="tickerInput"
+                        placeholder="Ticker (es. AAPL)"
+                    >
+
+                    <button id="addTickerBtn">
+                        +
+                    </button>
+
+                </div>
+
+                <div id="statusMessage"></div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>⭐ La mia Watchlist</h3>
+<div class="watchlistHeader">
+<span></span>
+    <span>Ticker</span>
+    <span>Prezzo</span>
+<span class="variationHeader">
+
+    Var %
+
+    <span id="varAsc">▲</span>
+
+    <span id="varDesc">▼</span>
+
+</span>
+<span class="tangoHeader">
+
+    <div>Analisi</div>
+
+    <div class="tangoFilters">
+
+        <span class="filterLabel">
+            TT
+        </span>
+
+        <span id="ttAsc">
+            ▲
+        </span>
+
+        <span id="ttDesc">
+            ▼
+        </span>
+
+        <span class="filterLabel">
+            TM
+        </span>
+
+        <span id="tmAsc">
+            ▲
+        </span>
+
+        <span id="tmDesc">
+            ▼
+        </span>
+
+        <span class="filterLabel">
+            TE
+        </span>
+
+        <span id="teAsc">
+            ▲
+        </span>
+
+        <span id="teDesc">
+            ▼
+        </span>
+
+    </div>
+
+</span>
+
+
+<span></span>
+
+</div>
+
+<ul id="watchlist"></ul>
+
+            </div>
+
+        </div>
+
+        <!-- PORTAFOGLIO -->
+
+        <div
+            id="portfolioPage"
+            class="page"
+            style="display:none;"
+        >
+
+            <div class="card">
+
+                <h3>💼 Il mio Portafoglio</h3>
+
+                <div class="portfolioInputRow">
+
+                    <input
+                        type="text"
+                        id="portfolioTicker"
+                        placeholder="Ticker"
+                    >
+
+                    <input
+                        type="number"
+                        id="investedAmount"
+                        placeholder="Importo Investito"
+                        step="0.01"
+                    >
+
+                    <input
+                        type="number"
+                        id="purchasePrice"
+                        placeholder="Prezzo Acquisto"
+                        step="0.0001"
+                    >
+
+                    <button id="addPositionBtn">
+                        +
+                    </button>
+
+                </div>
+
+                <div id="portfolioStatusMessage"></div>
+
+<div class="portfolioHeader">
+
+    <span>Ticker</span>
+    <span>Ult. Prezzo</span>
+    <span>P/L %</span>
+<span>P/L $</span>
+    <span>Investito</span>
+    <span>Peso %</span>
+    <span>Posizioni</span>
+    <span></span>
+
+</div>
+
+                <ul id="portfolioList"></ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- POPUP GESTIONE POSIZIONE -->
+
+<div
+    id="managePositionModal"
+    style="display:none;"
+    class="modalOverlay"
+>
+
+    <div class="modalContent">
+
+        <h3 id="manageTickerTitle">
+            Gestisci posizione
+        </h3>
+
+        <input
+            type="number"
+            id="closeAmountInput"
+            placeholder="Importo da chiudere"
+            step="0.01"
+        >
+
+        <input
+            type="number"
+            id="closePercentInput"
+            placeholder="Percentuale da chiudere"
+            step="0.01"
+        >
+
+        <div class="modalButtons">
+
+            <button id="confirmManageBtn">
+                Conferma
+            </button>
+
+            <button id="closeModalBtn">
+                Annulla
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- POPUP CONFERMA CHIUSURA -->
+
+<div
+    id="confirmCloseModal"
+    style="display:none;"
+    class="modalOverlay"
+>
+
+    <div class="modalContent">
+
+        <h3>
+            Chiudi posizione
+        </h3>
+
+        <p
+            id="confirmCloseText"
+            style="
+                margin-bottom:20px;
+                color:#cbd5e1;
+            "
+        >
+            Vuoi davvero chiudere questa posizione?
+        </p>
+
+        <div class="modalButtons">
+
+            <button
+                id="confirmCloseBtn"
+                style="background:#dc2626;"
+            >
+                Chiudi
+            </button>
+
+            <button id="cancelCloseBtn">
+                Annulla
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- POPUP DETTAGLIO TICKER -->
+
+<div
+    id="tickerDetailsModal"
+    style="display:none;"
+    class="modalOverlay"
+>
+
+    <div class="modalContent">
+<h3
+    id="tickerDetailsTitle"
+    style="display:none;"
+>
+</h3>
+
+        <div id="tickerDetailsContent">
+
+            Nessun dato disponibile
+
+        </div>
+
+<div
+    class="modalButtons"
+    style="margin-top:20px;"
+>
+
+    <button
+        id="backDocBtn"
+        onclick="goBackDoc()"
+    >
+        ← Indietro
+    </button>
+
+    <button id="closeTickerDetailsBtn">
+        Chiudi
+    </button>
+
+</div>
+
+    </div>
+
+</div>
+<!-- POPUP GRAFICO -->
+
+<div
+    id="chartModal"
+    style="display:none;"
+    class="modalOverlay"
+>
+
+    <div class="chartModalContent">
+
+<h3 id="chartTitle">
+    Grafico
+</h3>
+
+<div class="chartToolbar">
+
+<button
+    id="sma50Btn"
+    class="smaInactive"
+>
+    SMA50
+</button>
+<button
+    id="sma200Btn"
+    class="sma200Inactive"
+>
+    SMA200
+</button>
+<button
+    id="ema12Btn"
+    class="ema12Inactive"
+>
+    EMA12
+</button>
+<button
+    id="ema26Btn"
+    class="ema26Inactive"
+>
+    EMA26
+</button>
+<button
+    id="bollingerBtn"
+    class="bollingerInactive"
+>
+    BOLL
+</button>
+<button
+    id="macdBtn"
+    class="macdInactive"
+>
+    MACD
+</button>
+<button
+    id="rsiBtn"
+    class="rsiInactive"
+>
+    RSI
+</button>
+</div>
+
+<div id="chartContainer">
+
+            Grafico in caricamento...
+
+        </div>
+
+<div
+    id="macdContainer"
+    style="
+        display:none;
+        height:180px;
+        margin-top:10px;
+    "
+></div>
+<div
+    id="rsiContainer"
+    style="
+        display:none;
+        height:180px;
+        margin-top:10px;
+    "
+></div>
+<div class="chartButtons">
+
+    <button id="closeChartBtn">
+        Chiudi
+    </button>
+
+</div>
+
+    </div>
+
+</div>
+<script src="js/chart.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
