@@ -267,27 +267,25 @@ function loadIndicatorDocs(){
 
     <div class="card">
 
+<div class="docItem"
+    onclick="showIndicatorDoc('trendV2')">
+    📈 Trend Score
+</div>
 
-        <div class="docItem"
-            onclick="showIndicatorDoc('tangoIndex')">
+<div class="docItem"
+    onclick="showIndicatorDoc('momentumV2')">
+    🚀 Momentum Score
+</div>
 
-            📈 Tango Index
+<div class="docItem"
+    onclick="showIndicatorDoc('entryV2')">
+    🎯 Entry Score
+</div>
 
-        </div>
-
-        <div class="docItem"
-            onclick="showIndicatorDoc('tangoEntry')">
-
-            🎯 Tango Entry
-
-        </div>
-
-        <div class="docItem"
-            onclick="showIndicatorDoc('tangoDelta')">
-
-            ⚡ Tango Delta
-
-        </div>
+<div class="docItem"
+    onclick="showIndicatorDoc('signalV2')">
+    🟢 Signal
+</div>
 
     </div>
 
@@ -298,6 +296,273 @@ function showIndicatorDoc(type){
     docHistory.push(type);
 
     let html = "";
+if(type === "trendV2"){
+
+html = `
+
+<h3>Trend Score</h3>
+
+<p>
+Misura la qualità strutturale del trend.
+</p>
+
+<p>
+Valuta se il titolo si trova in una tendenza rialzista consolidata oppure in una fase debole.
+</p>
+
+<br>
+
+<h4>Cosa analizza</h4>
+<br>
+
+<p>
+✅ Forza rispetto alla SMA200
+</p>
+
+<p>
+✅ Allineamento delle medie mobili
+</p>
+
+<p>
+✅ Vicinanza ai massimi annuali
+</p>
+
+<br>
+
+<h4>Interpretazione</h4>
+<br>
+
+<p>
+90 - 100 → 🟣 Trend Eccezionale
+</p>
+
+<p>
+75 - 89 → 🔵 Trend Molto Forte
+</p>
+
+<p>
+60 - 74 → 🟢 Trend Forte
+</p>
+
+<p>
+40 - 59 → 🟡 Trend Costruttivo
+</p>
+
+<p>
+20 - 39 → 🟠 Trend Debole
+</p>
+
+<p>
+0 - 19 → 🔴 Trend Assente
+</p>
+
+`;
+
+}
+if(type === "momentumV2"){
+
+html = `
+
+<h3>Momentum Score</h3>
+
+<p>
+Misura l'accelerazione del movimento.
+</p>
+
+<p>
+Indica se il titolo sta guadagnando forza oppure la sta perdendo.
+</p>
+
+<br>
+
+<h4>Cosa analizza</h4>
+<br>
+
+<p>
+✅ RSI Slope
+</p>
+
+<p>
+✅ MACD Histogram Slope
+</p>
+
+<p>
+✅ EMA Spread Slope
+</p>
+
+<p>
+✅ Volume Slope
+</p>
+
+<br>
+
+<h4>Interpretazione</h4>
+<br>
+
+<p>
+80 - 100 → 🟣 Accelerazione Esplosiva
+</p>
+
+<p>
+60 - 79 → 🔵 Accelerazione Forte
+</p>
+
+<p>
+40 - 59 → 🟢 Momentum Positivo
+</p>
+
+<p>
+20 - 39 → 🟡 Momentum Debole
+</p>
+
+<p>
+0 - 19 → 🔴 Momentum Negativo
+</p>
+
+`;
+
+}
+if(type === "entryV2"){
+
+html = `
+
+<h3>Entry Score</h3>
+
+<p>
+Misura la qualità dell'ingresso nel momento attuale.
+</p>
+
+<p>
+Combina trend, momentum e condizioni operative per individuare il timing migliore.
+</p>
+
+<br>
+
+<h4>Cosa analizza</h4>
+<br>
+
+<p>
+✅ Momentum Score
+</p>
+
+<p>
+✅ RSI
+</p>
+
+<p>
+✅ MACD Histogram
+</p>
+
+<p>
+✅ Volume Ratio
+</p>
+
+<p>
+✅ Accelerazione del movimento
+</p>
+
+<br>
+
+<h4>Interpretazione</h4>
+<br>
+
+<p>
+80 - 100 → 🟣 Entrata Perfetta
+</p>
+
+<p>
+65 - 79 → 🔵 Entrata Ottima
+</p>
+
+<p>
+50 - 64 → 🟢 Entrata Buona
+</p>
+
+<p>
+35 - 49 → 🟡 Entrata Discreta
+</p>
+
+<p>
+20 - 34 → 🟠 Entrata Debole
+</p>
+
+<p>
+0 - 19 → 🔴 Da Evitare
+</p>
+
+`;
+
+}
+if(type === "signalV2"){
+
+html = `
+
+<h3>Signal</h3>
+
+<p>
+Signal è il verdetto finale del sistema.
+</p>
+
+<p>
+Combina Trend Score, Momentum Score ed Entry Score.
+</p>
+
+<br>
+
+<h4>Interpretazione</h4>
+<br>
+
+<p>
+🟣 STRONG_BUY
+</p>
+
+<p>
+Trend forte, momentum forte e timing eccellente.
+</p>
+
+<br>
+
+<p>
+🟢 BUY
+</p>
+
+<p>
+Condizioni favorevoli per l'acquisto.
+</p>
+
+<br>
+
+<p>
+🟡 WATCH
+</p>
+
+<p>
+Situazione interessante ma ancora da confermare.
+</p>
+
+<br>
+
+<p>
+🟠 TAKE_PROFIT
+</p>
+
+<p>
+Trend ancora valido ma momentum in deterioramento.
+</p>
+
+<br>
+
+<p>
+🔴 AVOID
+</p>
+
+<p>
+Condizioni non favorevoli.
+</p>
+
+`;
+
+}
 
 if(type === "tangoIndex"){
 
@@ -2248,9 +2513,10 @@ await supabaseClient
 .from("technical_indicators")
 .select(`
     symbol,
-    tango_index,
-    tango_entry,
-    tango_delta
+    trend_v2,
+    momentum_v2,
+    entry_v2,
+    signal_v2
 `)
 .in("symbol", symbols);
 
@@ -2437,30 +2703,23 @@ li.innerHTML = `
 <div class="tangoCol">
 
 <div>
-Trend =
-${
-    getTrendLabel(
-        technicalMap[item.symbol]?.tango_index || 0
-    )
-}
+📈 Trend =
+${technicalMap[item.symbol]?.trend_v2 ?? "-"}
 </div>
 
 <div>
-Entrata =
-${
-    getEntryLabel(
-        technicalMap[item.symbol]?.tango_entry || 0
-    )
-}
+🚀 Momentum =
+${technicalMap[item.symbol]?.momentum_v2 ?? "-"}
 </div>
 
 <div>
-Opportunità =
-${
-    getDeltaLabel(
-        technicalMap[item.symbol]?.tango_delta || 0
-    )
-}
+🎯 Entry =
+${technicalMap[item.symbol]?.entry_v2 ?? "-"}
+</div>
+
+<div>
+🟢 Signal =
+${technicalMap[item.symbol]?.signal_v2 ?? "-"}
 </div>
 
 </div>
