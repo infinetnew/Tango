@@ -519,7 +519,6 @@ Condizioni non favorevoli.
 
 }
 
-}
     document.getElementById(
         "tickerDetailsTitle"
     ).innerText = "Documentazione";
