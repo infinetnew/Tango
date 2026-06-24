@@ -284,7 +284,7 @@ function loadIndicatorDocs(){
 
 <div class="docItem"
     onclick="showIndicatorDoc('signalV2')">
-    🟢 Signal
+    🚦 Segnale Operativo
 </div>
 
     </div>
