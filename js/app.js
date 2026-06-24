@@ -513,7 +513,7 @@ Combina Trend Score, Momentum Score ed Entry Score.
 <br>
 
 <p>
-🟣 STRONG_BUY
+🟣 STRONG BUY
 </p>
 
 <p>
@@ -543,7 +543,7 @@ Situazione interessante ma ancora da confermare.
 <br>
 
 <p>
-🟠 TAKE_PROFIT
+🟠 TAKE PROFIT
 </p>
 
 <p>
@@ -2393,7 +2393,7 @@ document.getElementById("purchasePrice").value = "";
 function getTrendLabel(value)
 {
     if (value >= 90)
-        return "🟣 Esplosivo";
+        return "🟣 Eccezionale";
 
     if (value >= 75)
         return "🔵 Molto Forte";
@@ -2401,19 +2401,33 @@ function getTrendLabel(value)
     if (value >= 60)
         return "🟢 Forte";
 
-    if (value >= 45)
+    if (value >= 40)
         return "🟡 Costruttivo";
 
-    if (value >= 30)
+    if (value >= 20)
         return "🟠 Debole";
 
-    if (value >= 15)
-        return "🔴 Fragile";
-
-    return "⚫ Nullo";
+    return "🔴 Assente";
 }
 
 function getEntryLabel(value)
+{
+    if (value >= 80)
+        return "🟣 Esplosivo";
+
+    if (value >= 60)
+        return "🔵 Forte";
+
+    if (value >= 40)
+        return "🟢 Positivo";
+
+    if (value >= 20)
+        return "🟡 Debole";
+
+    return "🔴 Negativo";
+}
+
+function getDeltaLabel(value)
 {
     if (value >= 80)
         return "🟣 Perfetta";
@@ -2430,35 +2444,32 @@ function getEntryLabel(value)
     if (value >= 20)
         return "🟠 Debole";
 
-    if (value >= 10)
-        return "🔴 Rischiosa";
-
-    return "⚫ Da non Considerare";
+    return "🔴 Evitare";
 }
 
-function getDeltaLabel(value)
-{
-if (value >= 20)
-    return "🟣 Occasione Eccezionale";
+function getSignalLabel(signal){
 
-if (value >= 10)
-    return "🔵 Buona Occasione";
+    switch(signal){
 
-if (value >= 5)
-    return "🟢 Interessante";
+        case "STRONG_BUY":
+            return "🟣 Acquisto Forte";
 
-if (value >= -5)
-    return "🟡 Equilibrato";
+        case "BUY":
+            return "🟢 Acquisto";
 
-if (value >= -15)
-    return "🟠 Fai Attenzione";
+        case "WATCH":
+            return "🟡 Osserva";
 
-if (value >= -30)
-    return "🔴 Da Attendere";
+        case "TAKE_PROFIT":
+            return "🟠 Incassa";
 
-return "⚫ Poco Attraente";
+        case "AVOID":
+            return "🔴 Evita";
+
+        default:
+            return "-";
+    }
 }
-
 async function loadWatchlist(){
 
     const {
@@ -2704,22 +2715,29 @@ li.innerHTML = `
 
 <div>
 📈 Trend =
-${technicalMap[item.symbol]?.trend_v2 ?? "-"}
+${getTrendLabel(
+    technicalMap[item.symbol]?.trend_v2 || 0
+)}
 </div>
 
 <div>
 🚀 Momentum =
-${technicalMap[item.symbol]?.momentum_v2 ?? "-"}
+${getEntryLabel(
+    technicalMap[item.symbol]?.momentum_v2 || 0
+)}
 </div>
 
 <div>
 🎯 Entry =
-${technicalMap[item.symbol]?.entry_v2 ?? "-"}
+${getDeltaLabel(
+    technicalMap[item.symbol]?.entry_v2 || 0
+)}
 </div>
 
 <div>
-🟢 Signal =
-${technicalMap[item.symbol]?.signal_v2 ?? "-"}
+${getSignalLabel(
+    technicalMap[item.symbol]?.signal_v2
+)}
 </div>
 
 </div>
