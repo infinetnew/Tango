@@ -330,30 +330,13 @@ Valuta se il titolo si trova in una tendenza rialzista consolidata oppure in una
 <br>
 
 <h4>Interpretazione</h4>
-<br>
 
 <p>
-90 - 100 → 🟣 Trend Eccezionale
+Il punteggio viene espresso su scala 0-100.
 </p>
 
 <p>
-75 - 89 → 🔵 Trend Molto Forte
-</p>
-
-<p>
-60 - 74 → 🟢 Trend Forte
-</p>
-
-<p>
-40 - 59 → 🟡 Trend Costruttivo
-</p>
-
-<p>
-20 - 39 → 🟠 Trend Debole
-</p>
-
-<p>
-0 - 19 → 🔴 Trend Assente
+Nella Watchlist viene visualizzato come voto su 10.
 </p>
 
 `;
@@ -397,26 +380,13 @@ Indica se il titolo sta guadagnando forza oppure la sta perdendo.
 <br>
 
 <h4>Interpretazione</h4>
-<br>
 
 <p>
-80 - 100 → 🟣 Accelerazione Esplosiva
+Il punteggio viene espresso su scala 0-100.
 </p>
 
 <p>
-60 - 79 → 🔵 Accelerazione Forte
-</p>
-
-<p>
-40 - 59 → 🟢 Momentum Positivo
-</p>
-
-<p>
-20 - 39 → 🟡 Momentum Debole
-</p>
-
-<p>
-0 - 19 → 🔴 Momentum Negativo
+Nella Watchlist viene visualizzato come voto su 10.
 </p>
 
 `;
@@ -464,30 +434,13 @@ Combina trend, momentum e condizioni operative per individuare il timing miglior
 <br>
 
 <h4>Interpretazione</h4>
-<br>
 
 <p>
-80 - 100 → 🟣 Entrata Perfetta
+Il punteggio viene espresso su scala 0-100.
 </p>
 
 <p>
-65 - 79 → 🔵 Entrata Ottima
-</p>
-
-<p>
-50 - 64 → 🟢 Entrata Buona
-</p>
-
-<p>
-35 - 49 → 🟡 Entrata Discreta
-</p>
-
-<p>
-20 - 34 → 🟠 Entrata Debole
-</p>
-
-<p>
-0 - 19 → 🔴 Da Evitare
+Nella Watchlist viene visualizzato come voto su 10.
 </p>
 
 `;
@@ -543,11 +496,13 @@ Situazione interessante ma ancora da confermare.
 <br>
 
 <p>
-🟠 TAKE PROFIT
+🟠 PRUDENZA
 </p>
 
 <p>
-Trend ancora valido ma momentum in deterioramento.
+
+Trend ancora presente ma il momentum sta rallentando.
+Valutare una gestione più conservativa della posizione.
 </p>
 
 <br>
@@ -564,1428 +519,7 @@ Condizioni non favorevoli.
 
 }
 
-if(type === "tangoIndex"){
-
-    html = `
-
-        <h3>Tango Index</h3>
-
-        <p>
-            Tango Index è l'indicatore principale del sistema Tango.
-        </p>
-
-        <p>
-            Misura la qualità complessiva di un trend combinando la componente strutturale del movimento con la componente dinamica del momentum.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            Tango Index =
-            (Trend Index × 0.70)
-            +
-            (Momentum Index × 0.30)
-        </p>
-
-        <br>
-
-        <h4>Componenti</h4>
-<br>
-        <div
-            class="docItem"
-            onclick="showIndicatorDoc('trendIndex')"
-        >
-            Trend Index
-        </div>
-
-        <div
-            class="docItem"
-            onclick="showIndicatorDoc('momentumIndex')"
-        >
-            Momentum Index
-        </div>
-
-        <br>
-
-        <h4>Pesi</h4>
-<br>
-        <p>
-            Trend Index → 70%
-        </p>
-
-        <p>
-            Momentum Index → 30%
-        </p>
-
-        <br>
-
-        <h4>Punteggio massimo</h4>
-<br>
-        <p>
-            100 punti.
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Tango Index rappresenta il principale indicatore di qualità del trend utilizzato da Tango.
-        </p>
-
-        <p>
-            Combina la struttura del trend con la velocità del momentum per individuare i titoli più forti del mercato.
-        </p>
-
-        <br>
-
-        <h4>Interpretazione</h4>
-<br>
-        <p>
-            90 - 100 → 🟣 Esplosivo
-        </p>
-
-        <p>
-            75 - 89 → 🔵 Molto Forte
-        </p>
-
-        <p>
-            60 - 74 → 🟢 Forte
-        </p>
-
-        <p>
-            45 - 59 → 🟡 Costruttivo
-        </p>
-
-        <p>
-            30 - 44 → 🟠 Debole
-        </p>
-
-        <p>
-            15 - 29 → 🔴 Fragile
-        </p>
-
-        <p>
-            0 - 14 → ⚫ Nullo
-        </p>
-
-    `;
 }
-
-if(type === "tangoEntry"){
-
-    html = `
-
-        <h3>Tango Entry</h3>
-
-        <p>
-            Tango Entry misura la qualità dell'opportunità di ingresso in un titolo.
-        </p>
-
-        <p>
-            Combina la qualità delle condizioni attuali di entrata con la forza del momentum per individuare le configurazioni più interessanti.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            Tango Entry =
-            (Entry Index × 0.60)
-            +
-            (Momentum Index × 0.40)
-        </p>
-
-        <br>
-
-        <h4>Componenti</h4>
-<br>
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('entryIndex')"
->
-    Entry Index
-</div>
-
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('momentumIndex')"
->
-    Momentum Index
-</div>
-
-        <br>
-
-        <h4>Pesi</h4>
-<br>
-        <p>
-            Entry Index → 60%
-        </p>
-
-        <p>
-            Momentum Index → 40%
-        </p>
-
-        <br>
-
-        <h4>Punteggio massimo</h4>
-<br>
-        <p>
-            100 punti.
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Tango Entry rappresenta il principale indicatore di qualità dell'ingresso.
-        </p>
-
-        <p>
-            Valuta se le condizioni tecniche attuali sono favorevoli per l'apertura o l'incremento di una posizione.
-        </p>
-<br>
-
-<h4>Interpretazione</h4>
-<br>
-<p>
-    80 - 100 → 🟣 Perfetta
-</p>
-
-<p>
-    65 - 79 → 🔵 Ottima
-</p>
-
-<p>
-    50 - 64 → 🟢 Buona
-</p>
-
-<p>
-    35 - 49 → 🟡 Discreta
-</p>
-
-<p>
-    20 - 34 → 🟠 Debole
-</p>
-
-<p>
-    10 - 19 → 🔴 Rischiosa
-</p>
-
-<p>
-    0 - 9 → ⚫ Da non Considerare
-</p>
-
-    `;
-}
-if(type === "entryIndex"){
-
-    html = `
-
-        <h3>Entry Index</h3>
-
-        <p>
-            Entry Index misura la qualità tecnica dell'ingresso utilizzando momentum attuale, forza del MACD e partecipazione dei volumi.
-        </p>
-
-        <p>
-            L'obiettivo è individuare titoli che mostrano contemporaneamente forza, accelerazione e interesse da parte del mercato.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            Entry Index =
-            RSI14 +
-            MACD Histogram +
-            Volume Ratio
-        </p>
-
-        <br>
-
-        <h4>Componenti</h4>
-<br>
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('rsi14')"
->
-    RSI14
-</div>
-
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('macdHistogram')"
->
-    MACD Histogram
-</div>
-
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('volumeRatio')"
->
-    Volume Ratio
-</div>
-
-        <br>
-
-        <h4>Pesi</h4>
-<br>
-        <p>
-            RSI14 → 40 punti
-        </p>
-
-        <p>
-            MACD Histogram → 40 punti
-        </p>
-
-        <p>
-            Volume Ratio → 20 punti
-        </p>
-
-        <br>
-
-        <h4>Punteggio massimo</h4>
-<br>
-        <p>
-            100 punti.
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Entry Index rappresenta la componente tecnica di ingresso del Tango Entry.
-        </p>
-
-        <p>
-            Valuta se il titolo mostra condizioni operative favorevoli nel momento attuale.
-        </p>
-
-    `;
-}
-if(type === "rsi14"){
-
-    html = `
-
-        <h3>RSI14</h3>
-
-        <p>
-            RSI (Relative Strength Index) è un indicatore di momentum che misura la velocità e l'intensità dei movimenti di prezzo.
-        </p>
-
-        <p>
-            Nel sistema Tango viene utilizzato per valutare la forza attuale del movimento e la qualità dell'ingresso.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            RSI = 100 − (100 / (1 + RS))
-        </p>
-
-        <p>
-            RS = Guadagni Medi / Perdite Medie
-        </p>
-
-        <br>
-
-        <h4>Periodo utilizzato</h4>
-<br>
-        <p>
-            RSI a 14 periodi.
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Un RSI elevato indica una forte pressione d'acquisto.
-        </p>
-
-        <p>
-            Un RSI basso indica una pressione d'acquisto debole o una prevalenza delle vendite.
-        </p>
-
-        <p>
-            Nell'Entry Index l'RSI viene utilizzato come misura della forza immediata del movimento.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            40 punti su 100 dell'Entry Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-<p>
-    RSI 50 - 55 → 40 punti
-</p>
-
-<p>
-    RSI 45 - 50 → 35 punti
-</p>
-
-<p>
-    RSI 55 - 60 → 35 punti
-</p>
-
-<p>
-    RSI 40 - 45 → 30 punti
-</p>
-
-<p>
-    RSI 60 - 65 → 25 punti
-</p>
-
-<p>
-    RSI 35 - 40 → 25 punti
-</p>
-
-<p>
-    RSI 30 - 35 → 20 punti
-</p>
-
-<p>
-    RSI 65 - 70 → 20 punti
-</p>
-
-<p>
-    RSI 70 - 75 → 5 punti
-</p>
-
-<p>
-    RSI > 75 → 0 punti
-</p>
-
-<p>
-    RSI ≤ 30 → 0 punti
-</p>
-    `;
-}
-if(type === "macdHistogram"){
-
-    html = `
-
-        <h3>MACD Histogram</h3>
-
-        <p>
-            MACD Histogram misura la distanza tra il MACD e la Signal Line.
-        </p>
-
-        <p>
-            È uno degli indicatori principali utilizzati dal sistema Tango per valutare la forza del momentum nel momento attuale.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            MACD Histogram =
-            MACD − Signal Line
-        </p>
-
-        <br>
-
-        <h4>Componenti del MACD</h4>
-<br>
-        <p>
-            MACD =
-            EMA12 − EMA26
-        </p>
-
-        <p>
-            Signal Line =
-            EMA a 9 periodi del MACD
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Un MACD Histogram positivo indica che il MACD si trova sopra la Signal Line.
-        </p>
-
-        <p>
-            Maggiore è il valore dell'Histogram, maggiore è la forza del momentum.
-        </p>
-
-        <p>
-            Valori negativi indicano invece una perdita di forza del movimento.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            40 punti su 100 dell'Entry Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-<p>
-    MACD Histogram 0.00 - 0.25 → 40 punti
-</p>
-
-<p>
-    MACD Histogram 0.25 - 0.75 → 35 punti
-</p>
-
-<p>
-    MACD Histogram 0.75 - 1.50 → 25 punti
-</p>
-
-<p>
-    MACD Histogram > 1.50 → 15 punti
-</p>
-
-<p>
-    MACD Histogram ≤ 0.00 → 0 punti
-</p>
-
-    `;
-}
-if(type === "volumeRatio"){
-
-    html = `
-
-        <h3>Volume Ratio</h3>
-
-        <p>
-            Volume Ratio misura il rapporto tra il volume della seduta corrente e il volume medio degli ultimi 20 giorni.
-        </p>
-
-        <p>
-            Consente di valutare il livello di partecipazione del mercato al movimento in corso.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            Volume Ratio =
-            Volume Attuale /
-            Volume Medio 20 Giorni
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Un valore superiore a 1 indica che il volume attuale è superiore alla media.
-        </p>
-
-        <p>
-            Valori elevati suggeriscono un maggiore interesse degli investitori verso il titolo.
-        </p>
-
-        <p>
-            L'aumento dei volumi rende generalmente più affidabili i segnali tecnici.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            20 punti su 100 dell'Entry Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-        <p>
-            Volume Ratio ≥ 2.00 → 20 punti
-        </p>
-
-        <p>
-            Volume Ratio ≥ 1.50 → 15 punti
-        </p>
-
-        <p>
-            Volume Ratio ≥ 1.20 → 10 punti
-        </p>
-
-        <p>
-            Volume Ratio ≥ 1.00 → 5 punti
-        </p>
-
-        <p>
-            Volume Ratio < 1.00 → 0 punti
-        </p>
-
-    `;
-}
-if(type === "tangoDelta"){
-
-    html = `
-
-        <h3>Tango Delta</h3>
-
-        <p>
-            Tango Delta misura la differenza tra la qualità dell'ingresso e la qualità del trend.
-        </p>
-
-        <p>
-            Consente di individuare situazioni in cui il momentum di breve periodo è più forte o più debole rispetto alla struttura complessiva del trend.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            Tango Delta =
-            Tango Entry − Tango Index
-        </p>
-
-        <br>
-
-        <h4>Componenti</h4>
-<br>
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('tangoEntry')"
->
-    Tango Entry
-</div>
-
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('tangoIndex')"
->
-    Tango Index
-</div>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Un valore positivo indica che la qualità dell'ingresso è superiore alla qualità del trend.
-        </p>
-
-        <p>
-            Un valore negativo indica che il trend è più forte delle condizioni di ingresso attuali.
-        </p>
-
-        <p>
-            Valori vicini allo zero indicano un buon allineamento tra struttura del trend e momentum operativo.
-        </p>
-<br>
-
-<h4>Interpretazione</h4>
-<br>
-<p>
-    ≥ 20 → 🟣 Occasione Eccezionale
-</p>
-
-<p>
-    10 - 19 → 🔵 Buona Occasione
-</p>
-
-<p>
-    5 - 9 → 🟢 Interessante
-</p>
-
-<p>
-    -5 - 4 → 🟡 Equilibrato
-</p>
-
-<p>
-    -15 - -6 → 🟠 Fai Attenzione
-</p>
-
-<p>
-    -30 - -16 → 🔴 Da Attendere
-</p>
-
-<p>
-    < -30 → ⚫ Poco Attraente
-</p>
-
-
-
-    `;
-}
-if(type === "trendIndex"){
-
-    html = `
-
-        <h3>Trend Index</h3>
-
-        <p>
-            Misura la qualità strutturale del trend attraverso l'analisi combinata di trend di lungo periodo, allineamento delle medie mobili, vicinanza ai massimi annuali e qualità della volatilità.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            Trend Index =
-            Trend Strength +
-            SMA Spread +
-            Distance 52W High +
-            Volatility Score
-        </p>
-
-        <br>
-
-        <h4>Componenti</h4>
-<br>
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('trendStrength')"
->
-    Trend Strength
-</div>
-
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('smaSpread')"
->
-    SMA Spread
-</div>
-
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('distance52wHigh')"
->
-    Distance 52W High
-</div>
-
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('volatilityScore')"
->
-    Volatility Score
-</div>
-
-        <br>
-
-        <h4>Peso dei componenti</h4>
-<br>
-        <p>
-            Trend Strength → 40 punti
-        </p>
-
-        <p>
-            SMA Spread → 25 punti
-        </p>
-
-        <p>
-            Distance 52W High → 25 punti
-        </p>
-
-        <p>
-            Volatility Score → 10 punti
-        </p>
-
-        <br>
-
-        <h4>Punteggio massimo</h4>
-<br>
-        <p>
-            100 punti.
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Trend Index rappresenta la componente strutturale del Tango Index e viene combinato con il Momentum Index per determinare la qualità complessiva del trend.
-        </p>
-
-    `;
-}
-if(type === "trendStrength"){
-
-    html = `
-
-        <h3>Trend Strength</h3>
-
-        <p>
-            Misura la distanza percentuale tra il prezzo attuale e la SMA200, valutando la forza strutturale del trend di lungo periodo.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            Trend Strength =
-            ((Prezzo Attuale - SMA200) / SMA200) × 100
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Trend Strength è uno dei quattro componenti del Trend Index.
-        </p>
-
-        <p>
-            Maggiore è la distanza positiva dalla SMA200, maggiore sarà il contributo al Trend Index.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            40 punti su 100 del Trend Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-        <p>> 60% → 40 punti</p>
-        <p>> 40% → 35 punti</p>
-        <p>> 30% → 30 punti</p>
-        <p>> 20% → 25 punti</p>
-        <p>> 10% → 20 punti</p>
-        <p>> 0% → 15 punti</p>
-        <p>> -10% → 10 punti</p>
-        <p>> -20% → 5 punti</p>
-        <p>≤ -20% → 0 punti</p>
-
-    `;
-}
-
-if(type === "smaSpread"){
-
-    html = `
-
-        <h3>SMA Spread</h3>
-
-        <p>
-            Misura la separazione tra la media mobile a 50 giorni e la media mobile a 200 giorni.
-        </p>
-
-        <p>
-            È uno dei principali indicatori utilizzati per valutare la qualità strutturale del trend.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            SMA Spread =
-            ((SMA50 - SMA200) / SMA200) × 100
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Quando la SMA50 si trova molto sopra la SMA200 significa che il trend di medio periodo è nettamente più forte del trend di lungo periodo.
-        </p>
-
-        <p>
-            Valori elevati indicano una struttura rialzista solida e consolidata.
-        </p>
-
-        <p>
-            Valori vicini a zero indicano una fase neutrale.
-        </p>
-
-        <p>
-            Valori negativi indicano una struttura debole o ribassista.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            25 punti su 100 del Trend Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-        <p>> 25% → 25 punti</p>
-
-        <p>> 15% → 20 punti</p>
-
-        <p>> 5% → 10 punti</p>
-
-        <p>> 0% → 5 punti</p>
-
-        <p>< 0% → 0 punti</p>
-
-    `;
-}
-
-if(type === "distance52wHigh"){
-
-    html = `
-
-        <h3>Distance 52W High</h3>
-
-        <p>
-            Misura la distanza percentuale tra il prezzo attuale e il massimo registrato nelle ultime 52 settimane.
-        </p>
-
-        <p>
-            È uno degli indicatori più importanti per valutare la leadership di un titolo.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            Distance 52W High =
-            ((Prezzo Attuale - Massimo 52 Settimane) / Massimo 52 Settimane) × 100
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            I titoli che si trovano vicino ai propri massimi annuali tendono ad essere quelli più forti del mercato.
-        </p>
-
-        <p>
-            Valori vicini a zero indicano che il titolo sta testando o superando i massimi annuali.
-        </p>
-
-        <p>
-            Valori molto negativi indicano che il prezzo è ancora distante dai livelli di forza precedenti.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            25 punti su 100 del Trend Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-        <p>
-            ≥ -5% → 25 punti
-        </p>
-
-        <p>
-            ≥ -10% → 20 punti
-        </p>
-
-        <p>
-            ≥ -20% → 15 punti
-        </p>
-
-        <p>
-            ≥ -30% → 10 punti
-        </p>
-
-        <p>
-            < -30% → 0 punti
-        </p>
-
-    `;
-}
-
-if(type === "volatilityScore"){
-
-    html = `
-
-        <h3>Volatility Score</h3>
-
-        <p>
-            Misura la qualità della volatilità del titolo utilizzando l'ATR in rapporto al prezzo medio.
-        </p>
-
-        <p>
-            L'obiettivo è favorire i titoli con una volatilità equilibrata, evitando sia i movimenti troppo lenti sia quelli eccessivamente instabili.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            ATR % =
-            (ATR14 / Bollinger Middle) × 100
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Una volatilità moderata tende a favorire trend più sostenibili e prevedibili.
-        </p>
-
-        <p>
-            Volatilità troppo elevata può indicare instabilità e maggiore rischio operativo.
-        </p>
-
-        <p>
-            Volatilità troppo bassa può indicare assenza di movimento e scarso interesse del mercato.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            10 punti su 100 del Trend Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-        <p>
-            ATR% tra 1% e 4% → 10 punti
-        </p>
-
-        <p>
-            ATR% fino a 6% → 7 punti
-        </p>
-
-        <p>
-            ATR% fino a 8% → 4 punti
-        </p>
-
-        <p>
-            ATR% oltre 8% → 0 punti
-        </p>
-
-    `;
-}
-if(type === "momentumIndex"){
-
-    html = `
-
-        <h3>Momentum Index</h3>
-
-        <p>
-            Misura l'accelerazione e la forza del movimento attraverso l'analisi combinata di RSI, MACD, EMA e volumi.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            Momentum Index =
-            RSI Slope +
-            MACD Histogram Slope +
-            EMA Spread Slope +
-            Volume Slope
-        </p>
-
-        <br>
-
-        <h4>Componenti</h4>
-<br>
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('rsiSlope')"
->
-    RSI Slope
-</div>
-
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('macdHistogramSlope')"
->
-    MACD Histogram Slope
-</div>
-
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('emaSpreadSlope')"
->
-    EMA Spread Slope
-</div>
-
-<div
-    class="docItem"
-    onclick="showIndicatorDoc('volumeSlope')"
->
-    Volume Slope
-</div>
-
-        <br>
-
-        <h4>Peso dei componenti</h4>
-<br>
-        <p>
-            RSI Slope → 30 punti
-        </p>
-
-        <p>
-            MACD Histogram Slope → 30 punti
-        </p>
-
-        <p>
-            EMA Spread Slope → 20 punti
-        </p>
-
-        <p>
-            Volume Slope → 20 punti
-        </p>
-
-        <br>
-
-        <h4>Punteggio massimo</h4>
-<br>
-        <p>
-            100 punti.
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Momentum Index rappresenta la componente dinamica del Tango Index e misura la velocità con cui il trend sta accelerando o rallentando.
-        </p>
-
-    `;
-}
-if(type === "rsiSlope"){
-
-    html = `
-
-        <h3>RSI Slope</h3>
-
-        <p>
-            Misura la velocità di variazione dell'RSI nelle ultime 10 sessioni.
-        </p>
-
-        <p>
-            Non valuta il livello assoluto dell'RSI, ma la sua accelerazione nel tempo.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            RSI Slope = Pendenza della regressione lineare
-            applicata agli ultimi 10 valori di RSI.
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            RSI Slope misura l'accelerazione del momentum.
-        </p>
-
-        <p>
-            Un RSI in crescita genera un contributo positivo al Momentum Index.
-        </p>
-
-        <p>
-            Un RSI in rallentamento o in discesa riduce il contributo.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            30 punti su 100 del Momentum Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-        <p>
-            > 3.0 → 30 punti
-        </p>
-
-        <p>
-            > 2.0 → 25 punti
-        </p>
-
-        <p>
-            > 1.0 → 20 punti
-        </p>
-
-        <p>
-            > 0.0 → 10 punti
-        </p>
-
-        <p>
-            ≤ 0.0 → 0 punti
-        </p>
-
-    `;
-}
-
-if(type === "macdHistogramSlope"){
-
-    html = `
-
-        <h3>MACD Histogram Slope</h3>
-
-        <p>
-            Misura l'accelerazione del MACD Histogram nelle ultime 10 sessioni.
-        </p>
-
-        <p>
-            È uno dei componenti più importanti del Momentum Index poiché consente di individuare l'aumento o il rallentamento della forza del movimento prima che sia evidente sul prezzo.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            MACD Histogram Slope = Pendenza della regressione lineare
-            applicata agli ultimi 10 valori del MACD Histogram.
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Un valore crescente indica un'accelerazione del momentum.
-        </p>
-
-        <p>
-            Un valore decrescente indica una perdita di forza del movimento.
-        </p>
-
-        <p>
-            Il MACD Histogram viene utilizzato perché misura la distanza tra MACD e Signal Line, anticipando spesso i cambiamenti di momentum.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            30 punti su 100 del Momentum Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-        <p>
-            > 0.30 → 30 punti
-        </p>
-
-        <p>
-            > 0.20 → 25 punti
-        </p>
-
-        <p>
-            > 0.10 → 20 punti
-        </p>
-
-        <p>
-            > 0.00 → 10 punti
-        </p>
-
-        <p>
-            ≤ 0.00 → 0 punti
-        </p>
-
-    `;
-}
-if(type === "emaSpreadSlope"){
-
-    html = `
-
-        <h3>EMA Spread Slope</h3>
-
-        <p>
-            Misura la velocità di variazione della distanza tra EMA12 ed EMA26 nelle ultime 10 sessioni.
-        </p>
-
-        <p>
-            Consente di valutare se il trend sta accelerando o rallentando nel breve periodo.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            EMA Spread =
-            ((EMA12 - EMA26) / EMA26) × 100
-        </p>
-
-        <p>
-            EMA Spread Slope =
-            Pendenza della regressione lineare applicata agli ultimi 10 valori di EMA Spread.
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Un aumento dell'EMA Spread indica che la media veloce sta allontanandosi dalla media lenta.
-        </p>
-
-        <p>
-            Questo comportamento è tipico dei trend in accelerazione.
-        </p>
-
-        <p>
-            Una diminuzione dell'EMA Spread indica invece una perdita di forza del movimento.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            20 punti su 100 del Momentum Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-        <p>
-            > 0.50 → 20 punti
-        </p>
-
-        <p>
-            > 0.25 → 15 punti
-        </p>
-
-        <p>
-            > 0.10 → 10 punti
-        </p>
-
-        <p>
-            > 0.00 → 5 punti
-        </p>
-
-        <p>
-            ≤ 0.00 → 0 punti
-        </p>
-
-    `;
-}
-
-if(type === "volumeSlope"){
-
-    html = `
-
-        <h3>Volume Slope</h3>
-
-        <p>
-            Misura la velocità di variazione dei volumi rispetto alla media degli ultimi 20 giorni.
-        </p>
-
-        <p>
-            Consente di individuare l'ingresso progressivo di interesse da parte del mercato.
-        </p>
-
-        <br>
-
-        <h4>Formula</h4>
-<br>
-        <p>
-            Volume Ratio =
-            Volume Attuale / Volume Medio 20 Giorni
-        </p>
-
-        <p>
-            Volume Slope =
-            Pendenza della regressione lineare applicata agli ultimi 10 valori di Volume Ratio.
-        </p>
-
-        <br>
-
-        <h4>Ruolo nel sistema</h4>
-<br>
-        <p>
-            Un Volume Slope positivo indica che i volumi stanno aumentando nel tempo.
-        </p>
-
-        <p>
-            L'aumento progressivo dei volumi è spesso associato ad un crescente interesse degli investitori.
-        </p>
-
-        <p>
-            Volumi in accelerazione rendono più affidabili i segnali di trend e momentum.
-        </p>
-
-        <br>
-
-        <h4>Peso massimo</h4>
-<br>
-        <p>
-            20 punti su 100 del Momentum Index.
-        </p>
-
-        <br>
-
-        <h4>Conversione in punteggio</h4>
-<br>
-        <p>
-            > 0.10 → 20 punti
-        </p>
-
-        <p>
-            > 0.05 → 15 punti
-        </p>
-
-        <p>
-            > 0.02 → 10 punti
-        </p>
-
-        <p>
-            > 0.00 → 5 punti
-        </p>
-
-        <p>
-            ≤ 0.00 → 0 punti
-        </p>
-
-    `;
-}
-
     document.getElementById(
         "tickerDetailsTitle"
     ).innerText = "Documentazione";
@@ -2390,62 +924,8 @@ document.getElementById("purchasePrice").value = "";
 
 
 }
-function getTrendLabel(value)
-{
-    if (value >= 90)
-        return "🟣 Eccezionale";
 
-    if (value >= 75)
-        return "🔵 Molto Forte";
 
-    if (value >= 60)
-        return "🟢 Forte";
-
-    if (value >= 40)
-        return "🟡 Costruttivo";
-
-    if (value >= 20)
-        return "🟠 Debole";
-
-    return "🔴 Assente";
-}
-
-function getEntryLabel(value)
-{
-    if (value >= 80)
-        return "🟣 Esplosivo";
-
-    if (value >= 60)
-        return "🔵 Forte";
-
-    if (value >= 40)
-        return "🟢 Positivo";
-
-    if (value >= 20)
-        return "🟡 Debole";
-
-    return "🔴 Negativo";
-}
-
-function getDeltaLabel(value)
-{
-    if (value >= 80)
-        return "🟣 Perfetta";
-
-    if (value >= 65)
-        return "🔵 Ottima";
-
-    if (value >= 50)
-        return "🟢 Buona";
-
-    if (value >= 35)
-        return "🟡 Discreta";
-
-    if (value >= 20)
-        return "🟠 Debole";
-
-    return "🔴 Evitare";
-}
 
 function getSignalLabel(signal){
 
@@ -2461,7 +941,7 @@ function getSignalLabel(signal){
             return "🟡 Osserva";
 
         case "TAKE_PROFIT":
-            return "🟠 Incassa";
+            return "🟠 Prudenza";
 
         case "AVOID":
             return "🔴 Evita";
@@ -2545,61 +1025,60 @@ technicalData?.forEach(item => {
     technicalMap[item.symbol] = item;
 
 });
-if(currentSort === "tiAsc"){
+if(currentSort === "ttAsc"){
 
-    data.sort((a,b) =>
-        (technicalMap[a.symbol]?.tango_index || 0)
+    data.sort((a,b)=>
+        (technicalMap[a.symbol]?.trend_v2 || 0)
         -
-        (technicalMap[b.symbol]?.tango_index || 0)
+        (technicalMap[b.symbol]?.trend_v2 || 0)
+    );
+
+}
+if(currentSort === "ttDesc"){
+
+    data.sort((a,b)=>
+        (technicalMap[b.symbol]?.trend_v2 || 0)
+        -
+        (technicalMap[a.symbol]?.trend_v2 || 0)
     );
 
 }
 
-if(currentSort === "tiDesc"){
+if(currentSort === "tmAsc"){
 
-    data.sort((a,b) =>
-        (technicalMap[b.symbol]?.tango_index || 0)
+    data.sort((a,b)=>
+        (technicalMap[a.symbol]?.momentum_v2 || 0)
         -
-        (technicalMap[a.symbol]?.tango_index || 0)
+        (technicalMap[b.symbol]?.momentum_v2 || 0)
     );
 
 }
 
+if(currentSort === "tmDesc"){
+
+    data.sort((a,b)=>
+        (technicalMap[b.symbol]?.momentum_v2 || 0)
+        -
+        (technicalMap[a.symbol]?.momentum_v2 || 0)
+    );
+
+}
 if(currentSort === "teAsc"){
 
-    data.sort((a,b) =>
-        (technicalMap[a.symbol]?.tango_entry|| 0)
+    data.sort((a,b)=>
+        (technicalMap[a.symbol]?.entry_v2 || 0)
         -
-        (technicalMap[b.symbol]?.tango_entry || 0)
+        (technicalMap[b.symbol]?.entry_v2 || 0)
     );
 
 }
 
 if(currentSort === "teDesc"){
 
-    data.sort((a,b) =>
-        (technicalMap[b.symbol]?.tango_entry || 0)
+    data.sort((a,b)=>
+        (technicalMap[b.symbol]?.entry_v2 || 0)
         -
-        (technicalMap[a.symbol]?.tango_entry || 0)
-    );
-
-}
-if(currentSort === "tdAsc"){
-
-    data.sort((a,b) =>
-        (technicalMap[a.symbol]?.tango_delta || 0)
-        -
-        (technicalMap[b.symbol]?.tango_delta || 0)
-    );
-
-}
-
-if(currentSort === "tdDesc"){
-
-    data.sort((a,b) =>
-        (technicalMap[b.symbol]?.tango_delta || 0)
-        -
-        (technicalMap[a.symbol]?.tango_delta || 0)
+        (technicalMap[a.symbol]?.entry_v2 || 0)
     );
 
 }
@@ -2714,24 +1193,24 @@ li.innerHTML = `
 <div class="tangoCol">
 
 <div>
-📈 Trend =
-${getTrendLabel(
-    technicalMap[item.symbol]?.trend_v2 || 0
-)}
+📈 Trend:
+${(
+    (technicalMap[item.symbol]?.trend_v2 || 0) / 10
+).toFixed(1)}/10
 </div>
 
 <div>
-🚀 Momentum =
-${getEntryLabel(
-    technicalMap[item.symbol]?.momentum_v2 || 0
-)}
+🚀 Momentum:
+${(
+    (technicalMap[item.symbol]?.momentum_v2 || 0) / 10
+).toFixed(1)}/10
 </div>
 
 <div>
-🎯 Entry =
-${getDeltaLabel(
-    technicalMap[item.symbol]?.entry_v2 || 0
-)}
+🎯 Entry:
+${(
+    (technicalMap[item.symbol]?.entry_v2 || 0) / 10
+).toFixed(1)}/10
 </div>
 
 <div>
@@ -3595,26 +2074,17 @@ const formatSigned = (
     .innerHTML = `
 
         <div class="detailGrid">
-<div>Tango Index</div>
-<div>${data.tango_index}</div>
+<div>📈 Trend</div>
+<div>${(data.trend_v2 / 10).toFixed(1)}/10</div>
 
-<div>Tango Entry</div>
-<div>${data.tango_entry}</div>
+<div>🚀 Momentum</div>
+<div>${(data.momentum_v2 / 10).toFixed(1)}/10</div>
 
-<div>Tango Delta</div>
-<div>${data.tango_delta}</div>
+<div>🎯 Entry</div>
+<div>${(data.entry_v2 / 10).toFixed(1)}/10</div>
 
-            <div>────────────</div>
-            <div></div>
-
-<div>Trend Index</div>
-<div>${data.trend_index}</div>
-
-<div>Momentum Index</div>
-<div>${data.momentum_index}</div>
-
-<div>Entry Index</div>
-<div>${data.entry_index}</div>
+<div>Signal</div>
+<div>${getSignalLabel(data.signal_v2)}</div>
 
             <div>────────────</div>
             <div></div>
@@ -3740,25 +2210,44 @@ document
 .getElementById("addPositionBtn")
 .addEventListener("click", addPosition);
 document
-.getElementById("tiAsc")
+.getElementById("ttAsc")
 .addEventListener("click", () => {
 
-    currentSort = "tiAsc";
+    currentSort = "ttAsc";
 
     loadWatchlist();
 
 });
 
 document
-.getElementById("tiDesc")
+.getElementById("ttDesc")
 .addEventListener("click", () => {
 
-    currentSort = "tiDesc";
+    currentSort = "ttDesc";
 
     loadWatchlist();
 
 });
 
+document
+.getElementById("tmAsc")
+.addEventListener("click", () => {
+
+    currentSort = "tmAsc";
+
+    loadWatchlist();
+
+});
+
+document
+.getElementById("tmDesc")
+.addEventListener("click", () => {
+
+    currentSort = "tmDesc";
+
+    loadWatchlist();
+
+});
 document
 .getElementById("teAsc")
 .addEventListener("click", () => {
@@ -3774,25 +2263,6 @@ document
 .addEventListener("click", () => {
 
     currentSort = "teDesc";
-
-    loadWatchlist();
-
-});
-document
-.getElementById("tdAsc")
-.addEventListener("click", () => {
-
-    currentSort = "tdAsc";
-
-    loadWatchlist();
-
-});
-
-document
-.getElementById("tdDesc")
-.addEventListener("click", () => {
-
-    currentSort = "tdDesc";
 
     loadWatchlist();
 
