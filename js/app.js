@@ -229,23 +229,27 @@ async function waitForIndicators(symbol){
         await supabaseClient
         .from("technical_indicators")
 .select(`
-    trend_v2,
-    momentum_v2,
-    entry_v2,
-    signal_v2
+    long_score,
+    entry_score,
+    sma200,
+    rsi14,
+    macd
 `)
         .eq("symbol", symbol)
         .maybeSingle();
 
-if (
+if(
     data &&
-    data.trend_v2 !== null &&
-    data.momentum_v2 !== null &&
-    data.entry_v2 !== null &&
-    data.signal_v2 !== null
-) {
-    return true;
-}
+    data.long_score !== null &&
+    data.entry_score !== null &&
+    data.sma200 !== null &&
+    data.rsi14 !== null &&
+    data.macd !== null
+){
+
+return true;
+
+        }
 
         await new Promise(
             resolve =>
